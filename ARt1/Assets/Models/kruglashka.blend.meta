@@ -1,46 +1,16 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: d98b540e632c039428eceafc1fc6304f
-timeCreated: 1519504223
-=======
-guid: b515d9d2fe1b43c43ba0451ab98a7905
-timeCreated: 1519506323
->>>>>>> 9feeb3434fdd4190cac32d373e28f59ba7749d7c
+guid: 8f2e726177df8ea49b1dda4b1bed56b5
+timeCreated: 1519508726
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Cube
-    100002: Cube_001
-    100004: //RootNode
-<<<<<<< HEAD
-    400000: Cube
-    400002: Cube_001
-    400004: //RootNode
+    100000: //RootNode
+    400000: //RootNode
     2100000: unnamed
-    2300000: Cube
-    2300002: Cube_001
-    3300000: Cube
-    3300002: Cube_001
-    4300000: Cube
-    4300002: Cube_001
-=======
-    100006: Icosphere
-    400000: Cube
-    400002: Cube_001
-    400004: //RootNode
-    400006: Icosphere
-    2100000: unnamed
-    2300000: Cube
-    2300002: Cube_001
-    2300004: Icosphere
-    3300000: Cube
-    3300002: Cube_001
-    3300004: Icosphere
-    4300000: Icosphere
-    4300002: Cube
-    4300004: Cube_001
->>>>>>> 9feeb3434fdd4190cac32d373e28f59ba7749d7c
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cylinder
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
