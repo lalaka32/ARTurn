@@ -1567,8 +1567,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 97, y: -79}
-  m_SizeDelta: {x: 120, y: 107.29999}
+  m_AnchoredPosition: {x: 97, y: -86.5}
+  m_SizeDelta: {x: 120, y: 122.29999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &347396972
 MonoBehaviour:
@@ -7531,7 +7531,7 @@ Animator:
   m_GameObject: {fileID: 1712616582}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 038c1962e0279c14c8269fb106796f78, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0afe1061037a6dc4a85847a5171d5993, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
