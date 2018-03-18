@@ -4,7 +4,4 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scene/1For Egarius.unity
-    guid: dc22ef4d5f1109345932aa2e05943312
+  m_Scenes: []
