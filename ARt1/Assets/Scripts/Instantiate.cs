@@ -29,10 +29,10 @@ public class Instantiate : MonoBehaviour {
 
     void SetPositionsAndAngles()
     {
-        masCars[0].transform.localPosition = new Vector3(0, 1.6f, 15);
+        masCars[0].transform.localPosition = new Vector3(-0.167f, 0.05449999f, 0.771f);//p2
+        masCars[0].transform.localEulerAngles = new Vector3(0, 180, 0);
 
-        masCars[1].transform.localPosition = new Vector3(15, 1.6f, 0);
-
+        masCars[1].transform.localPosition = new Vector3(0.754f, 0.05449999f, 0.128f);//p3
         masCars[1].transform.localEulerAngles = new Vector3(0, -90, 0);
 
         masCars[2].transform.localPosition = new Vector3(0.178f, 0.05449999f, -0.712f);//p4
