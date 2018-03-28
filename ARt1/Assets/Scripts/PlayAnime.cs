@@ -5,20 +5,27 @@ using UnityEngine;
 
 public class PlayAnime : MonoBehaviour
 {
+    public Animator[] animators = new Animator[4];
+    public Object[] ani = new Object[4];
+    private void Start()
+    {
+        
+    }
     public void MoveForward()
     {
-        GetComponent<Animator>().SetBool("Isforward", true);
+        animators[0].SetBool("Isforward", true);
+        animators[1].SetBool("Isreturn", true);
     }
     public void MoveLeft()
     {
-        GetComponent<Animator>().SetBool("Isleft", true);
+        animators[0].SetBool("Isleft", true);
     }
     public void MoveRight()
     {
-        GetComponent<Animator>().SetBool("Isright", true);
+        animators[0].SetBool("Isright", true);
     }
     public void MoveReturn()
     {
-        GetComponent<Animator>().SetBool("Isreturn", true);
+        animators[0].SetBool("Isreturn", true);
     }
 }
