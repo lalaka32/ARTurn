@@ -21,6 +21,8 @@ ExportedObj/
 
 # Unity3D generated meta files
 *.meta
+*.ide-shm
+*.ide-wal
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt

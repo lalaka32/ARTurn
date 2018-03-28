@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 60137650}
   - component: {fileID: 60137649}
   - component: {fileID: 60137656}
+  - component: {fileID: 60137657}
   m_Layer: 0
   m_Name: ImageTarget
   m_TagString: Untagged
@@ -378,7 +379,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 60137648}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1770992566, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
@@ -390,7 +391,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 60137648}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a917f0af64a6423093132dab321c15f, type: 3}
   m_Name: 
@@ -402,7 +403,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 60137648}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
@@ -434,7 +435,7 @@ Transform:
   - {fileID: 1600365052}
   - {fileID: 603999983}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &60137656
 MonoBehaviour:
@@ -448,11 +449,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Car: {fileID: 100008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-  ani:
+  masCars: []
+  contollers:
   - {fileID: 9100000, guid: 038c1962e0279c14c8269fb106796f78, type: 2}
   - {fileID: 9100000, guid: 9dba19847e4ab46458418acb5e3d75ea, type: 2}
   - {fileID: 9100000, guid: 0bd2bd4f484e0214c98d1bdf855b2696, type: 2}
   - {fileID: 9100000, guid: 320da7ace151ec44aaaff02700acf34c, type: 2}
+--- !u!114 &60137657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 60137648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b1f04fb72aa09b4582710b6ecc5ed35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masCars: []
+  animators:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &78065017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,11 +1232,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 174868816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -210.5, y: 17.49, z: -77.61}
+  m_LocalPosition: {x: -210.5, y: 17.49, z: -159.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &195405464
 GameObject:
@@ -1279,7 +1298,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &243636248
 Mesh:
@@ -2863,9 +2882,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 772720573}
-        m_MethodName: MoveForward
-        m_Mode: 1
+      - m_Target: {fileID: 11500000, guid: 8b1f04fb72aa09b4582710b6ecc5ed35, type: 3}
+        m_MethodName: set_name
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3597,56 +3616,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 748599987}
   m_Mesh: {fileID: 4300014, guid: c048a7fa0781d7b4096ac2b12623021a, type: 3}
---- !u!1 &772720572
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 772720574}
-  - component: {fileID: 772720573}
-  m_Layer: 0
-  m_Name: Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &772720573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 772720572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1f04fb72aa09b4582710b6ecc5ed35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animators:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  ani:
-  - {fileID: 9100000, guid: 038c1962e0279c14c8269fb106796f78, type: 2}
-  - {fileID: 9100000, guid: 9dba19847e4ab46458418acb5e3d75ea, type: 2}
-  - {fileID: 9100000, guid: 0bd2bd4f484e0214c98d1bdf855b2696, type: 2}
-  - {fileID: 9100000, guid: 320da7ace151ec44aaaff02700acf34c, type: 2}
---- !u!4 &772720574
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 772720572}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -123.6, y: 15.145798, z: 44.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &785859687
 GameObject:
   m_ObjectHideFlags: 0
@@ -5166,8 +5135,8 @@ Canvas:
   m_GameObject: {fileID: 1058022700}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 174868820}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -5193,7 +5162,7 @@ RectTransform:
   - {fileID: 99769487}
   - {fileID: 1535028453}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

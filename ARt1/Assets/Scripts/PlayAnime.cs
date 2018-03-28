@@ -5,27 +5,33 @@ using UnityEngine;
 
 public class PlayAnime : MonoBehaviour
 {
+    public GameObject[] masCars;
     public Animator[] animators = new Animator[4];
-    public Object[] ani = new Object[4];
+    //public Object[] controllers = new Object[4];
     private void Start()
     {
-        
+        MoveForward();
     }
     public void MoveForward()
     {
-        animators[0].SetBool("Isforward", true);
-        animators[1].SetBool("Isreturn", true);
+        masCars = GetComponent<Instantiate>().masCars;
+        animators[0] = masCars[0].GetComponent<Animator>();
+        animators[0].SetBool("IsIsforward", true);
+        //animators[1].SetBool("Isreturn", true);
     }
     public void MoveLeft()
     {
-        animators[0].SetBool("Isleft", true);
+        masCars = GetComponent<Instantiate>().masCars;
+        masCars[0].GetComponent<Animator>().SetBool("Isleft", true);
     }
     public void MoveRight()
     {
-        animators[0].SetBool("Isright", true);
+        masCars = GetComponent<Instantiate>().masCars;
+        masCars[0].GetComponent<Animator>().SetBool("Isright", true);
     }
     public void MoveReturn()
     {
-        animators[0].SetBool("Isreturn", true);
+        masCars = GetComponent<Instantiate>().masCars;
+        masCars[0].GetComponent<Animator>().SetBool("Isreturn", true);
     }
 }
