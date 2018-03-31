@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Instantiate : MonoBehaviour {
 
     public GameObject Car;
+    public Animator animator;
+    
 
     private GameObject[] masCars = new GameObject[4];
     NamesOfCars names;
@@ -29,6 +32,7 @@ public class Instantiate : MonoBehaviour {
         {
             masCars[i] = Instantiate(Car, transform, false);
             masCars[i].transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            
             if (i==0)
             {
                 names = NamesOfCars.PlayerCar;
