@@ -18,10 +18,10 @@ public class Instantiate : MonoBehaviour
     }
     IEnumerator SimpleGenerator()
     {
+        yield return new WaitForEndOfFrame();
         InstantiateCars();
         SetPositionsAndAngles();
         SetAnimators();
-        yield return new WaitForEndOfFrame();
     }
     void InstantiateCars()
     {
