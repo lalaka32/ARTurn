@@ -3,37 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Instantiate : MonoBehaviour {
-
+public class Instantiate : MonoBehaviour
+{
     public GameObject Car;
-    public Animator animator;
-    
-
-    private GameObject[] masCars = new GameObject[4];
+    public GameObject[] masCars;
+    public RuntimeAnimatorController[] contollers = new RuntimeAnimatorController[4];
     NamesOfCars names;
-
-    void Start() {
-        StartCoroutine(SimpleGenerator());
-        
+    private void Awake()
+    {
+        masCars = new GameObject[4];
     }
-
-    
+    private void Start()
+    {
+        StartCoroutine(SimpleGenerator());
+    }
     IEnumerator SimpleGenerator()
     {
-        
         InstantiateCars();
         SetPositionsAndAngles();
+        SetAnimators();
         yield return new WaitForEndOfFrame();
     }
-
     void InstantiateCars()
     {
         for (int i = 0; i < 4; i++)
         {
             masCars[i] = Instantiate(Car, transform, false);
             masCars[i].transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-            
-            if (i==0)
+            masCars[i].AddComponent<Animator>().runtimeAnimatorController = contollers[i];
+            if (i == 0)
             {
                 names = NamesOfCars.PlayerCar;
                 masCars[i].transform.name = names.ToString();
@@ -41,10 +39,11 @@ public class Instantiate : MonoBehaviour {
             else
             {
                 names = NamesOfCars.OtherCar;
-                masCars[i].transform.name = names.ToString()+i;
+                masCars[i].transform.name = names.ToString() + i;
             }
         }
     }
+
 
     void SetPositionsAndAngles()
     {
@@ -58,6 +57,7 @@ public class Instantiate : MonoBehaviour {
         masCars[2].transform.localEulerAngles = new Vector3(0, 270, 0);
 
         masCars[3].transform.localPosition = new Vector3(0.178f, 0.0545f, -0.712f);//p4    
+
     }
     enum NamesOfCars:byte { PlayerCar = 0, OtherCar}
 }
