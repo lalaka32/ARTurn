@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
-
 public class PlayAnime : MonoBehaviour
 {
+
     public GameObject[] masCars;
     public Animator[] animators;
     //public Object[] controllers = new Object[4];
     private void Start()
     {
-        animators =  new Animator[4];
+        animators = new Animator[4];
     }
     public void MoveForward()
     {
         masCars = GetComponent<Instantiate>().masCars;
         masCars[0].GetComponent<Animator>().SetBool("Isforward", true);
-        masCars[1].GetComponent<Animator>().SetBool("Isreturn", true);
+        masCars[1].GetComponent<Animator>().SetBool("Isforward", true);
         masCars[2].GetComponent<Animator>().SetBool("Isforward", true);
     }
     public void MoveLeft()
