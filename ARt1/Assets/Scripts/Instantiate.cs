@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Enums;
 
-public class Instantiate : MonoBehaviour
+public class Instantiate : MonoBehaviour   
 {
+   
     public GameObject Car;
     public GameObject[] masCars;
-    public bool trafficLight;
+    public TrafficLight trafficLight;
 
     public RuntimeAnimatorController[] contollers = new RuntimeAnimatorController[4];
     NamesOfCars names;
     private void Awake()
     {
-        masCars = new GameObject[4];
+        masCars = new GameObject[2];
+        trafficLight = TrafficLight.off;
     }
     private void Start()
     {
@@ -27,7 +30,7 @@ public class Instantiate : MonoBehaviour
     }
     void InstantiateCars()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 2; i++)
         {
             masCars[i] = Instantiate(Car, transform, false);
             masCars[i].transform.localScale = new Vector3(0.165f, 0.165f, 0.165f);
@@ -60,18 +63,19 @@ public class Instantiate : MonoBehaviour
         masCars[1].transform.localPosition = new Vector3(-0.167f, 0.05449999f, 0.771f);//p2
         masCars[1].transform.localEulerAngles = new Vector3(0, 180, 0);
 
-        masCars[2].transform.localPosition = new Vector3(0.754f, 0.05449999f, 0.128f);//p3
-        masCars[2].transform.localEulerAngles = new Vector3(0, -90, 0);
+        //masCars[2].transform.localPosition = new Vector3(0.754f, 0.05449999f, 0.128f);//p3
+        //masCars[2].transform.localEulerAngles = new Vector3(0, -90, 0);
 
-        masCars[3].transform.localPosition = new Vector3(0.178f, 0.05449999f, -0.712f);//p4
-        masCars[3].transform.localEulerAngles = new Vector3(0, 0, 0);
+        //masCars[3].transform.localPosition = new Vector3(0.178f, 0.05449999f, -0.712f);//p4
+        //masCars[3].transform.localEulerAngles = new Vector3(0, 0, 0);
     }
-    void GenerationPriritets()
+    void GenerationAdditionalStructures()
     {
-        //есть ли светофоры
-        //есть ли знаки приоритета
+
+        //есть ли светофоры, 3 варианта: красный, зелёный, мигающий жёлтый(по умолчанию)
+        //есть ли знаки приоритета (нет по умолчанию)
         //
     }
         
-    enum NamesOfCars : byte { PlayerCar = 0, OtherCar }
+
 }
