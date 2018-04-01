@@ -6,32 +6,23 @@ public class PlayAnime : MonoBehaviour
 {
 
     public GameObject[] masCars;
-    public Animator[] animators;
     //public Object[] controllers = new Object[4];
-    private void Start()
+
+    public void MoveFirst()
     {
-        animators = new Animator[4];
+        //LOGIK_V001.InitAnsUser( 1);
     }
-    public void MoveForward()
+
+    public void MoveSecond()
     {
-        masCars = GetComponent<Instantiate>().masCars;
-        masCars[0].GetComponent<Animator>().SetBool("Isforward", true);
-        masCars[1].GetComponent<Animator>().SetBool("Isforward", true);
-        masCars[2].GetComponent<Animator>().SetBool("Isforward", true);
+        //InitAnsUser( 2);
     }
-    public void MoveLeft()
+    public void MoveThird()
     {
-        masCars = GetComponent<Instantiate>().masCars;
-        masCars[0].GetComponent<Animator>().SetBool("Isleft", true);
+        //InitAnsUser( 3);
     }
-    public void MoveRight()
+    public void MoveForth()
     {
-        masCars = GetComponent<Instantiate>().masCars;
-        masCars[0].GetComponent<Animator>().SetBool("Isright", true);
-    }
-    public void MoveReturn()
-    {
-        masCars = GetComponent<Instantiate>().masCars;
-        masCars[0].GetComponent<Animator>().SetBool("Isreturn", true);
+        //InitAnsUser( 4a);
     }
 }
