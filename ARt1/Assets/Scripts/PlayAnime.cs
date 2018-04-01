@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using Enums;
 public class PlayAnime : MonoBehaviour
 {
 
@@ -10,7 +11,7 @@ public class PlayAnime : MonoBehaviour
 
     public void MoveFirst()
     {
-        //LOGIK_V001.InitAnsUser( 1);
+        GetComponent<LOGIK_V001>().MakeLogicOnAns(Priority.first);
     }
 
     public void MoveSecond()
