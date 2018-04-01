@@ -28,7 +28,7 @@ public class Instantiate : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             masCars[i] = Instantiate(Car, transform, false);
-            masCars[i].transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+            masCars[i].transform.localScale = new Vector3(0.165f, 0.165f, 0.165f);
             if (i == 0)
             {
                 names = NamesOfCars.PlayerCar;
