@@ -34,6 +34,7 @@ public class Instantiate : MonoBehaviour
         {
             masCars[i] = Instantiate(Car, transform, false);
             masCars[i].transform.localScale = new Vector3(0.165f, 0.165f, 0.165f);
+
             if (i == 0)
             {
                 names = NamesOfCars.PlayerCar;
@@ -69,6 +70,7 @@ public class Instantiate : MonoBehaviour
         //masCars[3].transform.localPosition = new Vector3(0.178f, 0.05449999f, -0.712f);//p4
         //masCars[3].transform.localEulerAngles = new Vector3(0, 0, 0);
     }
+    
     void GenerationAdditionalStructures()
     {
 
