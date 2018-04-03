@@ -2,27 +2,29 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using Enums;
 public class PlayAnime : MonoBehaviour
 {
 
     public GameObject[] masCars;
     //public Object[] controllers = new Object[4];
-
     public void MoveFirst()
     {
-        //LOGIK_V001.InitAnsUser( 1);
+
+        GetComponent<LOGIK_V001>().MakePriorities(Priority.first);
     }
 
     public void MoveSecond()
     {
-        //InitAnsUser( 2);
+        GetComponent<LOGIK_V001>().MakePriorities(Priority.second);
+
     }
     public void MoveThird()
     {
-        //InitAnsUser( 3);
+        GetComponent<LOGIK_V001>().MakePriorities(Priority.third);
     }
     public void MoveForth()
     {
-        //InitAnsUser( 4a);
+        GetComponent<LOGIK_V001>().MakePriorities(Priority.fourth);
     }
 }
