@@ -8,9 +8,9 @@ public class PlayAnime : MonoBehaviour
 
     public GameObject[] masCars;
     //public Object[] controllers = new Object[4];
-
     public void MoveFirst()
     {
+
         GetComponent<LOGIK_V001>().MakePriorities(Priority.first);
     }
 

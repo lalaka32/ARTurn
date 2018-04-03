@@ -6,6 +6,7 @@ using Enums;
 public class LOGIK_V001 : MonoBehaviour {
 
     string question;
+
     GameObject[] masCars;
     GameObject[] prioritymas;
     // Use this for initialization
