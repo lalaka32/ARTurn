@@ -7,10 +7,16 @@ public class Car : MonoBehaviour {
     public Priority priority;
     public Direction direction;
     public float delay;
+    
     private void Awake()
     {
         direction = Direction.turn; /*(Direction)Random.Range(0, 3);*/
         delay = 0f;
+    }
+    public Car(Vector3 position,NamesOfCars names)
+    {
+        //I/*nstantiate(Car, transform, false);*/
+        transform.localScale = new Vector3(0.165f, 0.165f, 0.165f);
     }
     public void SetAnime()
     {
