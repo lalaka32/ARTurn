@@ -2,47 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Enums;
+using Random = System.Random;
 
 class PositionAndRotation
 {
     Vector3 position;
     Vector3 rotation;
-
-    public PositionAndRotation(Vector3 position, Vector3 rotation)
+    string nameOfPosition;
+    public PositionAndRotation(Vector3 position, Vector3 rotation,string nameOfPosition)
     {
         Position = position;
         Rotation = rotation;
+        this.nameOfPosition = nameOfPosition;
     }
     public void Apropriation(GameObject game)
     {
         game.transform.localPosition = Position;
         game.transform.eulerAngles = Rotation;
+        game.name = nameOfPosition;
     }
-    public Vector3 Position
-    {
-        get
-        {
-            return position;
-        }
+    public Vector3 Position{ get;set;}
 
-        set
-        {
-            position = value;
-        }
-    }
-
-    public Vector3 Rotation
-    {
-        get
-        {
-            return rotation;
-        }
-
-        set
-        {
-            rotation = value;
-        }
-    }
+    public Vector3 Rotation{ get;set;}
 }
 
 public class Instantiate : MonoBehaviour   
@@ -54,77 +35,70 @@ public class Instantiate : MonoBehaviour
     public TrafficLight trafficLight;
 
     public RuntimeAnimatorController[] contollers = new RuntimeAnimatorController[4];
-    NamesOfCars names;
     private void Awake()
     {
-        masCars = new GameObject[2];
+
         trafficLight = TrafficLight.off;
     }
     private void Start()
     {
-        StartCoroutine(SimpleGenerator());
+        StartCoroutine(SimpleGenerator(1f));//измени здесь для 1-ого создания
 
     }
-    IEnumerator SimpleGenerator()
+    IEnumerator SimpleGenerator(float timeout)
     {
-        yield return new WaitForEndOfFrame();
-        InstantiateCarsTwo();
+        while (true)//измени здесь для 1-ого создания
+        {
+            Random random = new Random();
+            masCars = new GameObject[random.Next(2, 5)];
+            InstantiateCars();
+
+            yield return new WaitForSeconds(timeout);
+            
+            foreach (GameObject item in masCars)//измени здесь для 1-ого создания
+            {
+                Destroy(item);
+            }
+        }
     }
 
         
-    PositionAndRotation[] andRotation = {new PositionAndRotation(new Vector3(-0.6815f, 0.0545f,-0.163f),new Vector3(0, 90, 0)),
-    new PositionAndRotation(new Vector3( -0.167f, 0.05449999f, 0.771f ),new Vector3(0, 180, 0)),
-    new PositionAndRotation(new Vector3(0.754f, 0.05449999f, 0.128f), new Vector3(0, -90, 0)),
-    new PositionAndRotation(new Vector3(0.178f, 0.05449999f, -0.712f), new Vector3(0, 0, 0)),
-    };
-    void InstantiateCarsTwo()
-    {
-        //int[] position = Randomiser();
+    PositionAndRotation[] andRotation = {new PositionAndRotation(new Vector3(-0.6815f, 0.0545f,-0.163f),new Vector3(0, 90, 0),"p1"),
+    new PositionAndRotation(new Vector3( -0.167f, 0.05449999f, 0.771f ),new Vector3(0, 180, 0),"p2"),
+    new PositionAndRotation(new Vector3(0.754f, 0.05449999f, 0.128f), new Vector3(0, -90, 0),"p3"),
+    new PositionAndRotation(new Vector3(0.178f, 0.05449999f, -0.712f), new Vector3(0, 0, 0),"p4")};
 
+    void InstantiateCars()
+    {
+        Shuffle(andRotation);
+        
         for (int i = 0; i < masCars.Length; i++)
         {
             
             masCars[i] = Instantiate(Car, transform, false);
+            masCars[0].GetComponent<MeshRenderer>().materials[0].color = new Color(2, 2 ,2);//просто для обозначения плеера по цвету
+           
             masCars[i].transform.localScale = new Vector3(0.165f, 0.165f, 0.165f);
             andRotation[i].Apropriation(masCars[i]);
-            if (i == 0)
-            {
-                names = NamesOfCars.PlayerCar;
-                masCars[i].transform.name = names.ToString();
-            }
-            else
-            {
-                names = NamesOfCars.OtherCar;
-                masCars[i].transform.name = names.ToString() + i;
-            }
+
             masCars[i].AddComponent<Animator>().runtimeAnimatorController = contollers[i];
         }
         
 
     }
-    //int[] Randomiser() ЛАМАЕТ
-    //{
-    //    int[] a = new int[4];
-    //    a[0] = Random.Range(1,3);
-    //    for (int i = 1; i < 4;)
-    //    {
-    //        int num = Random.Range(1, 3); // генерируем элемент
-    //        int j;
-    //        // поиск совпадения среди заполненных элементов
-    //        for (j = 0; j < i; j++)
-    //        {
-    //            if (num == a[j])
-    //                break; // совпадение найдено, элемент не подходит
-    //        }
-    //        if (j == i)
-    //        { // совпадение не найдено
-    //            a[i] = num; // сохраняем элемент
-    //            i++; // переходим к следующему элементу
-    //        }
-    //    }
-
-    //    return a;
-    //}
+    PositionAndRotation[] Shuffle(PositionAndRotation[] andRotation)
+    {
+        Random random = new Random();
+        for (int i = andRotation.Length - 1; i >= 1; i--)
+        {
+            int j = random.Next(i + 1);
+            // обменять значения data[j] и data[i]
+            var temp = andRotation[j];
+            andRotation[j] = andRotation[i];
+            andRotation[i] = temp;
+        }
+        return andRotation;
+    }
     void GenerationAdditionalStructures()
     {
 

@@ -13,11 +13,11 @@ public class Car : MonoBehaviour {
         direction = Direction.turn; /*(Direction)Random.Range(0, 3);*/
         delay = 0f;
     }
-    public Car(Vector3 position,NamesOfCars names)
-    {
-        //I/*nstantiate(Car, transform, false);*/
-        transform.localScale = new Vector3(0.165f, 0.165f, 0.165f);
-    }
+    //public Car(Vector3 position,NamesOfCars names)
+    //{
+    //    //I/*nstantiate(Car, transform, false);*/
+    //    transform.localScale = new Vector3(0.165f, 0.165f, 0.165f);
+    //}
     public void SetAnime()
     {
         switch (GetComponent<Car>().direction)
