@@ -6,6 +6,7 @@ using Enums;
 public class LOGIK_V001 : MonoBehaviour {
 
     string question;
+
     GameObject[] masCars;
     GameObject[] prioritymas;
     // Use this for initialization
@@ -32,10 +33,10 @@ public class LOGIK_V001 : MonoBehaviour {
     }
     IEnumerator StartByPrioritets()
     { 
-        for (int j = 0; j < 2; j++)
+        for (int j = 0; j < masCars.Length; j++)
         {
             
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < masCars.Length; i++)
             {
                 if (masCars[i].GetComponent<Car>().priority == (Priority)j)
                 {
@@ -51,40 +52,35 @@ public class LOGIK_V001 : MonoBehaviour {
     public void MakePriorities(Priority playerPriority)
     {
         masCars[0].GetComponent<Car>().priority = playerPriority;
-        switch (masCars[1].GetComponent<Car>().direction)
+        for (int i = 1; i < masCars.Length; i++)
         {
-            case Direction.forward://!!!
-            //добавить if на разворот 1го авто с делеем и приоритетом first как в 
-            //case Direction.turn:
-                masCars[1].GetComponent<Car>().priority = Priority.second;
-                
-                break;
+            switch (masCars[i].GetComponent<Car>().direction)
+            {
+                case Direction.forward:
+                    for (int j = 0; j < masCars.Length; j++)
+                    {
+                        if (masCars[j].name == "p"+(i-1))
+                        {
+                            masCars[i].GetComponent<Car>().priority++; 
+                        }
+                    }
+                    break;
 
-            case Direction.left:
-                //Пока затруднился придумать условие, т.к. не понял как поступать машине 2 при
-                //повороте влево, если машина 1 делает разворот(правило правой руки в этом случае
-                //применяется по разу на каждую машину, этот конфликт из-за того, что дороги 
-                //двухполосные.
-                //в остальных ситуациях вроде легко
-                break;
+                case Direction.left:
+                    //Пока затруднился придумать условие, т.к. не понял как поступать машине 2 при
+                    //повороте влево, если машина 1 делает разворот(правило правой руки в этом случае
+                    //применяется по разу на каждую машину, этот конфликт из-за того, что дороги 
+                    //двухполосные.
+                    //в остальных ситуациях вроде легко
+                    break;
 
-            case Direction.right:
-                masCars[1].GetComponent<Car>().priority = Priority.first;
-                break;
-
-            case Direction.turn:
-                if (masCars[0].GetComponent<Car>().direction == Direction.turn)
-                {//решил проблему разворота 2й машины при развороте 1й довольно неплохо, 
-                    //думаю так и оставить(с помощью задержки анимации 2й, но при этом не меняя
-                    //её приоритет, что считаю правильным)
-                    masCars[1].GetComponent<Car>().delay = 1f;
+                case Direction.right:
                     masCars[1].GetComponent<Car>().priority = Priority.first;
-                }
-                else
-                    masCars[1].GetComponent<Car>().priority = Priority.second;
-                break;
-
+                    break;
+            }
         }
+        
+
         MakeLogicOnAns();
         
         
