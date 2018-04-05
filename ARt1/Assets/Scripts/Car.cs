@@ -6,19 +6,13 @@ using Enums;
 public class Car : MonoBehaviour {
     public Priority priority;
     public Direction direction;
-    public float delay;
     
     private void Awake()
     {
-        direction = Direction.turn; /*(Direction)Random.Range(0, 3);*/
-        delay = 0f;
+        direction=(Direction)Random.Range(0, 3);
+        
     }
-    //public Car(Vector3 position,NamesOfCars names)
-    //{
-    //    //I/*nstantiate(Car, transform, false);*/
-    //    transform.localScale = new Vector3(0.165f, 0.165f, 0.165f);
-    //}
-    public void SetAnime()
+    public void StartAnime()
     {
         switch (GetComponent<Car>().direction)
         {
@@ -31,22 +25,7 @@ public class Car : MonoBehaviour {
             case Direction.right:
                 GetComponent<Animator>().SetBool("Isright", true);
                 break;
-            case Direction.turn:
-                GetComponent<Animator>().SetBool("Isreturn", true);
-                break;
-        }
-    }
-    public void StartAnime()
-    {
-        if (delay == 0f)
-        {
-            SetAnime();
-            Debug.Log("JEPPA");
-        }
-        else
-        {
-            Debug.Log("HUIII");
-            Invoke("SetAnime", delay);
+            
         }
     }
 }
