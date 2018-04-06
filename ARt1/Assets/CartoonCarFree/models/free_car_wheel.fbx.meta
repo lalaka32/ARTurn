@@ -10,7 +10,13 @@ ModelImporter:
     3300000: //RootNode
     4300000: WheelA_1
     9500000: //RootNode
-  externalObjects: {}
+    11100000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CartoonVehiclesAtlas
+    second: {fileID: 2100000, guid: 7dd4a6358ddc199479e360fc7f536867, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -84,7 +90,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
