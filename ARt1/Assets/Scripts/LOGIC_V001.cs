@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 
-public class LOGIK_V001 : MonoBehaviour {
+class ForLogicData
+{
+    public GameObject MasCars { get; set; }
+
+}
+public class LOGIC_V001 : MonoBehaviour {
 
     string question;
 
@@ -52,7 +57,7 @@ public class LOGIK_V001 : MonoBehaviour {
     public void MakePriorities(Priority playerPriority)
     {
         masCars[0].GetComponent<Car>().priority = playerPriority;
-        for (int i = 1; i < masCars.Length; i++)
+        for (int i = 1; i <= masCars.Length; i++)
         {
             switch (masCars[i].GetComponent<Car>().direction)
             {
@@ -67,11 +72,13 @@ public class LOGIK_V001 : MonoBehaviour {
                     break;
 
                 case Direction.left:
-                    //Пока затруднился придумать условие, т.к. не понял как поступать машине 2 при
-                    //повороте влево, если машина 1 делает разворот(правило правой руки в этом случае
-                    //применяется по разу на каждую машину, этот конфликт из-за того, что дороги 
-                    //двухполосные.
-                    //в остальных ситуациях вроде легко
+                    for (int j = 0; j < masCars.Length; j++)
+                    {
+                        if (masCars[j].name == "p" + (i - 1)||masCars[j].name =="p"+(i-2))
+                        {
+                            masCars[i].GetComponent<Car>().priority++;
+                        }
+                    }
                     break;
 
                 case Direction.right:
