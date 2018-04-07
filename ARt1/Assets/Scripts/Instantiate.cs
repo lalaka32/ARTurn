@@ -8,7 +8,7 @@ class PositionRotationAnimation
 {
     string nameOfPosition;
     public RuntimeAnimatorController Controller { get; set; }
-    public PositionAndRotation(Vector3 position, Vector3 rotation,Position numberpos, RuntimeAnimatorController controller)
+    public PositionRotationAnimation(Vector3 position, Vector3 rotation,Position numberpos, RuntimeAnimatorController controller)
     {
         Controller = controller;
         Position = position;
@@ -18,6 +18,7 @@ class PositionRotationAnimation
     }
     public void Apropriation(GameObject game)
     {
+        game.name = NumberOfPosition.ToString();
         game.transform.localPosition = Position;
         game.transform.eulerAngles = Rotation;
         game.GetComponent<Car>().Position = NumberOfPosition;
@@ -33,13 +34,27 @@ class PositionRotationAnimation
 public class Instantiate : MonoBehaviour   
 {
    
-    public GameObject Car;
-    public GameObject[] masCars;
+    public GameObject prefabOfCar;
+    public RuntimeAnimatorController[] controllers = new RuntimeAnimatorController[4];
+
+    GameObject[] masCars;
+    public GameObject[] MasCars
+    {
+        get
+        {
+            return masCars;
+        }
+
+        private set
+        {
+            masCars = value;
+        }
+    }
 
     public TrafficLight trafficLight;
+    PositionRotationAnimation[] posRotAnim = new PositionRotationAnimation[4];
 
-    public RuntimeAnimatorController[] controllers = new RuntimeAnimatorController[4];
-    PositionRotationAnimation[] andRotation = new PositionRotationAnimation[4];
+
     private void Awake()
     {
 
@@ -48,23 +63,23 @@ public class Instantiate : MonoBehaviour
     private void Start()
     {
         
-        StartCoroutine(SimpleGenerator(4f));//измени здесь для 1-ого создания
+        StartCoroutine(SimpleGenerator(2f));//измени здесь для 1-ого создания
 
     }
     IEnumerator SimpleGenerator(float timeout)
     {
-        andRotation[0] = new PositionAndRotation(new Vector3(-0.6815f, 0.0545f, -0.163f), new Vector3(0, 90, 0), Position.first, controllers[0]);
-        andRotation[1] = new PositionAndRotation(new Vector3(-0.167f, 0.05449999f, 0.771f), new Vector3(0, 180, 0), Position.second, controllers[1]);
-        andRotation[2] = new PositionAndRotation(new Vector3(0.754f, 0.05449999f, 0.128f), new Vector3(0, -90, 0), Position.third, controllers[2]);
-        andRotation[3] = new PositionAndRotation(new Vector3(0.178f, 0.05449999f, -0.712f), new Vector3(0, 0, 0), Position.fourth, controllers[3]);
+        posRotAnim[0] = new PositionRotationAnimation(new Vector3(-0.6815f, 0.0545f, -0.163f), new Vector3(0, 90, 0), Position.first, controllers[0]);
+        posRotAnim[1] = new PositionRotationAnimation(new Vector3(-0.167f, 0.05449999f, 0.771f), new Vector3(0, 180, 0), Position.second, controllers[1]);
+        posRotAnim[2] = new PositionRotationAnimation(new Vector3(0.754f, 0.05449999f, 0.128f), new Vector3(0, -90, 0), Position.third, controllers[2]);
+        posRotAnim[3] = new PositionRotationAnimation(new Vector3(0.178f, 0.05449999f, -0.712f), new Vector3(0, 0, 0), Position.fourth, controllers[3]);
         while (true)//измени здесь для 1-ого создания
         {
             Random random = new Random();
-            masCars = new GameObject[2];
+            MasCars = new GameObject[2];
             InstantiateCars();
             yield return new WaitForSeconds(timeout);
             
-            foreach (GameObject item in masCars)//измени здесь для 1-ого создания
+            foreach (GameObject item in MasCars)//измени здесь для 1-ого создания
             {
                 Destroy(item);
             }
@@ -73,32 +88,31 @@ public class Instantiate : MonoBehaviour
 
     void InstantiateCars()
     {
-        Shuffle(andRotation);
+        Shuffle(posRotAnim);
         
-        for (int i = 0; i < masCars.Length; i++)
+        for (int i = 0; i < MasCars.Length; i++)
         {
             
-            masCars[i] = Instantiate(Car, transform, false);
-            masCars[0].GetComponent<MeshRenderer>().materials[0].color = new Color(2, 2 ,2);//просто для обозначения плеера по цвету
+            MasCars[i] = Instantiate(prefabOfCar, transform, false);
+            MasCars[0].GetComponent<MeshRenderer>().materials[0].color = new Color(2, 2 ,2);//просто для обозначения плеера по цвету
 
-            masCars[i].transform.localScale = new Vector3(0.165f, 0.165f, 0.165f);
-            andRotation[i].Apropriation(masCars[i]);
+            MasCars[i].transform.localScale = new Vector3(0.165f, 0.165f, 0.165f);
+            posRotAnim[i].Apropriation(MasCars[i]);
         }
         
 
     }
-    PositionRotationAnimation[] Shuffle(PositionRotationAnimation[] andRotation)
+    void Shuffle(PositionRotationAnimation[] posRotAnim)
     {
         Random random = new Random();
-        for (int i = andRotation.Length - 1; i >= 1; i--)
+        for (int i = posRotAnim.Length - 1; i >= 1; i--)
         {
             int j = random.Next(i + 1);
             // обменять значения data[j] и data[i]
-            var temp = andRotation[j];
-            andRotation[j] = andRotation[i];
-            andRotation[i] = temp;
+            var temp = posRotAnim[j];
+            posRotAnim[j] = posRotAnim[i];
+            posRotAnim[i] = temp;
         }
-        return andRotation;
     }
     void GenerationAdditionalStructures()
     {
