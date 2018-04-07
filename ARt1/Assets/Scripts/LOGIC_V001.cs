@@ -11,16 +11,18 @@ class ForLogicData
 public class LOGIC_V001 : MonoBehaviour {
 
     string question;
-
+    Car[] cars;
     GameObject[] masCars;
-    GameObject[] prioritymas;
     // Use this for initialization
     void Start () {
-        masCars = GetComponent<Instantiate>().masCars;
-        prioritymas = new GameObject[2];
-        // METOD V INSTANCIATE
 
-    }   
+        // METOD V INSTANCIATE
+        masCars = GetComponent<Instantiate>().MasCars;
+    }
+    private void Update()
+    {
+        masCars = GetComponent<Instantiate>().MasCars;
+    }
     //создание очерёдности
     public void MakeLogicOnAns()
     {
@@ -56,46 +58,86 @@ public class LOGIC_V001 : MonoBehaviour {
     }
     public void MakePriorities(Priority playerPriority)
     {
-        masCars[0].GetComponent<Car>().priority = playerPriority;
-        for (int i = 1; i <= masCars.Length; i++)
+        cars = new Car[masCars.Length];
+        for (int i = 0; i < masCars.Length; i++)
         {
+            cars[i] = masCars[i].GetComponent<Car>();
+        }
+        masCars[0].GetComponent<Car>().priority = playerPriority;
+
+        for (int i = 0; i < masCars.Length; i++)
+        {
+            Prioritatible carDir;
             switch (masCars[i].GetComponent<Car>().direction)
             {
                 case Direction.forward:
-                    for (int j = 0; j < masCars.Length; j++)
-                    {
-                        if (masCars[j].name == "p"+(i-1))
-                        {
-                            masCars[i].GetComponent<Car>().priority++; 
-                        }
-                    }
+                    carDir = new DirectionForward(cars, i);
+                    carDir.SetPriority();
                     break;
-
-                case Direction.left:
-                    for (int j = 0; j < masCars.Length; j++)
-                    {
-                        if (masCars[j].name == "p" + (i - 1)||masCars[j].name =="p"+(i-2))
-                        {
-                            masCars[i].GetComponent<Car>().priority++;
-                        }
-                    }
-                    break;
-
                 case Direction.right:
-                    masCars[1].GetComponent<Car>().priority = Priority.first;
+                    carDir = new DirectionRight(cars, i);
+                    carDir.SetPriority();
                     break;
             }
+           
         }
         
 
-        MakeLogicOnAns();
+        //MakeLogicOnAns();
         
         
         
     }
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 }
+public abstract class Prioritatible
+{
+    public int index;
+    public Prioritatible(Car[] car, int index)
+    {
+        this.Car = car;
+        this.index = index;
+    }
+
+    public Car[] Car { get; set; }
+    public abstract void SetPriority();
+
+}
+
+public class DirectionLeft : Prioritatible
+{
+    public DirectionLeft(Car[] car, int index) : base(car, index){}
+
+    public override void SetPriority()
+    {
+        
+    }
+}
+public class DirectionRight : Prioritatible
+{
+    public DirectionRight(Car[] car, int index) : base(car, index){}
+
+    public override void SetPriority()
+    {
+        Car[index].priority = Priority.first;
+        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+    }
+}
+public class DirectionForward : Prioritatible
+{
+    public DirectionForward(Car[] car, int index) : base(car, index){}
+    public override void SetPriority()
+    {
+        Car[index].Position--;//Костыль на костыле
+        for (int i = 0; i < Car.Length; i++)
+        {
+            if (Car[i].Position == Car[index].Position && i != index)
+            {
+                Car[index].priority++;
+            }
+        }
+        Car[index].Position++;
+        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " +Car[index].priority );
+    }
+}
+
