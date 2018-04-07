@@ -11,25 +11,26 @@ public class Car : MonoBehaviour
 
     public Position Position
     {
-        get
-        {
-                if (_position <= 0)
-                {
-                    return Position.fourth;
-                }
-                else
-                {
-                    return _position;
-                }
-        }
+        get { return _position; }
         set
         {
-            _position = value;
+            if ((sbyte)value < 0)
+            {
+                _position = 4 + value;
+            }
+            else if ((sbyte)value >= 4)
+            {
+                _position = value - 4;
+            }
+            else
+            {
+                _position = value;
+            }
         }
     }
     private void Awake()
     {
-        direction = Direction.forward;/*(Direction)Random.Range(0, 3);*/
+        direction = (Direction)Random.Range(0, 2);
 
     }
     public void StartAnime()

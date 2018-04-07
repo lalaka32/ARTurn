@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 
-public class LOGIK_V001 : MonoBehaviour {
+class ForLogicData
+{
+    public GameObject MasCars { get; set; }
+
+}
+public class LOGIC_V001 : MonoBehaviour {
 
     string question;
     Car[] cars;
@@ -12,11 +17,11 @@ public class LOGIK_V001 : MonoBehaviour {
     void Start () {
 
         // METOD V INSTANCIATE
-        masCars = GetComponent<Instantiate>().masCars;
+        masCars = GetComponent<Instantiate>().MasCars;
     }
     private void Update()
     {
-        masCars = GetComponent<Instantiate>().masCars;
+        masCars = GetComponent<Instantiate>().MasCars;
     }
     //создание очерёдности
     public void MakeLogicOnAns()
@@ -59,39 +64,22 @@ public class LOGIK_V001 : MonoBehaviour {
             cars[i] = masCars[i].GetComponent<Car>();
         }
         masCars[0].GetComponent<Car>().priority = playerPriority;
+
         for (int i = 0; i < masCars.Length; i++)
         {
-            switch(masCars[i].GetComponent<Car>().direction)
+            Prioritatible carDir;
+            switch (masCars[i].GetComponent<Car>().direction)
             {
                 case Direction.forward:
-                    Prioritatible carforw = new DirectionForward(cars, i);
-                    carforw.SetPriority();
+                    carDir = new DirectionForward(cars, i);
+                    carDir.SetPriority();
+                    break;
+                case Direction.right:
+                    carDir = new DirectionRight(cars, i);
+                    carDir.SetPriority();
                     break;
             }
-            //switch (masCars[i].GetComponent<Car>().direction)
-            //{
-            //    case Direction.forward:
-            //        for (int j = 0; j < masCars.Length; j++)
-            //        {
-            //            if (masCars[j].name == "p"+(i-1))
-            //            {
-            //                masCars[i].GetComponent<Car>().priority++; 
-            //            }
-            //        }
-            //        break;
-
-            //    case Direction.left:
-            //        //Пока затруднился придумать условие, т.к. не понял как поступать машине 2 при
-            //        //повороте влево, если машина 1 делает разворот(правило правой руки в этом случае
-            //        //применяется по разу на каждую машину, этот конфликт из-за того, что дороги 
-            //        //двухполосные.
-            //        //в остальных ситуациях вроде легко
-            //        break;
-
-            //    case Direction.right:
-            //        masCars[1].GetComponent<Car>().priority = Priority.first;
-            //        break;
-            //}
+           
         }
         
 
@@ -107,11 +95,11 @@ public abstract class Prioritatible
     public int index;
     public Prioritatible(Car[] car, int index)
     {
-        this.car = car;
+        this.Car = car;
         this.index = index;
     }
 
-    public Car[] car { get; set; }
+    public Car[] Car { get; set; }
     public abstract void SetPriority();
 
 }
@@ -127,11 +115,12 @@ public class DirectionLeft : Prioritatible
 }
 public class DirectionRight : Prioritatible
 {
-    protected DirectionRight(Car[] car, int index) : base(car, index){}
+    public DirectionRight(Car[] car, int index) : base(car, index){}
 
     public override void SetPriority()
     {
-
+        Car[index].priority = Priority.first;
+        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
     }
 }
 public class DirectionForward : Prioritatible
@@ -139,16 +128,16 @@ public class DirectionForward : Prioritatible
     public DirectionForward(Car[] car, int index) : base(car, index){}
     public override void SetPriority()
     {
-
-        for (int i = 0; i < car.Length; i++)
+        Car[index].Position--;//Костыль на костыле
+        for (int i = 0; i < Car.Length; i++)
         {
-            Position pos = car[index].Position - 1;
-            if (car[i].Position == pos)
+            if (Car[i].Position == Car[index].Position && i != index)
             {
-                car[index].priority++;
+                Car[index].priority++;
             }
         }
-        Debug.Log(car[index].priority + index.ToString());
+        Car[index].Position++;
+        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " +Car[index].priority );
     }
 }
 
