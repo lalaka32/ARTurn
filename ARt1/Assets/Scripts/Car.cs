@@ -35,18 +35,18 @@ public class Car : MonoBehaviour
     }
     public void StartAnime()
     {
-        //switch (GetComponent<Car>().direction)
-        //{
-        //    case Direction.forward:
-        //        GetComponent<Animator>().SetBool("Isforward", true);
-        //        break;
-        //    case Direction.left:
-        //        GetComponent<Animator>().SetBool("Isleft", true);
-        //        break;
-        //    case Direction.right:
-        //        GetComponent<Animator>().SetBool("Isright", true);
-        //        break;
+        switch (GetComponent<Car>().direction)
+        {
+            case Direction.forward:
+                GetComponent<Animator>().SetBool("Isforward", true);
+                break;
+            case Direction.left:
+                GetComponent<Animator>().SetBool("Isleft", true);
+                break;
+            case Direction.right:
+                GetComponent<Animator>().SetBool("Isright", true);
+                break;
 
-        //}
+        }
     }
 }
