@@ -63,7 +63,7 @@ public class Instantiate : MonoBehaviour
     private void Start()
     {
         
-        StartCoroutine(SimpleGenerator(2f));//измени здесь для 1-ого создания
+        StartCoroutine(SimpleGenerator(4f));//измени здесь для 1-ого создания
 
     }
     IEnumerator SimpleGenerator(float timeout)

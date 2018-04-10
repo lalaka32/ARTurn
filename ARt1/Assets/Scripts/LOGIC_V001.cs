@@ -63,11 +63,11 @@ public class LOGIC_V001 : MonoBehaviour {
         {
             cars[i] = masCars[i].GetComponent<Car>();
         }
-        masCars[0].GetComponent<Car>().priority = playerPriority;
-
+        //masCars[0].GetComponent<Car>().priority = playerPriority;
+        Prioritatible carDir;
         for (int i = 0; i < masCars.Length; i++)
         {
-            Prioritatible carDir;
+            
             switch (masCars[i].GetComponent<Car>().direction)
             {
                 case Direction.forward:
@@ -78,12 +78,16 @@ public class LOGIC_V001 : MonoBehaviour {
                     carDir = new DirectionRight(cars, i);
                     carDir.SetPriority();
                     break;
+                case Direction.left:
+                    carDir = new DirectionLeft(cars, i);
+                    carDir.SetPriority();
+                    break;
             }
            
         }
         
 
-        //MakeLogicOnAns();
+        MakeLogicOnAns();
         
         
         
@@ -95,7 +99,7 @@ public abstract class Prioritatible
     public int index;
     public Prioritatible(Car[] car, int index)
     {
-        this.Car = car;
+        Car = car;
         this.index = index;
     }
 
@@ -107,10 +111,16 @@ public abstract class Prioritatible
 public class DirectionLeft : Prioritatible
 {
     public DirectionLeft(Car[] car, int index) : base(car, index){}
-
+    public bool continueturnleft = true;//есть помыслы добавить анимации левого поворота событие для изменения данной переменной
     public override void SetPriority()
     {
-        
+        for (int i = 0; i < Car.Length; i++)
+        {
+            if (Car[i].Position == (Car[index].Position - 1) && i != index && Car[i].direction != Direction.right)
+            {
+                Car[index].priority = Car[i].priority + 1;
+            }
+        }
     }
 }
 public class DirectionRight : Prioritatible
@@ -128,15 +138,13 @@ public class DirectionForward : Prioritatible
     public DirectionForward(Car[] car, int index) : base(car, index){}
     public override void SetPriority()
     {
-        Car[index].Position--;//Костыль на костыле
         for (int i = 0; i < Car.Length; i++)
         {
-            if (Car[i].Position == Car[index].Position && i != index)
+            if (Car[i].Position == (Car[index].Position-1) && i != index)
             {
-                Car[index].priority++;
+                Car[index].priority = Car[i].priority + 1;
             }
         }
-        Car[index].Position++;
         Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " +Car[index].priority );
     }
 }
