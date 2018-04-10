@@ -85,12 +85,7 @@ public class LOGIC_V001 : MonoBehaviour {
             }
            
         }
-        
-
         MakeLogicOnAns();
-        
-        
-        
     }
 
 }
@@ -116,11 +111,12 @@ public class DirectionLeft : Prioritatible
     {
         for (int i = 0; i < Car.Length; i++)
         {
-            if (Car[i].Position == (Car[index].Position - 1) && i != index && Car[i].direction != Direction.right)
+            if (Car[i].Position == (Car[index].Position - 1) && i != index)
             {
                 Car[index].priority = Car[i].priority + 1;
             }
         }
+        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
     }
 }
 public class DirectionRight : Prioritatible
