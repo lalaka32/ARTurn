@@ -85,7 +85,7 @@ public class LOGIC_V001 : MonoBehaviour {
             }
            
         }
-        MakeLogicOnAns();  
+        MakeLogicOnAns();
     }
 
 }
