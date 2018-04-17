@@ -3,30 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 
-class ForLogicData
-{
-    public GameObject MasCars { get; set; }
+//class ForLogicData
+//{
+//    public GameObject MasCars { get; set; }
 
-}
+//}
 public class LOGIC_V001 : MonoBehaviour {
-
+    List<GameObject> masactivecars = new List<GameObject>();
     string question;
     Car[] cars;
-    GameObject[] masCars;
-    // Use this for initialization
-    void Start () {
+    public GameObject[] MasCars { private get; set; }
 
-        // METOD V INSTANCIATE
-        masCars = GetComponent<Instantiate>().MasCars;
-    }
-    private void Update()
-    {
-        masCars = GetComponent<Instantiate>().MasCars;
-    }
-    //создание очерёдности
+
     public void MakeLogicOnAns()
     {
-
         switch (GetComponent<Instantiate>().trafficLight)
         {
             case TrafficLight.off://по умолчанию
@@ -38,19 +28,41 @@ public class LOGIC_V001 : MonoBehaviour {
                 break;
         }
     }
-    IEnumerator StartByPrioritets()
-    { 
-        for (int j = 0; j < masCars.Length; j++)
+    IEnumerator StartNextMoment()
+    {
+        //if (masactivecars == null)
+        //{
+        //    StopCoroutine("StartNextMoment");
+        //}
+        while (masactivecars.Count != 0)
         {
-            
-            for (int i = 0; i < masCars.Length; i++)
+            for (int i = 0; i < masactivecars.Count; i++)
             {
-                if (masCars[i].GetComponent<Car>().priority == (Priority)j)
+                if (masactivecars[i].GetComponent<Car>().isstop == true)
                 {
-                    masCars[i].GetComponent<Car>().StartAnime();
+                    masactivecars.RemoveAt(i);
+                    print("remove" + i);
                 }
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForEndOfFrame();
+        }
+        print("stop startnextmoment");
+    }
+    IEnumerator StartByPrioritets()
+    {
+        for (int j = 0; j < MasCars.Length; j++)//цикл приоритетов
+        {
+            masactivecars.Clear();
+            for (int i = 0; i < MasCars.Length; i++)
+            {
+                if (MasCars[i].GetComponent<Car>().priority == (Priority)j)
+                {
+                    masactivecars.Add(MasCars[i]);
+                    MasCars[i].GetComponent<Car>().StartAnime();
+                }
+            }
+            StartCoroutine(StartNextMoment());
+            yield return new WaitWhile(()=> masactivecars.Count != 0);
 
         }
 
@@ -58,17 +70,17 @@ public class LOGIC_V001 : MonoBehaviour {
     }
     public void MakePriorities(Priority playerPriority)
     {
-        cars = new Car[masCars.Length];
-        for (int i = 0; i < masCars.Length; i++)
+        cars = new Car[MasCars.Length];
+        for (int i = 0; i < MasCars.Length; i++)
         {
-            cars[i] = masCars[i].GetComponent<Car>();
+            cars[i] = MasCars[i].GetComponent<Car>();
         }
         //masCars[0].GetComponent<Car>().priority = playerPriority;
-        Prioritatible carDir;
-        for (int i = 0; i < masCars.Length; i++)
+        Directionitatible carDir;
+        for (int i = 0; i < MasCars.Length; i++)
         {
             
-            switch (masCars[i].GetComponent<Car>().direction)
+            switch (MasCars[i].GetComponent<Car>().direction)
             {
                 case Direction.forward:
                     carDir = new DirectionForward(cars, i);
@@ -89,10 +101,10 @@ public class LOGIC_V001 : MonoBehaviour {
     }
 
 }
-public abstract class Prioritatible
+public abstract class Directionitatible
 {
     public int index;
-    public Prioritatible(Car[] car, int index)
+    public Directionitatible(Car[] car, int index)
     {
         Car = car;
         this.index = index;
@@ -103,44 +115,47 @@ public abstract class Prioritatible
 
 }
 
-public class DirectionLeft : Prioritatible
+public class DirectionLeft : Directionitatible
 {
     public DirectionLeft(Car[] car, int index) : base(car, index){}
     public bool continueturnleft = true;//есть помыслы добавить анимации левого поворота событие для изменения данной переменной
     public override void SetPriority()
     {
+        Car[index].Position--;
         for (int i = 0; i < Car.Length; i++)
         {
-            if (Car[i].Position == (Car[index].Position - 1) && i != index)
+            if (Car[i].Position == (Car[index].Position) && i != index)
             {
                 Car[index].priority = Car[i].priority + 1;
             }
         }
+        Car[index].Position++;
         Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
     }
 }
-public class DirectionRight : Prioritatible
+public class DirectionRight : Directionitatible
 {
     public DirectionRight(Car[] car, int index) : base(car, index){}
-
     public override void SetPriority()
     {
         Car[index].priority = Priority.first;
         Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
     }
 }
-public class DirectionForward : Prioritatible
+public class DirectionForward : Directionitatible
 {
     public DirectionForward(Car[] car, int index) : base(car, index){}
     public override void SetPriority()
     {
+        Car[index].Position--;
         for (int i = 0; i < Car.Length; i++)
         {
-            if (Car[i].Position == (Car[index].Position-1) && i != index)
+            if (Car[i].Position == (Car[index].Position) && i != index)
             {
                 Car[index].priority = Car[i].priority + 1;
             }
         }
+        Car[index].Position++;
         Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " +Car[index].priority );
     }
 }
