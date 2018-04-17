@@ -41,12 +41,12 @@ public class LOGIC_V001 : MonoBehaviour {
                 if (masactivecars[i].GetComponent<Car>().isstop == true)
                 {
                     masactivecars.RemoveAt(i);
-                    print("remove" + i);
+                    Debug.Log("remove" + i);
                 }
             }
             yield return new WaitForEndOfFrame();
         }
-        print("stop startnextmoment");
+        Debug.Log("stop startnextmoment");
     }
     IEnumerator StartByPrioritets()
     {
@@ -65,6 +65,7 @@ public class LOGIC_V001 : MonoBehaviour {
             yield return new WaitWhile(()=> masactivecars.Count != 0);
 
         }
+
 
 
     }

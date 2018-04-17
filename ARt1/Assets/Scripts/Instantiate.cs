@@ -33,11 +33,15 @@ class PositionRotationAnimation
 
 public class Instantiate : MonoBehaviour   
 {
-   
+    public bool restart;
     public GameObject prefabOfCar;
     public RuntimeAnimatorController[] controllers = new RuntimeAnimatorController[4];
 
     GameObject[] masCars;
+    public void Restart()
+    {
+        restart = true;
+    }
     public GameObject[] MasCars
     {
         get
@@ -62,7 +66,6 @@ public class Instantiate : MonoBehaviour
     }
     private void Start()
     {
-        
         StartCoroutine(SimpleGenerator(4f));//измени здесь для 1-ого создания
 
     }
@@ -74,10 +77,11 @@ public class Instantiate : MonoBehaviour
         posRotAnim[3] = new PositionRotationAnimation(new Vector3(0.178f, 0.05449999f, -0.712f), new Vector3(0, 0, 0), Position.fourth, controllers[3]);
         while (true)//измени здесь для 1-ого создания
         {
+            restart = false;
             Random random = new Random();
             MasCars = new GameObject[2];
             InstantiateCars();
-            yield return new WaitForSeconds(timeout);
+            yield return new WaitWhile(()=> restart == false);
             
             foreach (GameObject item in MasCars)//измени здесь для 1-ого создания
             {

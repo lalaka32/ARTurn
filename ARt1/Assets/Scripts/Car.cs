@@ -51,6 +51,6 @@ public class Car : MonoBehaviour
     public void Isstop()
     {
         isstop = true;
-        print("isstop = true;");
+        Debug.Log("isstop = true;");
     }
 }
