@@ -11,20 +11,20 @@ public class PlayAnime : MonoBehaviour
     public void MoveFirst()
     {
 
-        GetComponent<LOGIK_V001>().MakePriorities(Priority.first);
+        GetComponent<LOGIC_V001>().MakePriorities(Priority.first);
     }
 
     public void MoveSecond()
     {
-        GetComponent<LOGIK_V001>().MakePriorities(Priority.second);
+        GetComponent<LOGIC_V001>().MakePriorities(Priority.second);
 
     }
     public void MoveThird()
     {
-        GetComponent<LOGIK_V001>().MakePriorities(Priority.third);
+        GetComponent<LOGIC_V001>().MakePriorities(Priority.third);
     }
     public void MoveForth()
     {
-        GetComponent<LOGIK_V001>().MakePriorities(Priority.fourth);
+        GetComponent<LOGIC_V001>().MakePriorities(Priority.fourth);
     }
 }

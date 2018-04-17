@@ -308,7 +308,7 @@
     <Compile Include="Assets\Scripts\Car.cs" />
     <Compile Include="Assets\Scripts\Enums.cs" />
     <Compile Include="Assets\Scripts\Instantiate.cs" />
-    <Compile Include="Assets\Scripts\LOGIK_V001.cs" />
+    <Compile Include="Assets\Scripts\LOGIC_V001.cs" />
     <Compile Include="Assets\Scripts\PlayAnime.cs" />
     <Compile Include="Assets\Vuforia\Scripts\DefaultInitializationErrorHandler.cs" />
     <Compile Include="Assets\Vuforia\Scripts\DefaultTrackableEventHandler.cs" />

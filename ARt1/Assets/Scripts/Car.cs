@@ -8,44 +8,49 @@ public class Car : MonoBehaviour
     public Priority priority;
     public Direction direction;
     private Position _position;
-
+    public bool isstop = false;
     public Position Position
     {
-        get
-        {
-                if (_position <= 0)
-                {
-                    return Position.fourth;
-                }
-                else
-                {
-                    return _position;
-                }
-        }
+        get { return _position; }
         set
         {
-            _position = value;
+            if ((sbyte)value < 0)
+            {
+                _position = 4 + value;
+            }
+            else if ((sbyte)value >= 4)
+            {
+                _position = value - 4;
+            }
+            else
+            {
+                _position = value;
+            }
         }
     }
     private void Awake()
     {
-        direction = Direction.forward;/*(Direction)Random.Range(0, 3);*/
+        direction = (Direction)Random.Range(0, 1);
 
     }
     public void StartAnime()
     {
-        //switch (GetComponent<Car>().direction)
-        //{
-        //    case Direction.forward:
-        //        GetComponent<Animator>().SetBool("Isforward", true);
-        //        break;
-        //    case Direction.left:
-        //        GetComponent<Animator>().SetBool("Isleft", true);
-        //        break;
-        //    case Direction.right:
-        //        GetComponent<Animator>().SetBool("Isright", true);
-        //        break;
-
-        //}
+        switch (GetComponent<Car>().direction)
+        {
+            case Direction.forward:
+                GetComponent<Animator>().Play("CarForwardanim");
+                break;
+            case Direction.left:
+                GetComponent<Animator>().Play("CarLeftanim");
+                break;
+            case Direction.right:
+                GetComponent<Animator>().Play("CarRightanim");
+                break;
+        }
+    }
+    public void Isstop()
+    {
+        isstop = true;
+        Debug.Log("isstop = true;");
     }
 }
