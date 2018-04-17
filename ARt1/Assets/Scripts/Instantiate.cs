@@ -92,16 +92,14 @@ public class Instantiate : MonoBehaviour
         
         for (int i = 0; i < MasCars.Length; i++)
         {
-            
             MasCars[i] = Instantiate(prefabOfCar, transform, false);
-            MasCars[0].GetComponent<MeshRenderer>().materials[0].color = new Color(2, 2 ,2);//просто для обозначения плеера по цвету
-
             MasCars[i].transform.localScale = new Vector3(0.165f, 0.165f, 0.165f);
             posRotAnim[i].Apropriation(MasCars[i]);
         }
-        
-
+        MasCars[0].GetComponent<MeshRenderer>().materials[0].color = new Color(2, 2, 2);//просто для обозначения плеера по цвету
+        GetComponent<LOGIC_V001>().MasCars = MasCars;
     }
+
     void Shuffle(PositionRotationAnimation[] posRotAnim)
     {
         Random random = new Random();
