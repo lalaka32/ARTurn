@@ -76,7 +76,7 @@ public class Instantiate : MonoBehaviour
         {
             Restart = false;
             Random random = new Random();
-            MasCars = new GameObject[2];
+            MasCars = new GameObject[3];
             InstantiateCars();
             yield return new WaitWhile(()=> Restart == false);
             
