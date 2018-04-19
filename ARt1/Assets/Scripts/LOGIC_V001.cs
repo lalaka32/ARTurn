@@ -6,7 +6,6 @@ using Enums;
 //class ForLogicData
 //{
 //    public GameObject MasCars { get; set; }
-
 //}
 public class LOGIC_V001 : MonoBehaviour {
     List<GameObject> masactivecars = new List<GameObject>();
