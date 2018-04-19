@@ -8,7 +8,7 @@ public class Car : MonoBehaviour
     public Priority priority;
     public Direction direction;
     private Position _position;
-
+    public bool isstop = false;
     public Position Position
     {
         get { return _position; }
@@ -30,7 +30,7 @@ public class Car : MonoBehaviour
     }
     private void Awake()
     {
-        direction = (Direction)Random.Range(0, 3);
+        direction = (Direction)Random.Range(0, 1);
 
     }
     public void StartAnime()
@@ -38,15 +38,19 @@ public class Car : MonoBehaviour
         switch (GetComponent<Car>().direction)
         {
             case Direction.forward:
-                GetComponent<Animator>().SetBool("Isforward", true);
+                GetComponent<Animator>().Play("CarForwardanim");
                 break;
             case Direction.left:
-                GetComponent<Animator>().SetBool("Isleft", true);
+                GetComponent<Animator>().Play("CarLeftanim");
                 break;
             case Direction.right:
-                GetComponent<Animator>().SetBool("Isright", true);
+                GetComponent<Animator>().Play("CarRightanim");
                 break;
-
         }
+    }
+    public void Isstop()
+    {
+        isstop = true;
+        Debug.Log("isstop = true;");
     }
 }

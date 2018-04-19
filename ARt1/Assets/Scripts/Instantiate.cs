@@ -33,11 +33,15 @@ class PositionRotationAnimation
 
 public class Instantiate : MonoBehaviour   
 {
-   
+    public bool restart;
     public GameObject prefabOfCar;
     public RuntimeAnimatorController[] controllers = new RuntimeAnimatorController[4];
 
     GameObject[] masCars;
+    public void Restart()
+    {
+        restart = true;
+    }
     public GameObject[] MasCars
     {
         get
@@ -62,8 +66,7 @@ public class Instantiate : MonoBehaviour
     }
     private void Start()
     {
-        
-        StartCoroutine(SimpleGenerator(10f));//измени здесь для 1-ого создания
+        StartCoroutine(SimpleGenerator(4f));//измени здесь для 1-ого создания
 
     }
     IEnumerator SimpleGenerator(float timeout)
@@ -74,10 +77,11 @@ public class Instantiate : MonoBehaviour
         posRotAnim[3] = new PositionRotationAnimation(new Vector3(0.178f, 0.05449999f, -0.712f), new Vector3(0, 0, 0), Position.fourth, controllers[3]);
         while (true)//измени здесь для 1-ого создания
         {
+            restart = false;
             Random random = new Random();
             MasCars = new GameObject[2];
             InstantiateCars();
-            yield return new WaitForSeconds(timeout);
+            yield return new WaitWhile(()=> restart == false);
             
             foreach (GameObject item in MasCars)//измени здесь для 1-ого создания
             {
@@ -92,16 +96,14 @@ public class Instantiate : MonoBehaviour
         
         for (int i = 0; i < MasCars.Length; i++)
         {
-            
             MasCars[i] = Instantiate(prefabOfCar, transform, false);
-            MasCars[0].GetComponent<MeshRenderer>().materials[0].color = new Color(2, 2 ,2);//просто для обозначения плеера по цвету
-
             MasCars[i].transform.localScale = new Vector3(0.165f, 0.165f, 0.165f);
             posRotAnim[i].Apropriation(MasCars[i]);
         }
-        
-
+        MasCars[0].GetComponent<MeshRenderer>().materials[0].color = new Color(2, 2, 2);//просто для обозначения плеера по цвету
+        GetComponent<LOGIC_V001>().MasCars = MasCars;
     }
+
     void Shuffle(PositionRotationAnimation[] posRotAnim)
     {
         Random random = new Random();
