@@ -301,7 +301,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Collision.cs" />
-    <Compile Include="Assets\Scripts\CameraLookAt.cs" />
     <Compile Include="Assets\Scripts\Car.cs" />
     <Compile Include="Assets\Scripts\Enums.cs" />
     <Compile Include="Assets\Scripts\Instantiate.cs" />

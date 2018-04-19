@@ -965,9 +965,8 @@ GameObject:
   - component: {fileID: 207094523}
   - component: {fileID: 207094522}
   - component: {fileID: 207094521}
-  - component: {fileID: 207094529}
-  - component: {fileID: 207094519}
   - component: {fileID: 207094520}
+  - component: {fileID: 207094519}
   m_Layer: 0
   m_Name: ImageTarget (1)
   m_TagString: Untagged
@@ -995,7 +994,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 207094518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8198e64549b97fc47a4dc063d02801c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 57b3ff2af7efd2f4d8a452298ae6490c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &207094521
@@ -1009,14 +1008,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cd7651732528049a70299ff0eb0fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Car: {fileID: 100008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-  masCars: []
+  prefabOfCar: {fileID: 100008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
+  controllers:
+  - {fileID: 9100000, guid: 038c1962e0279c14c8269fb106796f78, type: 2}
+  - {fileID: 9100000, guid: 9dba19847e4ab46458418acb5e3d75ea, type: 2}
+  - {fileID: 9100000, guid: 0bd2bd4f484e0214c98d1bdf855b2696, type: 2}
+  - {fileID: 9100000, guid: 320da7ace151ec44aaaff02700acf34c, type: 2}
   trafficLight: 0
-  contollers:
-  - {fileID: 9100000, guid: 081bc8d5b6a9ae04e8665774d5f36e9b, type: 2}
-  - {fileID: 9100000, guid: 9db2fd84c80553a4db42cefa90b7772e, type: 2}
-  - {fileID: 9100000, guid: 0328097a4bc21e445bf8495d6a65b1b8, type: 2}
-  - {fileID: 9100000, guid: a2f2720725d6da143a8257f6b97c7f64, type: 2}
 --- !u!95 &207094522
 Animator:
   serializedVersion: 3
@@ -1142,17 +1140,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &207094529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 207094518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c1875d3ae697234ba8eba6417741ca5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &213558558
 GameObject:
   m_ObjectHideFlags: 0
@@ -4580,7 +4567,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0420\u0430\u0437\u0432\u043E\u0440\u043E\u0442"
+  m_Text: 4
 --- !u!222 &894619776
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5622,7 +5609,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 207094519}
-        m_MethodName: MoveForward
+        m_MethodName: MoveForth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6328,7 +6315,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0412\u043F\u0440\u0430\u0432\u043E"
+  m_Text: 3
 --- !u!222 &1321884065
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7176,7 +7163,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 207094519}
-        m_MethodName: MoveForward
+        m_MethodName: MoveThird
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7601,7 +7588,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0412\u043F\u0435\u0440\u0451\u0434"
+  m_Text: 1
 --- !u!222 &1840134589
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7924,7 +7911,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 207094519}
-        m_MethodName: MoveForward
+        m_MethodName: MoveSecond
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8430,7 +8417,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0412\u043B\u0435\u0432\u043E"
+  m_Text: 2
 --- !u!222 &2102188061
 CanvasRenderer:
   m_ObjectHideFlags: 0
