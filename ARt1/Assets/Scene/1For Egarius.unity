@@ -304,8 +304,8 @@ GameObject:
   - component: {fileID: 60137650}
   - component: {fileID: 60137649}
   - component: {fileID: 60137656}
-  - component: {fileID: 60137657}
   - component: {fileID: 60137658}
+  - component: {fileID: 60137657}
   m_Layer: 0
   m_Name: ImageTarget
   m_TagString: Untagged
@@ -380,7 +380,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 60137648}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -1770992566, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
@@ -392,7 +392,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 60137648}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a917f0af64a6423093132dab321c15f, type: 3}
   m_Name: 
@@ -404,7 +404,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 60137648}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
@@ -435,7 +435,6 @@ Transform:
   - {fileID: 520475592}
   - {fileID: 1600365052}
   - {fileID: 603999983}
-  - {fileID: 421817813}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -450,13 +449,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cd7651732528049a70299ff0eb0fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restart: 0
   prefabOfCar: {fileID: 100008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
   controllers:
-  - {fileID: 9100000, guid: 038c1962e0279c14c8269fb106796f78, type: 2}
-  - {fileID: 9100000, guid: 9dba19847e4ab46458418acb5e3d75ea, type: 2}
-  - {fileID: 9100000, guid: 0bd2bd4f484e0214c98d1bdf855b2696, type: 2}
-  - {fileID: 9100000, guid: 320da7ace151ec44aaaff02700acf34c, type: 2}
+  - {fileID: 9100000, guid: 776f184954b6bb340a7cb2c21c274443, type: 2}
+  - {fileID: 9100000, guid: 61cb1ff130664ca479fffb339ff0c585, type: 2}
+  - {fileID: 9100000, guid: b2a5378cc6e137841b8a880ffed094c2, type: 2}
+  - {fileID: 9100000, guid: 5cc1d82f8f6b1e64ba3c1df82faa53ef, type: 2}
   trafficLight: 0
 --- !u!114 &60137657
 MonoBehaviour:
@@ -478,7 +476,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 60137648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5b6fec52adb98e4cbdf1472f746629d, type: 3}
+  m_Script: {fileID: 11500000, guid: 57b3ff2af7efd2f4d8a452298ae6490c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &78065017
@@ -633,7 +631,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 60137657}
-        m_MethodName: MoveForward
+        m_MethodName: MoveSecond
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1173,7 +1171,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 174868816}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c47f92041efbb4b429a4eafca855ebe3, type: 3}
   m_Name: 
@@ -1184,7 +1182,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 174868816}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -1826476478, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
@@ -1197,7 +1195,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 174868816}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &174868820
 Camera:
   m_ObjectHideFlags: 0
@@ -1741,15 +1739,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 60137656}
-        m_MethodName: Restart
-        m_Mode: 1
+        m_MethodName: set_Restart
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -2302,89 +2300,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 419695455}
   m_Mesh: {fileID: 4300004, guid: c048a7fa0781d7b4096ac2b12623021a, type: 3}
---- !u!1001 &421817812
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 60137655}
-    m_Modifications:
-    - target: {fileID: 400008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 400008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.011916804
-      objectReference: {fileID: 0}
-    - target: {fileID: 400008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.395
-      objectReference: {fileID: 0}
-    - target: {fileID: 400008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 400008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.165
-      objectReference: {fileID: 0}
-    - target: {fileID: 400008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.165
-      objectReference: {fileID: 0}
-    - target: {fileID: 400008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.165
-      objectReference: {fileID: 0}
-    - target: {fileID: 400008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-  m_IsPrefabParent: 0
---- !u!4 &421817813 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-  m_PrefabInternal: {fileID: 421817812}
---- !u!1 &421817814 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-  m_PrefabInternal: {fileID: 421817812}
---- !u!95 &421817815
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 421817814}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 320da7ace151ec44aaaff02700acf34c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &461236817
 GameObject:
   m_ObjectHideFlags: 0
@@ -5985,7 +5900,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 60137657}
-        m_MethodName: MoveForward
+        m_MethodName: MoveForth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8255,7 +8170,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 60137657}
-        m_MethodName: MoveForward
+        m_MethodName: MoveForth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
