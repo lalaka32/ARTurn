@@ -63,7 +63,7 @@ public class LOGIC_V001 : MonoBehaviour {
         {
             cars[i] = masCars[i].GetComponent<Car>();
         }
-        //masCars[0].GetComponent<Car>().priority = playerPriority;
+        masCars[0].GetComponent<Car>().priority = playerPriority;
         Prioritatible carDir;
         for (int i = 1; i < masCars.Length; i++)
         {
@@ -109,13 +109,15 @@ public class DirectionLeft : Prioritatible
     public bool continueturnleft = true;//есть помыслы добавить анимации левого поворота событие для изменения данной переменной
     public override void SetPriority()
     {
+        Car[index].Position--;
         for (int i = 0; i < Car.Length; i++)
         {
-            if (Car[i].Position == (Car[index].Position - 1) && i != index)
+            if (Car[i].Position == (Car[index].Position) && i != index)
             {
-                Car[index].priority = Car[i].priority + 1;
+                Car[index].priority = Car[i].priority++;
             }
         }
+        Car[index].Position++;
         Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
     }
 }
@@ -134,13 +136,15 @@ public class DirectionForward : Prioritatible
     public DirectionForward(Car[] car, int index) : base(car, index){}
     public override void SetPriority()
     {
+        Car[index].Position--;
         for (int i = 0; i < Car.Length; i++)
         {
-            if (Car[i].Position == (Car[index].Position-1) && i != index)
+            if (Car[i].Position == (Car[index].Position) && i != index)
             {
-                Car[index].priority = Car[i].priority + 1;
+                Car[index].priority ++;
             }
         }
+        Car[index].Position++;
         Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " +Car[index].priority );
     }
 }
