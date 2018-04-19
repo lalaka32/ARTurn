@@ -453,10 +453,10 @@ MonoBehaviour:
   restart: 0
   prefabOfCar: {fileID: 100008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
   controllers:
-  - {fileID: 9100000, guid: 038c1962e0279c14c8269fb106796f78, type: 2}
-  - {fileID: 9100000, guid: 9dba19847e4ab46458418acb5e3d75ea, type: 2}
-  - {fileID: 9100000, guid: 0bd2bd4f484e0214c98d1bdf855b2696, type: 2}
-  - {fileID: 9100000, guid: 320da7ace151ec44aaaff02700acf34c, type: 2}
+  - {fileID: 9100000, guid: 776f184954b6bb340a7cb2c21c274443, type: 2}
+  - {fileID: 9100000, guid: 61cb1ff130664ca479fffb339ff0c585, type: 2}
+  - {fileID: 9100000, guid: b2a5378cc6e137841b8a880ffed094c2, type: 2}
+  - {fileID: 9100000, guid: 5cc1d82f8f6b1e64ba3c1df82faa53ef, type: 2}
   trafficLight: 0
 --- !u!114 &60137657
 MonoBehaviour:
