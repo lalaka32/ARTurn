@@ -127,7 +127,7 @@ public class DirectionLeft : Directionitatible
         {
             if (Car[i].Position == (Car[index].Position) && i != index)
             {
-                Car[index].priority = Car[i].priority + 1;
+                Car[index].priority = Car[i].priority++;
             }
         }
         Car[index].Position++;
@@ -153,7 +153,7 @@ public class DirectionForward : Directionitatible
         {
             if (Car[i].Position == (Car[index].Position) && i != index)
             {
-                Car[index].priority = Car[i].priority + 1;
+                Car[index].priority ++;
             }
         }
         Car[index].Position++;
