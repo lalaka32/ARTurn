@@ -30,7 +30,7 @@ public class Car : MonoBehaviour
     }
     private void Awake()
     {
-        direction = (Direction)Random.Range(0, 1);
+        direction = (Direction)Random.Range(0, 3);
 
     }
     public void StartAnime()
