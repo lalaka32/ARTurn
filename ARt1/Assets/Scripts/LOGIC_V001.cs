@@ -124,7 +124,7 @@ public class DirectionLeft : Directionitatible
             {
                 Car[index].priority++;
                 Car[index].Position--;
-                for (int j = 0; j < Car.Length; j++)
+                for (int j = 0; j < Car.Length; j++)//к встечной тачке когда есть правая
                 {
                     if (Car[j].Position == Car[index].Position && j != index)
                     {
@@ -140,7 +140,7 @@ public class DirectionLeft : Directionitatible
             {
                 Car[index].priority++;
                 Car[index].Position--;
-                for (int j = 0; j < Car.Length; j++)
+                for (int j = 0; j < Car.Length; j++)//к встечной тачке когда есть правая
                 {
                     if (Car[j].Position == Car[index].Position && j != index)
                     {
@@ -150,11 +150,11 @@ public class DirectionLeft : Directionitatible
                         return;
                     }
                 }
-
+                //если встречной нет
                 Car[index].Position--;
-                for (int j = 0; j < Car.Length; j++)
+                for (int j = 0; j < Car.Length; j++)//к левой тачке когда есть правая
                 {
-                    if (Car[j].Position == Car[index].Position && j != index && Car[j].direction == Direction.right)
+                    if (Car[j].Position == Car[index].Position && j != index && Car[j].direction == Direction.right)//к левой тачке, которая направо, когда есть правая тачка налево
                     {
                         Car[index].priority++;
                         break;
@@ -173,33 +173,34 @@ public class DirectionLeft : Directionitatible
             }
         }
         Car[index].Position--;
-        for (int i = 0; i < Car.Length; i++)
+        for (int i = 0; i < Car.Length; i++)//к встречной тачке
         {
-            if (Car[i].Position == (Car[index].Position) && i != index)
+            if (Car[i].Position == Car[index].Position && i != index && Car[i].direction == Direction.right)
             {
-                if (Car[i].direction == Direction.right)
+                Car[index].priority++;
+                break;
+            }
+            else if (Car[i].Position == Car[index].Position && i != index && Car[i].direction != Direction.right)
+            {
+                Car[index].Position--;
+                for (int j = 0; j < Car.Length; j++)
                 {
-                    Car[index].priority++;
-                    Car[index].Position += 2;
-                    break;
-                }
-                else
-                {
-                    Car[index].Position--;
-                    for (int j = 0; j < Car.Length; j++)
+                    if (Car[j].Position == (Car[index].Position) && j != index)
                     {
-                        if (Car[j].Position == (Car[index].Position) && j != index)
-                        {
-                            Car[index].Position += 3;
-                            break;
-                        }
+                        Car[index].Position += 3;
+                        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+                        return;
                     }
                 }
-                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
-                return;
+                Car[index].priority++;
+                Car[index].Position++;
+                break;
             }
         }
-        
+        Car[index].Position += 2;
+        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+        return;
+
     }
 }
 public class DirectionRight : Directionitatible
@@ -239,7 +240,7 @@ public class DirectionForward : Directionitatible
             {
                 Car[index].priority++;
                 Car[index].Position--;
-                for (int j = 0; j < Car.Length; j++)
+                for (int j = 0; j < Car.Length; j++)//к встречной тачке
                 {
                     if (Car[j].Position == Car[index].Position && j != index)
                     {
@@ -266,9 +267,7 @@ public class DirectionForward : Directionitatible
             else if (Car[i].Position == Car[index].Position && i != index && Car[i].direction == Direction.right)
             {
                 Car[index].priority++;
-                Car[index].Position++;
-                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
-                return;
+                break;
             }
         }
         Car[index].Position++;
