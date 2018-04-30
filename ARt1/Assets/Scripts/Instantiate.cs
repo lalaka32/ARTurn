@@ -2,38 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Enums;
-using Random = System.Random;
-
-class PositionRotationAnimation
-{
-    string nameOfPosition;
-    public RuntimeAnimatorController Controller { get; set; }
-    public PositionRotationAnimation(Vector3 position, Vector3 rotation,Position numberpos, RuntimeAnimatorController controller)
-    {
-        Controller = controller;
-        Position = position;
-        Rotation = rotation;
-        NumberOfPosition = numberpos;
-        
-    }
-    public void Apropriation(GameObject game)
-    {
-        game.name = NumberOfPosition.ToString();
-        game.transform.localPosition = Position;
-        game.transform.eulerAngles = Rotation;
-        game.GetComponent<Car>().Position = NumberOfPosition;
-        game.AddComponent<Animator>().runtimeAnimatorController = Controller;
-    }
-    public Vector3 Position{ get;set;}
-
-    public Vector3 Rotation{ get;set;}
-
-    public Position NumberOfPosition { get; set; }
-}
 
 public class Instantiate : MonoBehaviour   
 {
-    public GameObject prefabOfCar;
+    public GameObject[] prefabOfCar;
     public RuntimeAnimatorController[] controllers = new RuntimeAnimatorController[4];
 
     GameObject[] masCars;
@@ -68,15 +40,15 @@ public class Instantiate : MonoBehaviour
     }
     IEnumerator SimpleGenerator()
     {
-        posRotAnim[0] = new PositionRotationAnimation(new Vector3(-0.6815f, 0.0545f, -0.163f), new Vector3(0, 90, 0), Position.first, controllers[0]);
-        posRotAnim[1] = new PositionRotationAnimation(new Vector3(-0.167f, 0.05449999f, 0.771f), new Vector3(0, 180, 0), Position.second, controllers[1]);
-        posRotAnim[2] = new PositionRotationAnimation(new Vector3(0.754f, 0.05449999f, 0.128f), new Vector3(0, -90, 0), Position.third, controllers[2]);
-        posRotAnim[3] = new PositionRotationAnimation(new Vector3(0.178f, 0.05449999f, -0.712f), new Vector3(0, 0, 0), Position.fourth, controllers[3]);
+        posRotAnim[0] = new PositionRotationAnimation(new Vector3(-0.6815f, 0, -0.163f), new Vector3(0, 90, 0), Position.first, controllers[0]);
+        posRotAnim[1] = new PositionRotationAnimation(new Vector3(-0.167f, 0, 0.771f), new Vector3(0, 180, 0), Position.second, controllers[1]);
+        posRotAnim[2] = new PositionRotationAnimation(new Vector3(0.754f, 0, 0.128f), new Vector3(0, -90, 0), Position.third, controllers[2]);
+        posRotAnim[3] = new PositionRotationAnimation(new Vector3(0.178f, 0, -0.712f), new Vector3(0, 0, 0), Position.fourth, controllers[3]);
         while (true)//измени здесь для 1-ого создания
         {
             Restart = false;
             Random random = new Random();
-            MasCars = new GameObject[random.Next(2,3)];
+            MasCars = new GameObject[Random.Range(2,4)];
             InstantiateCars();
             canvas.GetComponent<InstantiateBottons>().CreateBottons(MasCars.Length);
             yield return new WaitWhile(()=> Restart == false);
@@ -87,27 +59,40 @@ public class Instantiate : MonoBehaviour
             }
         }
     }
+    void SetPefabs(GameObject obg)
+    {
 
+    }
     void InstantiateCars()
     {
         Shuffle(posRotAnim);
-        
+        MasCars[0] = Instantiate(prefabOfCar[0], transform, false);
         for (int i = 0; i < MasCars.Length; i++)
         {
-            MasCars[i] = Instantiate(prefabOfCar, transform, false);
-            MasCars[i].transform.localScale = new Vector3(0.165f, 0.165f, 0.165f);
+            if (i != 0)
+            {
+                MasCars[i] = Instantiate(prefabOfCar[Random.Range(1, prefabOfCar.Length)], transform, false);
+            }
+            SettingsForObjects(MasCars[i]);
             posRotAnim[i].Apropriation(MasCars[i]);
+
         }
-        MasCars[0].GetComponent<MeshRenderer>().materials[0].color = new Color(2, 2, 2);//просто для обозначения плеера по цвету
+        //просто для обозначения плеера по цвету
         GetComponent<LOGIC_V001>().MasCars = MasCars;
+    }
+
+    private void SettingsForObjects(GameObject GO)
+    {
+        GO.transform.localScale = new Vector3(1.7f, 1.7f, 1.7f);
+        GO.AddComponent<Car>();
+        
     }
 
     void Shuffle(PositionRotationAnimation[] posRotAnim)
     {
-        Random random = new Random();
         for (int i = posRotAnim.Length - 1; i >= 1; i--)
         {
-            int j = random.Next(i + 1);
+            int j = Random.Range(0,i);
             // обменять значения data[j] и data[i]
             var temp = posRotAnim[j];
             posRotAnim[j] = posRotAnim[i];
