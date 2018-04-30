@@ -11,4 +11,11 @@ public class InstantiateBottons : MonoBehaviour {
             bottons[i].SetActive(true);
         }
     }
+    public void Clear()
+    {
+        for (int i = 0; i < bottons.Length; i++)
+        {
+            bottons[i].SetActive(false);
+        }
+    }
 }

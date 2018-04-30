@@ -13,7 +13,7 @@ public class LOGIC_V001 : MonoBehaviour {
     Car[] cars;
     public GameObject[] MasCars { private get; set; }
 
-
+    Priority player;
     public void MakeLogicOnAns()
     {
         switch (GetComponent<Instantiate>().trafficLight)
@@ -45,10 +45,33 @@ public class LOGIC_V001 : MonoBehaviour {
             }
             yield return new WaitForEndOfFrame();
         }
-        Debug.Log("stop startnextmoment");
+        //Debug.Log("stop startnextmoment");
     }
     IEnumerator StartByPrioritets()
     {
+        //int length;
+        //if (((int)MasCars[0].GetComponent<Car>().priority)==(int)player)
+        //{
+        //    length = MasCars.Length;
+        //    Debug.Log("True");
+        //}
+        //else if(((int)MasCars[0].GetComponent<Car>().priority) < (int)player)
+        //{
+        //    length = ((int)MasCars[0].GetComponent<Car>().priority) ;
+        //    for (int j = 0; j < length; j++)//цикл приоритетов
+        //    {
+        //        masactivecars.RemoveAt();
+        //    }
+        //        Debug.Log("False");
+        //}
+        //else
+        //{
+
+        //}
+        //if (((int)MasCars[0].GetComponent<Car>().priority) > (int)player)
+        //{
+             
+        //}
         for (int j = 0; j < MasCars.Length; j++)//цикл приоритетов
         {
             masactivecars.Clear();
@@ -64,9 +87,6 @@ public class LOGIC_V001 : MonoBehaviour {
             yield return new WaitWhile(()=> masactivecars.Count != 0);
 
         }
-
-
-
     }
     public void MakePriorities(Priority playerPriority)
     {
@@ -75,11 +95,10 @@ public class LOGIC_V001 : MonoBehaviour {
         {
             cars[i] = MasCars[i].GetComponent<Car>();
         }
-        //masCars[0].GetComponent<Car>().priority = playerPriority;
+        player = playerPriority;
         Directionitatible carDir;
         for (int i = 0; i < MasCars.Length; i++)
         {
-            
             switch (MasCars[i].GetComponent<Car>().direction)
             {
                 case Direction.forward:
