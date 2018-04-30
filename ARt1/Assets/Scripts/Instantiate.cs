@@ -38,7 +38,7 @@ public class Instantiate : MonoBehaviour
 
     GameObject[] masCars;
     public bool Restart { get; set; }
-
+    public GameObject canvas;
     public GameObject[] MasCars
     {
         get
@@ -76,10 +76,11 @@ public class Instantiate : MonoBehaviour
         {
             Restart = false;
             Random random = new Random();
-            MasCars = new GameObject[3];
+            MasCars = new GameObject[random.Next(2,3)];
             InstantiateCars();
+            canvas.GetComponent<InstantiateBottons>().CreateBottons(MasCars.Length);
             yield return new WaitWhile(()=> Restart == false);
-            
+            canvas.GetComponent<InstantiateBottons>().Clear();
             foreach (GameObject item in MasCars)//измени здесь для 1-ого создания
             {
                 Destroy(item);
