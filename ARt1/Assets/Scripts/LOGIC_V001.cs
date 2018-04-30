@@ -122,30 +122,59 @@ public class DirectionLeft : Directionitatible
     public override void SetPriority()
     {
         Car[index].Position--;
-
         for (int i = 0; i < Car.Length; i++)
         {
             if (Car[i].Position == (Car[index].Position) && i != index)
             {
                 Car[index].priority++;
+                if (Car[i].direction != Direction.right)
+                {
+                    Car[index].Position--;
+                    for (int j = 0; j < Car.Length; j++)
+                    {
+                        if (Car[j].Position == (Car[index].Position) && j != index)
+                        {
+                            Car[index].priority++;
+                        }
+                    }
+                    Car[index].Position += 2;
+                }
+                else Car[index].Position ++;
+
+                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+                return;
             }
-
-
+            
         }
         Car[index].Position--;
-
         for (int i = 0; i < Car.Length; i++)
         {
-            if (Car[i].Position == (Car[index].Position) && i != index && Car[i].direction != Direction.left )
+            if (Car[i].Position == (Car[index].Position) && i != index)
             {
-                Car[index].priority++;
+                if (Car[i].direction == Direction.right)
+                {
+                    Car[index].priority++;
+                    Car[index].Position += 2;
+                    Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+                    return;
+                }
+                else /*if (Car[i].direction == Direction.left)*/
+                {
+                    Car[index].Position--;
+                    for (int j = 0; j < Car.Length; j++)
+                    {
+                        if (Car[j].Position == (Car[index].Position) && j != index)
+                        {
+                            Car[index].Position += 3;
+                            Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+                            return;
+                        }
+                    }
+                }
+
             }
-
-
         }
-        Car[index].Position += 2;
-
-        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+        
     }
 }
 public class DirectionRight : Directionitatible
@@ -163,11 +192,22 @@ public class DirectionForward : Directionitatible
     public override void SetPriority()
     {
         Car[index].Position--;
+        //Debug.Log("ya prigotovil");
         for (int i = 0; i < Car.Length; i++)
         {
-            if (Car[i].Position == (Car[index].Position) && i != index)
+            if (Car[i].Position == Car[index].Position && i != index)
             {
-                Car[index].priority = Car[i].priority + 1;
+                Car[index].priority++;
+                Car[index].Position--;
+                for (int j = 0; j < Car.Length; j++)
+                {
+                    if (Car[j].Position == (Car[index].Position) && j != index)
+                    {
+                        Car[index].priority++;
+                    }
+                }
+                Car[index].Position++;
+                break;
             }
         }
         Car[index].Position++;
