@@ -210,7 +210,7 @@ public class DirectionLeft : Directionitatible
                 Car[index].priority++;
                 break;
             }
-            else if (Car[i].Position == Car[index].Position && i != index && Car[i].direction != Direction.right)
+            else if (Car[i].Position == Car[index].Position && i != index && Car[i].direction == Direction.forward)
             {
                 Car[index].Position--;
                 for (int j = 0; j < Car.Length; j++)
@@ -223,6 +223,21 @@ public class DirectionLeft : Directionitatible
                     }
                 }
                 Car[index].priority++;
+                Car[index].Position++;
+                break;
+            }
+            else if (Car[i].Position == Car[index].Position && i != index && Car[i].direction == Direction.left)
+            {
+                Car[index].Position--;
+                for (int j = 0; j < Car.Length; j++)
+                {
+                    if (Car[j].Position == (Car[index].Position) && j != index)
+                    {
+                        Car[index].Position += 3;
+                        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+                        return;
+                    }
+                }
                 Car[index].Position++;
                 break;
             }
