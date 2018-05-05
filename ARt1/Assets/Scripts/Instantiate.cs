@@ -50,6 +50,7 @@ public class Instantiate : MonoBehaviour
             Random random = new Random();
             MasCars = new GameObject[Random.Range(2,4)];
             InstantiateCars();
+            canvas = GameObject.Find("Canvas");
             canvas.GetComponent<InstantiateBottons>().CreateBottons(MasCars.Length);
             yield return new WaitWhile(()=> Restart == false);
             canvas.GetComponent<InstantiateBottons>().Clear();
