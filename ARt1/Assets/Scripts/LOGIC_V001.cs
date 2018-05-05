@@ -45,12 +45,23 @@ public class LOGIC_V001 : MonoBehaviour {
     }
     IEnumerator StartByPrioritets()
     {
-        //int length;
-        //if (((int)MasCars[0].GetComponent<Car>().priority)==(int)player)
-        //{
-        //    length = MasCars.Length;
-        //    Debug.Log("True");
-        //}
+        int length=0;
+        if (((int)MasCars[0].GetComponent<Car>().priority) == (int)player)
+        {
+            length = MasCars.Length;
+            Debug.Log("True");
+        }
+        else if (((int)MasCars[0].GetComponent<Car>().priority) <= (int)player)
+        {
+            length = ((int)MasCars[0].GetComponent<Car>().priority);
+            Debug.Log("Stop");
+
+        }
+        else
+        {
+            length = ((int)MasCars[0].GetComponent<Car>().priority)+1;
+            Debug.Log("Bam");
+        }
         //else if(((int)MasCars[0].GetComponent<Car>().priority) < (int)player)
         //{
         //    length = ((int)MasCars[0].GetComponent<Car>().priority) ;
@@ -66,9 +77,9 @@ public class LOGIC_V001 : MonoBehaviour {
         //}
         //if (((int)MasCars[0].GetComponent<Car>().priority) > (int)player)
         //{
-             
+
         //}
-        for (int j = 0; j < MasCars.Length; j++)//цикл приоритетов
+        for (int j = 0; j < length; j++)//цикл приоритетов
         {
             masactivecars.Clear();
             for (int i = 0; i < MasCars.Length; i++)
