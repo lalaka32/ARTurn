@@ -9,7 +9,7 @@ public class LOGIC_V001 : MonoBehaviour {
     Car[] cars;
     public GameObject[] MasCars { private get; set; }
 
-    Priority player;
+    Priority playerOne;
     public void MakeLogicOnAns()
     {
         switch (GetComponent<Instantiate>().trafficLight)
@@ -45,30 +45,37 @@ public class LOGIC_V001 : MonoBehaviour {
     }
     IEnumerator StartByPrioritets()
     {
-        //int length;
-        //if (((int)MasCars[0].GetComponent<Car>().priority)==(int)player)
-        //{
-        //    length = MasCars.Length;
-        //    Debug.Log("True");
-        //}
-        //else if(((int)MasCars[0].GetComponent<Car>().priority) < (int)player)
-        //{
-        //    length = ((int)MasCars[0].GetComponent<Car>().priority) ;
-        //    for (int j = 0; j < length; j++)//цикл приоритетов
-        //    {
-        //        masactivecars.RemoveAt();
-        //    }
-        //        Debug.Log("False");
-        //}
-        //else
-        //{
+        int length=0;
+        if (((int)MasCars[0].GetComponent<Car>().priority) == (int)playerOne)
+        {
+            length = MasCars.Length;
+            Debug.Log("True");
+        }
+        else if (((int)MasCars[0].GetComponent<Car>().priority) <= (int)playerOne)
+        {
+            length = ((int)MasCars[0].GetComponent<Car>().priority);
+            Debug.Log("Stop");//norm
 
-        //}
-        //if (((int)MasCars[0].GetComponent<Car>().priority) > (int)player)
-        //{
-             
-        //}
-        for (int j = 0; j < MasCars.Length; j++)//цикл приоритетов
+        }
+        else
+        {
+            if ((int)MasCars[0].GetComponent<Car>().priority-(int)playerOne==2)
+            {
+                MasCars[0].GetComponent<Car>().priority = playerOne;
+                length = 1;
+                
+            }
+            else
+            {
+                length = ((int)MasCars[0].GetComponent<Car>().priority);
+                MasCars[0].GetComponent<Car>().priority = playerOne;
+                //MasCars[0].transform.Find("Body").GetComponent<Rigidbody>;
+                Debug.Log("Bam");
+            }
+            
+        }
+        
+        for (int j = 0; j < length; j++)//цикл приоритетов
         {
             masactivecars.Clear();
             for (int i = 0; i < MasCars.Length; i++)
@@ -91,7 +98,7 @@ public class LOGIC_V001 : MonoBehaviour {
         {
             cars[i] = MasCars[i].GetComponent<Car>();
         }
-        player = playerPriority;
+        playerOne = playerPriority;
         Directionitatible carDir;
         for (int i = 0; i < MasCars.Length; i++)
         {

@@ -50,6 +50,7 @@ public class Instantiate : MonoBehaviour
             Random random = new Random();
             MasCars = new GameObject[Random.Range(2,4)];
             InstantiateCars();
+            canvas = GameObject.Find("Canvas");
             canvas.GetComponent<InstantiateBottons>().CreateBottons(MasCars.Length);
             yield return new WaitWhile(()=> Restart == false);
             canvas.GetComponent<InstantiateBottons>().Clear();
@@ -67,6 +68,8 @@ public class Instantiate : MonoBehaviour
     {
         Shuffle(posRotAnim);
         MasCars[0] = Instantiate(prefabOfCar[0], transform, false);
+        MasCars[0].tag = "Player";
+
         for (int i = 0; i < MasCars.Length; i++)
         {
             if (i != 0)

@@ -30,7 +30,7 @@ public class Car : MonoBehaviour
     }
     private void Awake()
     {
-        direction = (Direction)Random.Range(2, 3);
+        direction = (Direction)Random.Range(0, 3);
 
     }
     public void StartAnime()
@@ -52,5 +52,17 @@ public class Car : MonoBehaviour
     {
         isstop = true;
         Debug.Log("isstop = true;");
+    }
+    void OnCollisionEnter(UnityEngine.Collision collision)
+    {
+        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>() == collision.collider)
+        {
+            //Destroy(gameObject.GetComponent<Animator>());
+            //Destroy(collision.gameObject.GetComponent<Animator>());
+        }
+
+
+
+        Debug.Log("bye");
     }
 }
