@@ -75,6 +75,7 @@ public class Instantiate : MonoBehaviour
             if (i != 0)
             {
                 MasCars[i] = Instantiate(prefabOfCar[Random.Range(1, prefabOfCar.Length)], transform, false);
+                MasCars[i].tag = "BotCar";
             }
             SettingsForObjects(MasCars[i]);
             posRotAnim[i].Apropriation(MasCars[i]);
