@@ -8,7 +8,4 @@ namespace Enums
     public enum Direction : byte { forward = 0, right, left  }
     public enum Priority : byte { first = 0, second, third, fourth }
     public enum Position :sbyte { first, second, third, fourth }
-
-
-
 }
