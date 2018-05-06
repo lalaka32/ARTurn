@@ -35,7 +35,7 @@ public class Instantiate : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(SimpleGenerator());//измени здесь для 1-ого создания
+        StartCoroutine(SimpleGenerator());
 
     }
     IEnumerator SimpleGenerator()
