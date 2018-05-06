@@ -301,12 +301,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Collision.cs" />
+    <Compile Include="Assets\fun\colisions.cs" />
     <Compile Include="Assets\Scripts\Car.cs" />
     <Compile Include="Assets\Scripts\Enums.cs" />
     <Compile Include="Assets\Scripts\Instantiate.cs" />
     <Compile Include="Assets\Scripts\InstantiateBottons.cs" />
     <Compile Include="Assets\Scripts\LOGIC_V001.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Actors\ActorBase.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Actors\Car.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\DemoScripts\Behavours\BaseBehavour.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\DemoScripts\SetupCam.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\DemoScripts\SetupCross.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Interfaces\IAwake.cs" />

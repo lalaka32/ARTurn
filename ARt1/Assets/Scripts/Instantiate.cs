@@ -68,6 +68,8 @@ public class Instantiate : MonoBehaviour
     {
         Shuffle(posRotAnim);
         MasCars[0] = Instantiate(prefabOfCar[0], transform, false);
+        MasCars[0].tag = "Player";
+
         for (int i = 0; i < MasCars.Length; i++)
         {
             if (i != 0)
