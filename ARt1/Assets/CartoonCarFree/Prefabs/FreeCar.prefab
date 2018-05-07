@@ -413,3 +413,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 0
   direction: 0
+  isstop: 0
