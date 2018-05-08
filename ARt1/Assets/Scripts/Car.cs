@@ -53,16 +53,8 @@ public class Car : MonoBehaviour
         isstop = true;
         Debug.Log("isstop = true;");
     }
-    void OnCollisionEnter(UnityEngine.Collision collision)
+    private void Start()
     {
-        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>() == collision.collider)
-        {
-            //Destroy(gameObject.GetComponent<Animator>());
-            //Destroy(collision.gameObject.GetComponent<Animator>());
-        }
-
-
-
-        Debug.Log("bye");
+        GameObject.Find("body");
     }
 }
