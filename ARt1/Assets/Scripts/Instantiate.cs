@@ -6,7 +6,7 @@ using Enums;
 public class Instantiate : MonoBehaviour   
 {
     public GameObject[] prefabOfCar;
-    public RuntimeAnimatorController[] controllers = new RuntimeAnimatorController[4];
+    public RuntimeAnimatorController controller = new RuntimeAnimatorController();
 
     GameObject[] masCars;
     public bool Restart { get; set; }
@@ -40,10 +40,10 @@ public class Instantiate : MonoBehaviour
     }
     IEnumerator SimpleGenerator()
     {
-        posRotAnim[0] = new PositionRotationAnimation(new Vector3(-0.6815f, 0, -0.163f), new Vector3(0, 90, 0), Position.first, controllers[0]);
-        posRotAnim[1] = new PositionRotationAnimation(new Vector3(-0.167f, 0, 0.771f), new Vector3(0, 180, 0), Position.second, controllers[1]);
-        posRotAnim[2] = new PositionRotationAnimation(new Vector3(0.754f, 0, 0.128f), new Vector3(0, -90, 0), Position.third, controllers[2]);
-        posRotAnim[3] = new PositionRotationAnimation(new Vector3(0.178f, 0, -0.712f), new Vector3(0, 0, 0), Position.fourth, controllers[3]);
+        posRotAnim[0] = new PositionRotationAnimation(new Vector3(-0.6f, 0, -0.163f), new Vector3(0, 90, 0), Position.first, controller);
+        posRotAnim[1] = new PositionRotationAnimation(new Vector3(-0.167f, 0, 0.625f), new Vector3(0, 180, 0), Position.second, controller);
+        posRotAnim[2] = new PositionRotationAnimation(new Vector3(0.6f, 0, 0.163f), new Vector3(0, -90, 0), Position.third, controller);
+        posRotAnim[3] = new PositionRotationAnimation(new Vector3(0.167f, 0, -0.625f), new Vector3(0, 0, 0), Position.fourth, controller);
         while (true)//измени здесь для 1-ого создания
         {
             Restart = false;

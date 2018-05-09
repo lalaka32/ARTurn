@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class CarCollision : MonoBehaviour {
 
+    GameObject othercar;
     void OnCollisionEnter(UnityEngine.Collision collision)
     {
         
-        if ( collision.gameObject.transform.parent.tag == "BotCar")
+        if ( collision.gameObject.transform.parent.transform.parent.tag == "BotCar")
         {
             Debug.Log("Collision!!!");
-            Destroy(gameObject.transform.parent.GetComponent<Animator>());
-            Destroy(collision.gameObject.transform.parent.GetComponent<Animator>());
+            othercar = collision.gameObject;
+            Invoke("DestroyAnimators", 0.3f);
+
             
         }
 
 
 
         Debug.Log("bye");
+    }
+    void DestroyAnimators()
+    {
+        Destroy(gameObject.transform.parent.GetComponent<Animator>());
+        Destroy(othercar.transform.parent.GetComponent<Animator>());
     }
 }

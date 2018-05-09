@@ -307,6 +307,7 @@
     <Compile Include="Assets\Scripts\Enums.cs" />
     <Compile Include="Assets\Scripts\Instantiate.cs" />
     <Compile Include="Assets\Scripts\InstantiateBottons.cs" />
+    <Compile Include="Assets\Scripts\Isstopactivating.cs" />
     <Compile Include="Assets\Scripts\LOGIC_V001.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Actors\ActorBase.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Actors\Car.cs" />
