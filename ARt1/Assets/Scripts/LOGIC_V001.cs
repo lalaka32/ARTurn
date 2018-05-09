@@ -5,16 +5,19 @@ using Enums;
 
 public class LOGIC_V001 : MonoBehaviour {
     List<GameObject> masactivecars = new List<GameObject>();
-    string question;
+    //string question;
     Car[] cars;
     public GameObject[] MasCars { private get; set; }
-
     Priority playerOne;
-    public void MakeLogicOnAns()
+    Dictionary<Position, Car> listOfpositions = new Dictionary<Position, Car>();
+
+    public void MakeLogicOnAns(int player)
     {
+        playerOne = (Priority)player;
         switch (GetComponent<Instantiate>().trafficLight)
         {
             case TrafficLight.off://по умолчанию
+                MakePrioritiesOff();
                 StartCoroutine(StartByPrioritets());
                 break;
             case TrafficLight.green:
@@ -23,58 +26,46 @@ public class LOGIC_V001 : MonoBehaviour {
                 break;
         }
     }
-    IEnumerator StartNextMoment()
+    public void MakePrioritiesOff()
     {
-        //if (masactivecars == null)
-        //{
-        //    StopCoroutine("StartNextMoment");
-        //}
-        while (masactivecars.Count != 0)
+        cars = new Car[MasCars.Length];
+        for (int i = 0; i < MasCars.Length; i++)
         {
-            for (int i = 0; i < masactivecars.Count; i++)
-            {
-                if (masactivecars[i].GetComponent<Car>().isstop == true)
-                {
-                    masactivecars.RemoveAt(i);
-                    Debug.Log("remove" + i);
-                }
-            }
-            yield return new WaitForEndOfFrame();
+            cars[i] = MasCars[i].GetComponent<Car>();
+            listOfpositions.Add(MasCars[i].GetComponent<Car>().Position, cars[i]);
         }
-        //Debug.Log("stop startnextmoment");
+        for (int i = 0; i < cars.Length; i++)
+        {
+            MasCars[i].GetComponent<Car>().SetPriority(cars, i);
+
+        }
     }
     IEnumerator StartByPrioritets()
     {
-        int length=0;
-        if (((int)MasCars[0].GetComponent<Car>().priority) == (int)playerOne)
+        int length = 0;
+        if ((int)MasCars[0].GetComponent<Car>().priority == (int)playerOne)
         {
             length = MasCars.Length;
-            Debug.Log("True");
         }
-        else if (((int)MasCars[0].GetComponent<Car>().priority) <= (int)playerOne)
+        else if ((int)MasCars[0].GetComponent<Car>().priority < (int)playerOne)
         {
             length = ((int)MasCars[0].GetComponent<Car>().priority);
-            Debug.Log("Stop");//norm
-
         }
         else
         {
-            if ((int)MasCars[0].GetComponent<Car>().priority-(int)playerOne==2)
+            
+            if ((int)MasCars[0].GetComponent<Car>().priority - (int)playerOne == 2)
             {
                 MasCars[0].GetComponent<Car>().priority = playerOne;
                 length = 1;
-                
             }
             else
             {
                 length = ((int)MasCars[0].GetComponent<Car>().priority);
                 MasCars[0].GetComponent<Car>().priority = playerOne;
-                //MasCars[0].transform.Find("Body").GetComponent<Rigidbody>;
-                Debug.Log("Bam");
             }
-            
         }
-        
+
         for (int j = 0; j < length; j++)//цикл приоритетов
         {
             masactivecars.Clear();
@@ -87,66 +78,45 @@ public class LOGIC_V001 : MonoBehaviour {
                 }
             }
             StartCoroutine(StartNextMoment());
-            yield return new WaitWhile(()=> masactivecars.Count != 0);
+            yield return new WaitWhile(() => masactivecars.Count != 0);
 
         }
     }
-    public void MakePriorities(Priority playerPriority)
+    IEnumerator StartNextMoment()
     {
-        cars = new Car[MasCars.Length];
-        for (int i = 0; i < MasCars.Length; i++)
+        while (masactivecars.Count != 0)
         {
-            cars[i] = MasCars[i].GetComponent<Car>();
-        }
-        playerOne = playerPriority;
-        Directionitatible carDir;
-        for (int i = 0; i < MasCars.Length; i++)
-        {
-            switch (MasCars[i].GetComponent<Car>().direction)
+            for (int i = 0; i < masactivecars.Count; i++)
             {
-                case Direction.forward:
-                    carDir = new DirectionForward(cars, i);
-                    carDir.SetPriority();
-                    break;
-                case Direction.right:
-                    carDir = new DirectionRight(cars, i);
-                    carDir.SetPriority();
-                    break;
-                case Direction.left:
-                    carDir = new DirectionLeft(cars, i);
-                    carDir.SetPriority();
-                    break;
+                if (masactivecars[i].GetComponent<Car>().isstop == true)
+                {
+                    masactivecars.RemoveAt(i);
+                }
             }
-           
+            yield return new WaitForEndOfFrame();
         }
-        MakeLogicOnAns();
     }
-
 }
-public abstract class Directionitatible
+public interface IDirectionitatible
 {
-    public int index;
-    public Directionitatible(Car[] car, int index)
+     void SetPriority(Car[] Car, int index);
+}
+public class DirectionRight : IDirectionitatible
+{
+    public void SetPriority(Car[] Car, int index)
     {
-        Car = car;
-        this.index = index;
+        Car[index].priority = Priority.first;
+        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
     }
-
-    public Car[] Car { get; set; }
-    public abstract void SetPriority();
-
 }
-
-public class DirectionLeft : Directionitatible
+public class DirectionLeft : IDirectionitatible
 {
-    public DirectionLeft(Car[] car, int index) : base(car, index){}
-    public bool continueturnleft = true;
-    public override void SetPriority()
+    public  void SetPriority(Car[] Car, int index)
     {
         Car[index].Position--;
         for (int i = 0; i < Car.Length; i++)//к правой тачке
         {
-            if (Car[i].Position == Car[index].Position && i != index && Car[i].direction == Direction.forward)
+            if (listOfpositions.trygetvalue && Car[i].Direction == Direction.forward)
             {
                 Car[index].priority++;
                 Car[index].Position--;
@@ -159,10 +129,10 @@ public class DirectionLeft : Directionitatible
                     }
                 }
                 Car[index].Position += 2;
-                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
                 return;
             }
-            else if (Car[i].Position == Car[index].Position && i != index && Car[i].direction == Direction.left)
+            else if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.left)
             {
                 Car[index].priority++;
                 Car[index].Position--;
@@ -172,7 +142,7 @@ public class DirectionLeft : Directionitatible
                     {
                         Car[index].priority++;
                         Car[index].Position += 2;
-                        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+                        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
                         return;
                     }
                 }
@@ -180,33 +150,33 @@ public class DirectionLeft : Directionitatible
                 Car[index].Position--;
                 for (int j = 0; j < Car.Length; j++)//к левой тачке когда есть правая
                 {
-                    if (Car[j].Position == Car[index].Position && j != index && Car[j].direction == Direction.right)//к левой тачке, которая направо, когда есть правая тачка налево
+                    if (Car[j].Position == Car[index].Position && j != index && Car[j].Direction == Direction.right)//к левой тачке, которая направо, когда есть правая тачка налево
                     {
                         Car[index].priority++;
                         break;
                     }
                 }
                 Car[index].Position += 3;
-                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
                 return;
             }
-            else if (Car[i].Position == Car[index].Position && i != index && Car[i].direction == Direction.right)
+            else if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.right)
             {
                 Car[index].priority++;
                 Car[index].Position++;
-                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
                 return;
             }
         }
         Car[index].Position--;
         for (int i = 0; i < Car.Length; i++)//к встречной тачке
         {
-            if (Car[i].Position == Car[index].Position && i != index && Car[i].direction == Direction.right)
+            if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.right)
             {
                 Car[index].priority++;
                 break;
             }
-            else if (Car[i].Position == Car[index].Position && i != index && Car[i].direction == Direction.forward)
+            else if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.forward)
             {
                 Car[index].Position--;
                 for (int j = 0; j < Car.Length; j++)
@@ -214,7 +184,7 @@ public class DirectionLeft : Directionitatible
                     if (Car[j].Position == Car[index].Position && j != index)
                     {
                         Car[index].Position += 3;
-                        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+                        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
                         return;
                     }
                     //else if (Car[j].Position == Car[index].Position && j != index && Car[j].direction == Direction.right)
@@ -229,7 +199,7 @@ public class DirectionLeft : Directionitatible
                 Car[index].Position++;
                 break;
             }
-            else if (Car[i].Position == Car[index].Position && i != index && Car[i].direction == Direction.left)
+            else if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.left)
             {
                 Car[index].Position--;
                 for (int j = 0; j < Car.Length; j++)
@@ -237,7 +207,7 @@ public class DirectionLeft : Directionitatible
                     if (Car[j].Position == Car[index].Position && j != index)
                     {
                         Car[index].Position += 3;
-                        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+                        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
                         return;
                     }
                 }
@@ -246,29 +216,19 @@ public class DirectionLeft : Directionitatible
             }
         }
         Car[index].Position += 2;
-        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
         return;
 
     }
 }
-public class DirectionRight : Directionitatible
+public class DirectionForward : IDirectionitatible
 {
-    public DirectionRight(Car[] car, int index) : base(car, index){}
-    public override void SetPriority()
-    {
-        Car[index].priority = Priority.first;
-        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
-    }
-}
-public class DirectionForward : Directionitatible
-{
-    public DirectionForward(Car[] car, int index) : base(car, index){}
-    public override void SetPriority()
+    public void SetPriority(Car[] Car, int index)
     {
         Car[index].Position--;
         for (int i = 0; i < Car.Length; i++)//к правой тачке
         {
-            if (Car[i].Position == Car[index].Position && i != index && Car[i].direction == Direction.forward)
+            if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.forward)
             {
                 Car[index].priority++;
                 Car[index].Position--;
@@ -281,10 +241,10 @@ public class DirectionForward : Directionitatible
                     }
                 }
                 Car[index].Position += 2;
-                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
                 return;
             }
-            else if (Car[i].Position == Car[index].Position && i != index && Car[i].direction == Direction.left)
+            else if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.left)
             {
                 Car[index].priority++;
                 Car[index].Position--;
@@ -294,7 +254,7 @@ public class DirectionForward : Directionitatible
                     {
                         Car[index].priority++;
                         Car[index].Position += 2;
-                        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+                        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
                         return;
                     }
                 }
@@ -302,24 +262,24 @@ public class DirectionForward : Directionitatible
                 Car[index].Position--;
                 for (int j = 0; j < Car.Length; j++)
                 {
-                    if (Car[j].Position == Car[index].Position && j != index && Car[j].direction == Direction.right)
+                    if (Car[j].Position == Car[index].Position && j != index && Car[j].Direction == Direction.right)
                     {
                         Car[index].priority++;
                         break;
                     }
                 }
                 Car[index].Position += 3;
-                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
                 return;
             }
-            else if (Car[i].Position == Car[index].Position && i != index && Car[i].direction == Direction.right)
+            else if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.right)
             {
                 Car[index].priority++;
                 break;
             }
         }
         Car[index].Position++;
-        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].direction + " Prior : " + Car[index].priority);
+        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
         return;
     }
 }

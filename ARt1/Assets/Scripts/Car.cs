@@ -6,9 +6,13 @@ using Enums;
 public class Car : MonoBehaviour
 {
     public Priority priority;
-    public Direction direction;
+
     private Position _position;
     public bool isstop = false;
+
+    [SerializeField]
+    Direction direction;
+
     public Position Position
     {
         get { return _position; }
@@ -28,23 +32,58 @@ public class Car : MonoBehaviour
             }
         }
     }
+
+    public Direction Direction
+    {
+        get
+        {
+            return direction;
+        }
+
+        set
+        {
+            direction = value;
+        }
+        
+    }
+
+    public void SetPriority(Car[] cars, int index)
+    {
+        IDirectionitatible carDir;
+        switch (Direction)
+        {
+            case Direction.forward:
+                carDir = new DirectionForward();
+                carDir.SetPriority(cars,index);
+                break;
+            case Direction.right:
+                carDir = new DirectionRight();
+                carDir.SetPriority(cars, index);
+                break;
+            case Direction.left:
+                carDir = new DirectionLeft();
+                carDir.SetPriority(cars, index);
+                break;
+        }
+    }
     private void Awake()
     {
         direction = (Direction)Random.Range(0, 3);
-
     }
+    
     public void StartAnime()
     {
-        switch (GetComponent<Car>().direction)
+        var animator = GetComponent<Animator>();
+        switch (Direction)
         {
             case Direction.forward:
-                GetComponent<Animator>().Play("CarForwardanim");
+                animator.Play("CarForwardanim");
                 break;
             case Direction.left:
-                GetComponent<Animator>().Play("CarLeftanim");
+                animator.Play("CarLeftanim");
                 break;
             case Direction.right:
-                GetComponent<Animator>().Play("CarRightanim");
+                animator.Play("CarRightanim");
                 break;
         }
     }
