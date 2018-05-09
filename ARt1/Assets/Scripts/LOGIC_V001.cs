@@ -18,6 +18,7 @@ public class LOGIC_V001 : MonoBehaviour {
         {
             case TrafficLight.off://по умолчанию
                 MakePrioritiesOff();
+                listOfpositions.Clear();
                 StartCoroutine(StartByPrioritets());
                 break;
             case TrafficLight.green:
@@ -116,7 +117,7 @@ public class DirectionLeft : IDirectionitatible
         Car[index].Position--;
         for (int i = 0; i < Car.Length; i++)//к правой тачке
         {
-            if (listOfpositions.trygetvalue && Car[i].Direction == Direction.forward)
+            if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.forward)
             {
                 Car[index].priority++;
                 Car[index].Position--;

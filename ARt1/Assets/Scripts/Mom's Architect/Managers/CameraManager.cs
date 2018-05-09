@@ -10,9 +10,9 @@ class CameraManager:ManagerBase, IAwake
 {
     public GameObject camGO;
 
-    public void SetCamGO(Vector3 pos,bool sneaking=false)
+    public void SetCamGO(Vector3 pos,Quaternion quaternion,bool sneaking=false)
     {
-        var cam = Instantiate(camGO, pos,Quaternion.identity);
+        var cam = Instantiate(camGO, pos, quaternion);
         cam.transform.parent = GameObject.Find("Cameras").transform;
         
     }

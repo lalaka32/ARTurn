@@ -19,13 +19,25 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: {x: -0.672, y: 0.0545, z: -0.163}
+        value: {x: -0.008, y: 0, z: -0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
       - serializedVersion: 2
-        time: 1.8333334
-        value: {x: 0.744, y: 0.0545, z: -0.163}
+        time: 0.6666667
+        value: {x: -0.008, y: 0, z: 0.20351854}
+        inSlope: {x: 0, y: 0, z: 0.47179914}
+        outSlope: {x: 0, y: 0, z: 0.47179914}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.1666666
+        value: {x: -0.008, y: 0, z: 0.5544191}
+        inSlope: {x: 0, y: 0, z: 0.60435474}
+        outSlope: {x: 0, y: 0, z: 0.60435474}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 2
+        value: {x: -0.008, y: 0, z: 0.785}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -56,7 +68,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.8333334
+    m_StopTime: 2
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -77,13 +89,13 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: -0.672
+        value: -0.008
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 1.8333334
-        value: 0.744
+        time: 2
+        value: -0.008
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -99,35 +111,25 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: 0.0545
+        value: -0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 1.8333334
-        value: 0.0545
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalPosition.y
-    path: 
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
+        time: 0.6666667
+        value: 0.20351854
+        inSlope: 0.47179914
+        outSlope: 0.47179914
+        tangentMode: 0
       - serializedVersion: 2
-        time: 0
-        value: -0.163
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
+        time: 1.1666666
+        value: 0.5544191
+        inSlope: 0.60435474
+        outSlope: 0.60435474
+        tangentMode: 0
       - serializedVersion: 2
-        time: 1.8333334
-        value: -0.163
+        time: 2
+        value: 0.785
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -143,7 +145,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 1
+  - time: 1.3333334
     functionName: Isstop
     data: 
     objectReferenceParameter: {fileID: 0}

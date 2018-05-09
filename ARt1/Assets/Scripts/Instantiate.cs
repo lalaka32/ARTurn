@@ -77,21 +77,25 @@ public class Instantiate : MonoBehaviour
     }
     void SetLight(Car car)
     {
-        var light1 = new GameObject("light");
-        light1.transform.parent = car.transform.Find("Body").transform;
-        light1.AddComponent<Light>().color = Color.yellow;
-        light1.GetComponent<Light>().intensity = 30;
+
         switch (car.Direction)
         {
             case Direction.left:
-                light1.transform.position = car.transform.Find("Body").transform.position + new Vector3(-4, 0, 4);
-                Instantiate(light1, light1.transform.position + new Vector3(0, 0, -10), Quaternion.identity, car.transform.Find("Body").transform);
+                CarInctanceLight(car, new Vector3(4, 4, 4));
                 break;
             case Direction.right:
-                light1.transform.position = car.transform.Find("Body").transform.position + new Vector3(4, 0, 4);
-                Instantiate(light1, light1.transform.position + new Vector3(0, 0, -10), Quaternion.identity, car.transform.Find("Body").transform);
+                CarInctanceLight(car, new Vector3(4, 4, -4));
                 break;
         }
+    }
+    void CarInctanceLight(Car car,Vector3 vector)
+    {
+        var light1 = new GameObject("light");
+        light1.transform.parent = car.transform.Find("abstractbody").transform;
+        light1.AddComponent<Light>().color = Color.yellow;
+        light1.GetComponent<Light>().intensity = 60;
+        light1.transform.position = car.transform.Find("abstractbody").transform.position + new Vector3(4, 4, 4);
+        Instantiate(light1, light1.transform.position + new Vector3(-10, 0, 0), Quaternion.identity, car.transform.Find("abstractbody").transform);
     }
     void Shuffle(PositionRotationAnimation[] posRotAnim)
     {
