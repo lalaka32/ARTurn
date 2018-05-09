@@ -77,19 +77,14 @@ public class Car : MonoBehaviour
         switch (Direction)
         {
             case Direction.forward:
-                animator.Play("CarForwardanim");
+                GetComponentInChildren<Animator>().Play("CarForwardanim");
                 break;
             case Direction.left:
-                animator.Play("CarLeftanim");
+                GetComponentInChildren<Animator>().Play("CarLeftanim");
                 break;
             case Direction.right:
-                animator.Play("CarRightanim");
+                GetComponentInChildren<Animator>().Play("CarRightanim");
                 break;
         }
-    }
-    public void Isstop()
-    {
-        isstop = true;
-        Debug.Log("isstop = true;");
     }
 }
