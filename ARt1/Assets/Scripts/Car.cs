@@ -53,8 +53,4 @@ public class Car : MonoBehaviour
         isstop = true;
         Debug.Log("isstop = true;");
     }
-    private void Start()
-    {
-        GameObject.Find("body");
-    }
 }
