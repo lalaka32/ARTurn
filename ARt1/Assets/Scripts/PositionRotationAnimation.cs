@@ -19,7 +19,7 @@ class PositionRotationAnimation
         game.transform.localPosition = Position;
         game.transform.eulerAngles = Rotation;
         game.GetComponent<Car>().Position = NumberOfPosition;
-        game.AddComponent<Animator>().runtimeAnimatorController = Controller;
+        game.GetComponentInChildren<Animator>().runtimeAnimatorController = Controller;
     }
     public Vector3 Position{ get;set;}
 
