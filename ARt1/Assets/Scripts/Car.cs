@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Enums;
+using System;
 
 public class Car : MonoBehaviour
 {
     public Priority priority;
-    public Direction direction;
+
     private Position _position;
     public bool isstop = false;
+
+    [SerializeField]
+    Direction direction;
+
     public Position Position
     {
         get { return _position; }
@@ -28,14 +33,49 @@ public class Car : MonoBehaviour
             }
         }
     }
-    private void Awake()
+
+    public Direction Direction
     {
-        direction = (Direction)Random.Range(0, 3);
+        get
+        {
+            return direction;
+        }
+
+        set
+        {
+            direction = value;
+        }
 
     }
+
+    public void SetPriority(Car[] cars, int index, Dictionary<Position, Car> listOfPositions, Position positionSetting)
+    {
+        IDirectionitatible carDir;
+        switch (Direction)
+        {
+            case Direction.forward:
+                carDir = new DirectionsForwardUpdate();
+                carDir.SetPriority(listOfPositions, positionSetting);
+                break;
+            case Direction.right:
+                carDir = new DirectionRight();
+                carDir.SetPriority(listOfPositions, positionSetting);
+                break;
+            case Direction.left:
+                carDir = new DirectionLeftUpdate();
+                carDir.SetPriority(listOfPositions, positionSetting);
+                break;
+        }
+    }
+    private void Awake()
+    {
+        direction = (Direction)UnityEngine.Random.Range(0, 3);
+    }
+
     public void StartAnime()
     {
-        switch (GetComponent<Car>().direction)
+        var animator = GetComponent<Animator>();
+        switch (Direction)
         {
             case Direction.forward:
                 GetComponentInChildren<Animator>().Play("CarForwardanim");

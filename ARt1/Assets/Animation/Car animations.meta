@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:ARt1/Assets/Animation/Car animations.meta
 guid: a042970fa6d248f49a67cc134d045d6e
 folderAsset: yes
 timeCreated: 1525890392
+=======
+guid: 65f60b7019e19e146a6ebcdbcf2bdf40
+folderAsset: yes
+timeCreated: 1525889625
+>>>>>>> 4bb0a76464fc3848603e1689c3a7d190a2b5b247:ARt1/Assets/Animation/Car animations.meta
 licenseType: Free
 DefaultImporter:
   externalObjects: {}

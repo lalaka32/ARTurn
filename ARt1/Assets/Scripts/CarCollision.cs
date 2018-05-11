@@ -13,13 +13,7 @@ public class CarCollision : MonoBehaviour {
             Debug.Log("Collision!!!");
             othercar = collision.gameObject;
             Invoke("DestroyAnimators", 0.3f);
-
-            
         }
-
-
-
-        Debug.Log("bye");
     }
     void DestroyAnimators()
     {

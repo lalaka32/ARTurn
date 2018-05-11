@@ -3,8 +3,11 @@ using Enums;
 
 class PositionRotationAnimation
 {
-    string nameOfPosition;
     public RuntimeAnimatorController Controller { get; set; }
+    Vector3 Position { get; set; }
+    Vector3 Rotation { get; set; }
+    Position NumberOfPosition { get; set; }
+
     public PositionRotationAnimation(Vector3 position, Vector3 rotation,Position numberpos, RuntimeAnimatorController controller)
     {
         Controller = controller;
@@ -13,7 +16,7 @@ class PositionRotationAnimation
         NumberOfPosition = numberpos;
         
     }
-    public void Apropriation(GameObject game)
+    public void SetPRA(GameObject game)
     {
         game.name = NumberOfPosition.ToString();
         game.transform.localPosition = Position;
@@ -21,9 +24,5 @@ class PositionRotationAnimation
         game.GetComponent<Car>().Position = NumberOfPosition;
         game.GetComponentInChildren<Animator>().runtimeAnimatorController = Controller;
     }
-    public Vector3 Position{ get;set;}
-
-    public Vector3 Rotation{ get;set;}
-
-    public Position NumberOfPosition { get; set; }
+    
 }
