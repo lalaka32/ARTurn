@@ -73,7 +73,7 @@ public class Instantiate : MonoBehaviour
         GO.transform.localScale = new Vector3(1.7f, 1.7f, 1.7f);
         GO.AddComponent<Car>();
         SetLight(GO.GetComponent<Car>());
-        PRA.Apropriation(GO);
+        PRA.SetPRA(GO);
     }
     void SetLight(Car car)
     {
@@ -94,7 +94,7 @@ public class Instantiate : MonoBehaviour
         light1.transform.parent = car.transform.Find("abstractbody").transform;
         light1.AddComponent<Light>().color = Color.yellow;
         light1.GetComponent<Light>().intensity = 60;
-        light1.transform.position = car.transform.Find("abstractbody").transform.position + new Vector3(4, 4, 4);
+        light1.transform.position = car.transform.Find("abstractbody").transform.position + vector;
         Instantiate(light1, light1.transform.position + new Vector3(-10, 0, 0), Quaternion.identity, car.transform.Find("abstractbody").transform);
     }
     void Shuffle(PositionRotationAnimation[] posRotAnim)

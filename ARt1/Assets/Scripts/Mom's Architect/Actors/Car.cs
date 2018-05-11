@@ -32,6 +32,9 @@ namespace BeeFly
                 }
             }
         }
+
+        public Direction Direction { get; internal set; }
+
         private void Awake()
         {
             direction = (Direction)UnityEngine.Random.Range(2, 3);

@@ -16,7 +16,7 @@ class PositionRotationAnimation
         NumberOfPosition = numberpos;
         
     }
-    public void Apropriation(GameObject game)
+    public void SetPRA(GameObject game)
     {
         game.name = NumberOfPosition.ToString();
         game.transform.localPosition = Position;
