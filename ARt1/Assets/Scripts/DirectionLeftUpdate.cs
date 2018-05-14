@@ -76,9 +76,9 @@ class DirectionLeftUpdate : IDirectionitatible
                 }
             }
             settingCar.Position += 2;
-            listOfPositions.Add(settingCar.Position, settingCar);
             Debug.Log(" Pos : " + settingCar.Position + " direction : " + settingCar.Direction + " Prior : " + settingCar.priority);
         }
+        listOfPositions.Add(settingCar.Position, settingCar);
     }
 }
 
