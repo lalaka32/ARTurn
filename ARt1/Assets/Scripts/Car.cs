@@ -48,7 +48,7 @@ public class Car : MonoBehaviour
 
     }
 
-    public void SetPriority(Car[] cars, int index, Dictionary<Position, Car> listOfPositions, Position positionSetting)
+    public void SetPriority(Dictionary<Position, Car> listOfPositions, Position positionSetting)
     {
         IDirectionitatible carDir;
         switch (Direction)
@@ -62,7 +62,7 @@ public class Car : MonoBehaviour
                 carDir.SetPriority(listOfPositions, positionSetting);
                 break;
             case Direction.left:
-                carDir = new DirectionLeftUpdate();
+                carDir = new LeftUpdate();
                 carDir.SetPriority(listOfPositions, positionSetting);
                 break;
         }

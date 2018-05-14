@@ -6,7 +6,6 @@ using Enums;
 public class LOGIC_V001 : MonoBehaviour {
     List<GameObject> masactivecars = new List<GameObject>();
     //string question;
-    Car[] cars;
     public GameObject[] MasCars { private get; set; }
     Priority playerOne;
     public Dictionary<Position, Car> listOfpositions;
@@ -28,17 +27,14 @@ public class LOGIC_V001 : MonoBehaviour {
     }
     public void MakePrioritiesOff()
     {
-        cars = new Car[MasCars.Length];
         listOfpositions = new Dictionary<Position, Car>();
         for (int i = 0; i < MasCars.Length; i++)
         {
-            cars[i] = MasCars[i].GetComponent<Car>();
-            listOfpositions.Add(MasCars[i].GetComponent<Car>().Position, cars[i]);
+            listOfpositions.Add(MasCars[i].GetComponent<Car>().Position, MasCars[i].GetComponent<Car>());
         }
-        for (int i = 0; i < cars.Length; i++)
+        for (int i = 0; i < MasCars.Length; i++)
         {
-            MasCars[i].GetComponent<Car>().SetPriority(cars, i, listOfpositions, MasCars[i].GetComponent<Car>().Position);
-
+            MasCars[i].GetComponent<Car>().SetPriority(listOfpositions, MasCars[i].GetComponent<Car>().Position);
         }
     }
     IEnumerator StartByPrioritets()

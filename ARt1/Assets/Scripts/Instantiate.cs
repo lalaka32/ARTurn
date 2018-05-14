@@ -95,7 +95,7 @@ public class Instantiate : MonoBehaviour
         light1.AddComponent<Light>().color = Color.yellow;
         light1.GetComponent<Light>().intensity = 60;
         light1.transform.position = car.transform.Find("abstractbody").transform.Find("Body").position + vector;
-        Instantiate(light1, light1.transform.position + new Vector3(-10, 0, 0), Quaternion.identity, car.transform.Find("abstractbody").transform);
+        Instantiate(light1, light1.transform.position + new Vector3(-10, 0, 0), Quaternion.identity, car.transform.Find("abstractbody").transform.Find("Body").transform);
     }
     void Shuffle(PositionRotationAnimation[] posRotAnim)
     {
