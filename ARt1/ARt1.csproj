@@ -304,6 +304,7 @@
     <Compile Include="Assets\fun\colisions.cs" />
     <Compile Include="Assets\Scripts\Car.cs" />
     <Compile Include="Assets\Scripts\CarCollision.cs" />
+    <Compile Include="Assets\Scripts\DicertionDicks.cs" />
     <Compile Include="Assets\Scripts\DirectionLeftUpdate.cs" />
     <Compile Include="Assets\Scripts\DirectionsForwardUpdate.cs" />
     <Compile Include="Assets\Scripts\Enums.cs" />
@@ -324,6 +325,7 @@
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Starters\Starter.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\ToolBox.cs" />
     <Compile Include="Assets\Scripts\PositionRotationAnimation.cs" />
+    <Compile Include="Assets\Scripts\TerrainCollision.cs" />
     <Compile Include="Assets\Scripts\VIP.cs" />
     <Compile Include="Assets\Vuforia\Scripts\DefaultInitializationErrorHandler.cs" />
     <Compile Include="Assets\Vuforia\Scripts\DefaultTrackableEventHandler.cs" />

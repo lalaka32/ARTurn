@@ -225,67 +225,67 @@ public class DirectionRight : IDirectionitatible
 
 //    }
 //}
-//public class DirectionForward : IDirectionitatible
-//{
-//    public void SetPriority(Car[] Car, int index,Dictionary<Position, Car> listOfPositions, Position positionSetting)
-//    {
-//        Car[index].Position--;
-//        for (int i = 0; i < Car.Length; i++)//к правой тачке
-//        {
-//            if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.forward)
-//            {
-//                Car[index].priority++;
-//                Car[index].Position--;
-//                for (int j = 0; j < Car.Length; j++)
-//                {
-//                    if (Car[j].Position == Car[index].Position && j != index)
-//                    {
-//                        Car[index].priority++;
-//                        break;
-//                    }
-//                }
-//                Car[index].Position += 2;
-//                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
-//                return;
-//            }
-//            //
-//            else if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.left)
-//            {
-//                Car[index].priority++;
-//                Car[index].Position--;
-//                for (int j = 0; j < Car.Length; j++)//к встречной тачке
-//                {
-//                    if (Car[j].Position == Car[index].Position && j != index)
-//                    {
-//                        Car[index].priority++;
-//                        Car[index].Position += 2;
-//                        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
-//                        return;
-//                    }
-//                }
+public class DirectionForward 
+{
+    public void SetPriority(Car[] Car, int index, Dictionary<Position, Car> listOfPositions, Position positionSetting)
+    {
+        Car[index].Position--;
+        for (int i = 0; i < Car.Length; i++)//к правой тачке
+        {
+            if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.forward)
+            {
+                Car[index].priority++;
+                Car[index].Position--;
+                for (int j = 0; j < Car.Length; j++)
+                {
+                    if (Car[j].Position == Car[index].Position && j != index)
+                    {
+                        Car[index].priority++;
+                        break;
+                    }
+                }
+                Car[index].Position += 2;
+                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
+                return;
+            }
+            //
+            else if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.left)
+            {
+                Car[index].priority++;
+                Car[index].Position--;
+                for (int j = 0; j < Car.Length; j++)//к встречной тачке
+                {
+                    if (Car[j].Position == Car[index].Position && j != index)
+                    {
+                        Car[index].priority++;
+                        Car[index].Position += 2;
+                        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
+                        return;
+                    }
+                }
 
-//                Car[index].Position--;
-//                for (int j = 0; j < Car.Length; j++)
-//                {
-//                    if (Car[j].Position == Car[index].Position && j != index && Car[j].Direction == Direction.right)
-//                    {
-//                        Car[index].priority++;
-//                        break;
-//                    }
-//                }
-//                Car[index].Position += 3;
-//                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
-//                return;
-//            }
-//            else if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.right)
-//            {
-//                Car[index].priority++;
-//                break;
-//            }
-//        }
-//        Car[index].Position++;
-//        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
-//        return;
-//    }
-//}
+                Car[index].Position--;
+                for (int j = 0; j < Car.Length; j++)
+                {
+                    if (Car[j].Position == Car[index].Position && j != index && Car[j].Direction == Direction.right)
+                    {
+                        Car[index].priority++;
+                        break;
+                    }
+                }
+                Car[index].Position += 3;
+                Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
+                return;
+            }
+            else if (Car[i].Position == Car[index].Position && i != index && Car[i].Direction == Direction.right)
+            {
+                Car[index].priority++;
+                break;
+            }
+        }
+        Car[index].Position++;
+        Debug.Log(" Pos : " + Car[index].Position + " direction : " + Car[index].Direction + " Prior : " + Car[index].priority);
+        return;
+    }
+}
 

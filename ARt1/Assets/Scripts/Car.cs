@@ -54,7 +54,7 @@ public class Car : MonoBehaviour
         switch (Direction)
         {
             case Direction.forward:
-                carDir = new DirectionsForwardUpdate();
+                carDir = new DicertionDicks();
                 carDir.SetPriority(listOfPositions, positionSetting);
                 break;
             case Direction.right:
