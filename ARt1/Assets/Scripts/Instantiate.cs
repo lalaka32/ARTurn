@@ -13,6 +13,8 @@ public class Instantiate : MonoBehaviour
     PositionRotationAnimation[] posRotAnim = new PositionRotationAnimation[4];
     [SerializeField]
     GameObject canvas;
+    [SerializeField]
+    GameObject light1;
 
     private void Awake()
     {
@@ -81,21 +83,22 @@ public class Instantiate : MonoBehaviour
         switch (car.Direction)
         {
             case Direction.left:
-                CarInctanceLight(car, new Vector3(4, 4, 4));
+                CarInctanceLight(car, new Vector3(5.3f, -1.16f, 1.8f));
                 break;
             case Direction.right:
-                CarInctanceLight(car, new Vector3(4, 4, -4));
+                CarInctanceLight(car, new Vector3(5.3f, -1.16f, -1.8f));
                 break;
         }
     }
     void CarInctanceLight(Car car,Vector3 vector)
     {
-        var light1 = new GameObject("light");
-        light1.transform.parent = car.transform.Find("abstractbody").transform.Find("Body");
-        light1.AddComponent<Light>().color = Color.yellow;
-        light1.GetComponent<Light>().intensity = 60;
-        light1.transform.position = car.transform.Find("abstractbody").transform.Find("Body").position + vector;
-        Instantiate(light1, light1.transform.position + new Vector3(-10, 0, 0), Quaternion.identity, car.transform.Find("abstractbody").transform.Find("Body").transform);
+        //light1.transform.parent = car.transform.Find("abstractbody").transform.Find("Body");
+        //light1.AddComponent<Light>().color = Color.yellow;
+        //light1.GetComponent<Light>().intensity = 60;
+        light1.transform.position = car.transform.GetChild(0).transform.GetChild(0).position + vector;
+
+        Instantiate(light1, light1.transform.position, Quaternion.identity, car.transform.GetChild(0).transform.GetChild(0));
+        Instantiate(light1, light1.transform.position + new Vector3(-10.5f, 0, 0), Quaternion.identity, car.transform.GetChild(0).transform.GetChild(0));
     }
     void Shuffle(PositionRotationAnimation[] posRotAnim)
     {
