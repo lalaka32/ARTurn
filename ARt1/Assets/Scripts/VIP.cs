@@ -2,10 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Enums;
 
-namespace Assets.Scripts
+class VIP:Car
 {
-    class VIP
+    private void Awake()
     {
+        //СДелать мигалки
+    }
+    public override void SetPriority(Dictionary<ComperativeLocation, Car> comperative, Car settingCar)
+    {
+        foreach (var item in comperative)
+        {
+            item.Value.priority++;
+        }
     }
 }
+

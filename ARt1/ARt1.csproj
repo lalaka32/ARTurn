@@ -304,10 +304,8 @@
     <Compile Include="Assets\fun\colisions.cs" />
     <Compile Include="Assets\Scripts\Car.cs" />
     <Compile Include="Assets\Scripts\CarCollision.cs" />
-    <Compile Include="Assets\Scripts\DicertionDicks.cs" />
-    <Compile Include="Assets\Scripts\DirectionLeftUpdate.cs" />
-    <Compile Include="Assets\Scripts\DirectionsForwardUpdate.cs" />
     <Compile Include="Assets\Scripts\Enums.cs" />
+    <Compile Include="Assets\Scripts\forward.cs" />
     <Compile Include="Assets\Scripts\Instantiate.cs" />
     <Compile Include="Assets\Scripts\InstantiateBottons.cs" />
     <Compile Include="Assets\Scripts\Isstopactivating.cs" />
