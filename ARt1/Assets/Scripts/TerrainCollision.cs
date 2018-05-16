@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class TerrainCollision : MonoBehaviour {
 
-    void OnCollisionEnter(UnityEngine.Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        collision.gameObject.GetComponent<Rigidbody>().useGravity = false;
-        StartCoroutine(ToTheSky(collision));
+        if (other.gameObject.GetComponent<Rigidbody>().useGravity == true)
+        {
+            other.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            StartCoroutine(ToTheSky(other));
+        }
     }
-    IEnumerator ToTheSky(UnityEngine.Collision collision)
+    IEnumerator ToTheSky(Collider other)
     {
         while (true)
         {
-            collision.gameObject.transform.parent.parent.Translate(Vector3.up * Time.deltaTime * 4);
-            yield return new WaitForEndOfFrame();
+                other.gameObject.transform.position += Vector3.up * Time.deltaTime * 8;
+                yield return new WaitForFixedUpdate();
         }
-    } 
+    }
 }
