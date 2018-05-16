@@ -30,15 +30,12 @@ class ForwardDirection : IDirectionitatible
                 {
                     settingCar.priority++;
                 }
-                else
+                else if (comperative.TryGetValue(ComperativeLocation.Left, out observeCar))
                 {
-                    if (comperative.TryGetValue(ComperativeLocation.Front, out observeCar))
-                    {
                         if (observeCar.Direction == Direction.right)
                         {
                             settingCar.priority++;
                         }
-                    }
                 }
             }
 
