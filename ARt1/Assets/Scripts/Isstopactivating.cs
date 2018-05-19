@@ -14,16 +14,14 @@ public class Isstopactivating : MonoBehaviour {
         
         Debug.Log("isstop = true;");
     }
-    //public void IsEnd()
-    //{
-    //    StartCoroutine(ToTheHell());
-    //}
+
     IEnumerator ToTheHell()
     {
-        Vector3 endposition = transform.GetChild(0).position + transform.GetChild(0).TransformVector(new Vector3(0, 0, 50));
-        while (transform.GetChild(0).position.y < 1)
+        var Vector = (gameObject.transform.forward*4f) + (Vector3.up*2) ;
+        //Vector3 endposition = transform.GetChild(0).position + transform.GetChild(0).TransformVector(new Vector3(0, 0, 50));
+        while (true)
         {
-            transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, endposition, Time.deltaTime * 0.5f);
+            gameObject.transform.Find("Body").GetComponent<Rigidbody>().AddForce(Vector * 1f);
             yield return new WaitForFixedUpdate();
         }
     }

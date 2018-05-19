@@ -15,7 +15,7 @@ public class LOGIC_V001 : MonoBehaviour {
         MakePrioritiesOff();
         listOfpositions.Clear();
         StartCoroutine(StartByPrioritets());
-        switch (GetComponent<Instantiate>().trafficLight)
+        switch (ToolBox.Get<CrossManager>().trafficLight)
         {
             case TrafficLight.off://по умолчанию
                 break;

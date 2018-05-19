@@ -38,7 +38,6 @@ public class ToolBox :Singleton<ToolBox> {
     {
         object resolve;
         Instance.data.TryGetValue(typeof(T),out resolve);
-        Debug.Log(string.Format("{0}",resolve.ToString()));
         return (T)resolve;
     }
     public void ClearScene()//Проблема в том что т.к. Тулбокс это
