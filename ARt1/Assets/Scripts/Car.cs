@@ -50,21 +50,42 @@ public class Car : MonoBehaviour
     public virtual void SetPriority(Dictionary<ComperativeLocation, Car> comperative, Car settingCar)
     {
         IDirectionitatible carDir;
-        switch (Direction)
+        if (ToolBox.Get<TrafficLightManager>().PosTL==null)
         {
-            case Direction.forward:
-                carDir = new ForwardDirection();
-                carDir.SetPriority(comperative, settingCar);
-                break;
-            case Direction.right:
-                carDir = new DirectionRight();
-                carDir.SetPriority(comperative, settingCar);
-                break;
-            case Direction.left:
-                carDir = new LeftDirection();
-                carDir.SetPriority(comperative, settingCar);
-                break;
+            switch (Direction)
+            {
+                case Direction.forward:
+                    carDir = new ForwardQvalent();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+                case Direction.right:
+                    carDir = new DirectionRight();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+                case Direction.left:
+                    carDir = new LeftDirectionQvalent();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+            }
         }
+        else if(ToolBox.Get<TrafficLightManager>().PosTL!=null )
+        {
+            switch (Direction)
+            {
+                case Direction.forward:
+                    carDir = new PriorityTL();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+                case Direction.right:
+                    carDir = new PriorityTL();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+                case Direction.left:
+                    carDir = new LeftTL();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+            }
+        } 
     }
     private void Awake()
     {

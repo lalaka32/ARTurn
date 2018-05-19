@@ -5,13 +5,8 @@ using Enums;
 
 public class Instantiate : MonoBehaviour   
 {
-
-
     public bool Restart { get; set; }
     public GameObject[] MasCars { get; private set; }
-
-
-    public Dictionary<Position, TrafficLight> PosTL;
 
     Vector3 vectorCam = new Vector3(-208.1f, 82.1f, 55);
     Quaternion quaternion = Quaternion.Euler(90, 0, 0);
@@ -32,21 +27,18 @@ public class Instantiate : MonoBehaviour
         {
             Restart = false;
 
-            ToolBox.Get<CrossManager>().GenerationAdditionalStructures(GetConstPRofTL());
-            ToolBox.Get<CarManager>().InstantiateCars(GetConstPRofCars());
-            ToolBox.Get<UIManager>().Canvas.GetComponent<InstantiateBottons>().CreateBottons(ToolBox.Get<CarManager>().MasCars.Length); ;
+            ToolBox.Get<TrafficLightManager>().GenerationTrafficLight(GetConstPRofTL(), ToolBox.Get<CrossManager>().Cross.transform);
+            ToolBox.Get<CarManager>().InstantiateCars(GetConstPRofCars(),ToolBox.Get<CrossManager>().Cross.transform);
+            ToolBox.Get<UIManager>().CreateBottons(ToolBox.Get<CarManager>().MasCars.Length); 
 
             yield return new WaitWhile(() => Restart == false);
 
-            ToolBox.Get<UIManager>().Canvas.GetComponent<InstantiateBottons>().Clear();
+            ToolBox.Get<UIManager>().Clear();
             foreach (GameObject item in ToolBox.Get<CarManager>().MasCars)//измени здесь для 1-ого создания
             {
                 Destroy(item);
             }
-            foreach (GameObject item in ToolBox.Get<CrossManager>().TL)
-            {
-                Destroy(item);
-            }
+            ToolBox.Get<TrafficLightManager>().Clear();
         }
     }
 
