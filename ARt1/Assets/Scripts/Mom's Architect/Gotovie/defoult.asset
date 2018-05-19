@@ -8,7 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4606329d13ca513488dac7652fe9c367, type: 3}
-  m_Name: NormalCam
+  m_Script: {fileID: 11500000, guid: 98c61b07a3e4b5e4ca497df244e3b929, type: 3}
+  m_Name: defoult
   m_EditorClassIdentifier: 
-  camPrefab: {fileID: 1225746232939948, guid: aaf91fce28ce10d468bd233c5297fa70, type: 2}
+  canvasPrefab: {fileID: 1905407071794264, guid: 696648490984bb940afed36e2dd79df6,
+    type: 2}

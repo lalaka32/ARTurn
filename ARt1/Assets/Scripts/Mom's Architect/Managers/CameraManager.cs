@@ -8,12 +8,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="CameraManager",menuName = "Managers/CameraManager")]
 class CameraManager:ManagerBase, IAwake
 {
-    public GameObject camGO;
+    [SerializeField]
+    GameObject camPrefab;
+
+    public GameObject MainCamera { get; private set; }
 
     public void SetCamGO(Vector3 pos,Quaternion quaternion,bool sneaking=false)
     {
-        var cam = Instantiate(camGO, pos, quaternion);
-        cam.transform.parent = GameObject.Find("Cameras").transform;
+        MainCamera = Instantiate(camPrefab, pos, quaternion);
+        MainCamera.transform.parent = GameObject.Find("Cameras").transform;
         
     }
     
@@ -23,7 +26,6 @@ class CameraManager:ManagerBase, IAwake
         //Кароч в настройках будет галочка типо ар или обчная камера
         //Если AR то в SetCamGO кам накинуть просто скрипты
         //Это поможет не хранить 2 префаба(3 килобайта забей)
-        GameObject.Find("[SETUP]").AddComponent<SetupCam>();
     }
 
 }

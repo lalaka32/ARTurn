@@ -313,12 +313,12 @@
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Actors\ActorBase.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Actors\Car.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\DemoScripts\Behavours\BaseBehavour.cs" />
-    <Compile Include="Assets\Scripts\Mom&apos;s Architect\DemoScripts\SetupCam.cs" />
-    <Compile Include="Assets\Scripts\Mom&apos;s Architect\DemoScripts\SetupCross.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Interfaces\IAwake.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\CameraManager.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\CarManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\CrossManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\ManagerBase.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Patterns\Singleton.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Starters\Starter.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\ToolBox.cs" />
