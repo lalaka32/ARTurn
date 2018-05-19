@@ -28,7 +28,7 @@ class UIManager : ManagerBase, IAwake
         }
         Canvas.gameObject.transform.Find("Restart").GetComponent<Button>().onClick.AddListener(
             delegate {
-                GameObject.Find("[Setup]").GetComponent<Instantiate>().Restart = true;
+                GameObject.Find("[SETUP]").GetComponent<Instantiate>().Restart = true;
             });
 
     }
