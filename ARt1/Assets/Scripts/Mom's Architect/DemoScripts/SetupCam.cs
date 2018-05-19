@@ -13,8 +13,8 @@ namespace BeeFly
         //Тут будут наши поведения
         //private List<>
 
-        Vector3 vectorCam = new Vector3(-208.1f, 82.1f, 55);
-        Quaternion quaternion = Quaternion.Euler(90,0,0);
+        //Vector3 vectorCam = new Vector3(-208.1f, 82.1f, 55);
+        //Quaternion quaternion = Quaternion.Euler(90,0,0);
         
         //public void Sneaking(Vector3 location)
         //{
@@ -22,7 +22,7 @@ namespace BeeFly
         //}
         private void Start()
         {
-            ToolBox.Get<CameraManager>().SetCamGO(vectorCam, quaternion); 
+            //ToolBox.Get<CameraManager>().SetCamGO(vectorCam, quaternion); 
         }
         private void Update()
         {
