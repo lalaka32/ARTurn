@@ -17,7 +17,7 @@ public class TerrainCollision : MonoBehaviour {
     {
         while (true)
         {
-                other.gameObject.transform.position += Vector3.up * Time.deltaTime * 8;
+            other.gameObject.GetComponent<Rigidbody>().AddForce((other.transform.forward + Vector3.up) * 10);
                 yield return new WaitForFixedUpdate();
         }
     }
