@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Mom_s_Architect.DemoScripts;
+﻿
 using Enums;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +8,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CrossManager", menuName = "Managers/CrossManager")]
 class CrossManager : ManagerBase, IAwake
 {
-    //Тута нада Создац керекрёсток
-    //ВОзможно лучши сделать 1 манагер по созданию всего
-    //но я не уверен...
     public GameObject prefabOfCross;
     public GameObject prefabOfTrafficLight;
     public GameObject prefabOfLight;
@@ -32,7 +29,7 @@ class CrossManager : ManagerBase, IAwake
         TL = new GameObject[4];
         for (int i = 0; i < PRTL.Length; i++)
         {
-            TL[i] = Instantiate(prefabOfTrafficLight, GameObject.Find("Cross").transform, false);
+            TL[i] = Instantiate(prefabOfTrafficLight, Cross.transform, false);
             PRTL[i].SetPR(TL[i]);
         }
     }
@@ -56,8 +53,6 @@ class CrossManager : ManagerBase, IAwake
                 //lights1[i].GetComponent<Animator>().runtimeAnimatorController = controllerOfLight;
                 lights2[i] = Instantiate(prefabOfLight, TL[i].transform, false);
                 //lights2[i].GetComponent<Animator>().runtimeAnimatorController = controllerOfLight;
-                lights1[i].GetComponent<Animator>().runtimeAnimatorController = null;
-                lights2[i].GetComponent<Animator>().runtimeAnimatorController = null;
             }
 
             switch (trafficLight)//Тута сам свет наверн

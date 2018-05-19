@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Mom_s_Architect.DemoScripts;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ class UIManager : ManagerBase, IAwake
 
     public void OnAwake()
     {
-        GameObject.Find("[SETUP]").AddComponent<SetupUI>();
+
     }
 
     public void SetUI()
@@ -28,7 +28,7 @@ class UIManager : ManagerBase, IAwake
         }
         Canvas.gameObject.transform.Find("Restart").GetComponent<Button>().onClick.AddListener(
             delegate {
-                GameObject.Find("[Setup]").GetComponent<Instantiate>().Restart = true;
+                GameObject.Find("[SETUP]").GetComponent<Instantiate>().Restart = true;
             });
 
     }
