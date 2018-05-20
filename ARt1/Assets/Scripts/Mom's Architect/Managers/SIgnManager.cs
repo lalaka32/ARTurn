@@ -27,13 +27,22 @@ class SignManager : ManagerBase
             if (i % 2 == 0)
             {
                 signArray[i] = Instantiate(prefabOfMain, parent.transform, false);
-                TS.Add((Position)i, TrafficSign.main);
+                TS.Add(PRTL[i].NumberOfPosition, TrafficSign.main);
             }
             else
             {
                 signArray[i] = Instantiate(prefabOfSecondary, parent.transform, false);
-                TS.Add((Position)i, TrafficSign.secondary);
+                TS.Add(PRTL[i].NumberOfPosition, TrafficSign.secondary);
             }
+            PRTL[i].SetPR(signArray[i]);
+        }
+    }
+    public void ClearSigns()
+    {
+        TS = null;
+        foreach (GameObject sign in signArray)
+        {
+            Destroy(sign);
         }
     }
     public void GenerationTrafficSigns(PositionRotation[] PRTS, Transform parent)
@@ -44,7 +53,12 @@ class SignManager : ManagerBase
             TS = new Dictionary<Position, TrafficSign>(3);
             Shuffle(PRTS);
             GenerateTrafficSignGO(PRTS, parent);
+            foreach (var item in TS)
+            {
+                Debug.Log(item.Key + "      " + item.Value);
+            }
         }
+        
 
     }
     void Shuffle(PositionRotation[] posRotAnim)//Хз пока тут оставлю(2 раза повтаряю)

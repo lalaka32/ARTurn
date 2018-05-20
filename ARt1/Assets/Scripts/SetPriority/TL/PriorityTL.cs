@@ -25,7 +25,6 @@ class PriorityTL : IDirectionitatible
 
             if (comperative.TryGetValue(ComperativeLocation.Left, out observeCarLeft) && comperative.TryGetValue(ComperativeLocation.Right, out observeCarRight))
             {
-
                 if (observeCarLeft.Direction == Direction.left && observeCarRight.Direction != Direction.left)
                 {
                     settingCar.priority++;

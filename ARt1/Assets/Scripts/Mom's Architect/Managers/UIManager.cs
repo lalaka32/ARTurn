@@ -11,14 +11,21 @@ class UIManager : ManagerBase, IAwake
 {
     [SerializeField]
     GameObject canvasPrefab;
-    public GameObject Canvas { get; set; }
 
-    GameObject[] bottons = new GameObject[2];
 
+    public GameObject Canvas { get;private set; }
+
+    GameObject[] bottons;
+
+    public void OnAwake()
+    {
+         
+    }
     public void SetUI()
     {
+        bottons = new GameObject[3];
         Canvas = Instantiate(canvasPrefab, GameObject.Find("UI").transform, false);
-        for (int i = 1; i <= 3; i++)
+        for (int i = 1; i < 4; i++)
         {
             bottons[i-1] = Canvas.transform.Find(i.ToString()).gameObject;
             Canvas.transform.Find(i.ToString().Trim()).GetComponent<Button>().onClick.AddListener(
@@ -27,6 +34,7 @@ class UIManager : ManagerBase, IAwake
         Canvas.gameObject.transform.Find("Restart").GetComponent<Button>().onClick.AddListener(
             delegate {
                 GameObject.Find("[SETUP]").GetComponent<Instantiate>().Restart = true;
+                Debug.Log("------------------------------------------------");
             });
 
     }
@@ -38,7 +46,7 @@ class UIManager : ManagerBase, IAwake
             bottons[i].SetActive(true);
         }
     }
-    public void Clear()
+    public void ClearBottons()
     {
         foreach (GameObject item in bottons)
         {
@@ -46,9 +54,6 @@ class UIManager : ManagerBase, IAwake
         }
     }
 
-    public void OnAwake()
-    {
-
-    }
+    
 }
 

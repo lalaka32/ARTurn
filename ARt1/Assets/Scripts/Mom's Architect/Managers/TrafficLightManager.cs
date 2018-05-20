@@ -29,7 +29,7 @@ class TrafficLightManager : ManagerBase
     }
     public void GenerationTrafficLight(PositionRotation[] PRTL, Transform parent)
     {
-        trafficLight = (TrafficLight)Random.Range(1, 3);
+        trafficLight = (TrafficLight)Random.Range(0, 4);
         //trafficLight = TrafficLight.red;
         Debug.Log(trafficLight);
         if (trafficLight != TrafficLight.empty)
@@ -79,6 +79,11 @@ class TrafficLightManager : ManagerBase
 
                         lights2[i].transform.localPosition = new Vector3(0, 22, 4);
                     }
+                    
+                    foreach (var item in PosTL)
+                    {
+                        Debug.Log(item.Key + "      " + item.Value);
+                    }
                     break;
                 case TrafficLight.green:
                     PosTL = new Dictionary<Position, TrafficLight>(3);
@@ -88,16 +93,21 @@ class TrafficLightManager : ManagerBase
                         {
                             lights1[i].GetComponent<Light>().color = Color.green;
                             lights2[i].GetComponent<Light>().color = Color.green;
-                            PosTL.Add((Position)i, TrafficLight.red);
+                            PosTL.Add((Position)i, TrafficLight.green);
                         }
                         else
                         {
                             lights1[i].GetComponent<Light>().color = Color.red;
                             lights2[i].GetComponent<Light>().color = Color.red;
-                            PosTL.Add((Position)i, TrafficLight.green);
+                            PosTL.Add((Position)i, TrafficLight.red);
                         }
                         lights1[i].transform.localPosition = new Vector3(0, 18, -4);
                         lights2[i].transform.localPosition = new Vector3(0, 18, 4);
+                    }
+                    
+                    foreach (var item in PosTL)
+                    {
+                        Debug.Log(item.Key + "      " + item.Value);
                     }
                     break;
             }
