@@ -12,7 +12,6 @@ public class Isstopactivating : MonoBehaviour {
             item.SetBool("Isturneroff", true);
         }
         
-        Debug.Log("isstop = true;");
     }
 
     IEnumerator ToTheHell()

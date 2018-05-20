@@ -5,13 +5,8 @@ using Enums;
 
 public class Instantiate : MonoBehaviour   
 {
-
-
     public bool Restart { get; set; }
     public GameObject[] MasCars { get; private set; }
-
-
-    public Dictionary<Position, TrafficLight> PosTL;
 
     Vector3 vectorCam = new Vector3(-208.1f, 82.1f, 55);
     Quaternion quaternion = Quaternion.Euler(90, 0, 0);
@@ -32,22 +27,31 @@ public class Instantiate : MonoBehaviour
         {
             Restart = false;
 
-            ToolBox.Get<CrossManager>().GenerationAdditionalStructures(GetConstPRofTL());
-            ToolBox.Get<CarManager>().InstantiateCars(GetConstPRofCars());
-            ToolBox.Get<UIManager>().Canvas.GetComponent<InstantiateBottons>().CreateBottons(ToolBox.Get<CarManager>().MasCars.Length); ;
+            ToolBox.Get<TrafficLightManager>().GenerationTrafficLight(GetConstPRofTL(), ToolBox.Get<CrossManager>().Cross.transform);
+            ToolBox.Get<SignManager>().GenerationTrafficSigns(ConstSignTransform(), ToolBox.Get<CrossManager>().Cross.transform);
+            ToolBox.Get<CarManager>().InstantiateCars(GetConstPRofCars(),ToolBox.Get<CrossManager>().Cross.transform);
+            ToolBox.Get<UIManager>().CreateBottons(ToolBox.Get<CarManager>().MasCars.Length); 
 
             yield return new WaitWhile(() => Restart == false);
 
-            ToolBox.Get<UIManager>().Canvas.GetComponent<InstantiateBottons>().Clear();
+            ToolBox.Get<UIManager>().ClearBottons();
+            ToolBox.Get<SignManager>().ClearSigns();
             foreach (GameObject item in ToolBox.Get<CarManager>().MasCars)//измени здесь для 1-ого создания
             {
                 Destroy(item);
             }
-            foreach (GameObject item in ToolBox.Get<CrossManager>().TL)
-            {
-                Destroy(item);
-            }
+            ToolBox.Get<TrafficLightManager>().Clear();
         }
+    }
+    PositionRotation[] ConstSignTransform()
+    {
+        PositionRotation[] posRotAnim = new PositionRotation[4];
+
+        posRotAnim[0] = new PositionRotation(new Vector3(-0.4f, 0.015f, -0.4f), new Vector3(-90, 180, 0),Position.first);
+        posRotAnim[1] = new PositionRotation(new Vector3(-0.4f, 0.015f, 0.4f), new Vector3(-90, -90, 0),Position.second);
+        posRotAnim[2] = new PositionRotation(new Vector3(0.4f, 0.015f, 0.4f), new Vector3(-90, 0, 0),Position.third);
+        posRotAnim[3] = new PositionRotation(new Vector3(0.4f, 0.015f, -0.4f), new Vector3(-90, -90, -180),Position.fourth);
+        return posRotAnim;
     }
 
     PositionRotation[] GetConstPRofCars()
@@ -62,10 +66,11 @@ public class Instantiate : MonoBehaviour
     PositionRotation[] GetConstPRofTL()
     {
         PositionRotation[] posRotAnim = new PositionRotation[4];
-        posRotAnim[0] = new PositionRotation(new Vector3(-0.4f, 0.015f, 0.4f), new Vector3(0, 0, 0));
-        posRotAnim[1] = new PositionRotation(new Vector3(0.4f, 0.015f, 0.4f), new Vector3(0, 90, 0));
-        posRotAnim[2] = new PositionRotation(new Vector3(0.4f, 0.015f, -0.4f), new Vector3(0, 0, 0));
-        posRotAnim[3] = new PositionRotation(new Vector3(-0.4f, 0.015f, -0.4f), new Vector3(0, 90, 0));
+        posRotAnim[0] = new PositionRotation(new Vector3(-0.4f, 0.015f, -0.4f), new Vector3(0, 90, 0));
+        posRotAnim[1] = new PositionRotation(new Vector3(-0.4f, 0.015f, 0.4f), new Vector3(0, 0, 0));
+        posRotAnim[2] = new PositionRotation(new Vector3(0.4f, 0.015f, 0.4f), new Vector3(0, 90, 0));
+        posRotAnim[3] = new PositionRotation(new Vector3(0.4f, 0.015f, -0.4f), new Vector3(0, 0, 0));
+
         return posRotAnim;
     }
 }

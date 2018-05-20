@@ -9,25 +9,28 @@ class CarManager :ManagerBase
 {
     [SerializeField]
     GameObject[] prefabsOfCars;
+    [SerializeField]
+    GameObject prefabOfLight;//2 раза 1 и то-же нужно что-то придумать
+    [SerializeField]
+    RuntimeAnimatorController controllerOfLight;
 
     public RuntimeAnimatorController controller;
 
     public GameObject[] MasCars { get; private set; }
 
-    public void InstantiateCars(PositionRotation[] posRotAnim)
+    public void InstantiateCars(PositionRotation[] posRotAnim,Transform cross)
     {
         MasCars = new GameObject[Random.Range(2, 4)];
         Shuffle(posRotAnim);
-        MasCars[0] = Instantiate(prefabsOfCars[0], ToolBox.Get<CrossManager>().Cross.transform, false);
+        MasCars[0] = Instantiate(prefabsOfCars[0], cross, false);
         MasCars[0].tag = "Player";
         SettingsForGOCars(MasCars[0], posRotAnim[0]);
         for (int i = 1; i < MasCars.Length; i++)
         {
-            MasCars[i] = Instantiate(prefabsOfCars[Random.Range(1, prefabsOfCars.Length)], ToolBox.Get<CrossManager>().Cross.transform, false);
+            MasCars[i] = Instantiate(prefabsOfCars[Random.Range(1, prefabsOfCars.Length)], cross, false);
             MasCars[i].tag = "BotCar";
             SettingsForGOCars(MasCars[i], posRotAnim[i]);
         }
-        ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MasCars = MasCars;
     }
 
     void SettingsForGOCars(GameObject GO, PositionRotation PRA)
@@ -51,11 +54,11 @@ class CarManager :ManagerBase
     }
     void CarInctanceLight(Car car, Vector3 vector)
     {
-        var turner = ToolBox.Get<CrossManager>().prefabOfLight;
+        var turner = prefabOfLight;
         turner.transform.position = car.transform.GetChild(0).transform.GetChild(0).position + vector;
 
-        Instantiate(turner, turner.transform.position, Quaternion.identity, car.transform.GetChild(0).transform.GetChild(0)).GetComponent<Animator>().runtimeAnimatorController= ToolBox.Get<CrossManager>().controllerOfLight;
-        Instantiate(turner, turner.transform.position + new Vector3(-10.5f, 0, 0), Quaternion.identity, car.transform.GetChild(0).transform.GetChild(0)).GetComponent<Animator>().runtimeAnimatorController = ToolBox.Get<CrossManager>().controllerOfLight;
+        Instantiate(turner, turner.transform.position, Quaternion.identity, car.transform.GetChild(0).transform.GetChild(0)).GetComponent<Animator>().runtimeAnimatorController= controllerOfLight;
+        Instantiate(turner, turner.transform.position + new Vector3(-10.5f, 0, 0), Quaternion.identity, car.transform.GetChild(0).transform.GetChild(0)).GetComponent<Animator>().runtimeAnimatorController = controllerOfLight;
     }
     void Shuffle(PositionRotation[] posRotAnim)
     {

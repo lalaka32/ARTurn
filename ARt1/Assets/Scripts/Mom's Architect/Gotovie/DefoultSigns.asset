@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: DefoultSigns
+  m_EditorClassIdentifier: Assembly-CSharp::SignManager
+  prefabOfMain: {fileID: 1491261750161758, guid: b5fdd407ecb1697479ecbefe1a26c266,
+    type: 2}
+  prefabOfSecondary: {fileID: 1112096193966516, guid: dc31d20dd3867634b96bb0993ea23e93,
+    type: 2}
+  prefabOfStop: {fileID: 1163641129986592, guid: b20db528da768f44ca2a1fb7fa393f25,
+    type: 2}
+  signArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
