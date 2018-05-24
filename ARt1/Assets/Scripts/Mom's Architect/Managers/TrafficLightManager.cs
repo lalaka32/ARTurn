@@ -79,11 +79,7 @@ class TrafficLightManager : ManagerBase
 
                         lights2[i].transform.localPosition = new Vector3(0, 22, 4);
                     }
-                    
-                    foreach (var item in PosTL)
-                    {
-                        Debug.Log(item.Key + "      " + item.Value);
-                    }
+                   
                     break;
                 case TrafficLight.green:
                     PosTL = new Dictionary<Position, TrafficLight>(3);
@@ -105,10 +101,6 @@ class TrafficLightManager : ManagerBase
                         lights2[i].transform.localPosition = new Vector3(0, 18, 4);
                     }
                     
-                    foreach (var item in PosTL)
-                    {
-                        Debug.Log(item.Key + "      " + item.Value);
-                    }
                     break;
             }
         }

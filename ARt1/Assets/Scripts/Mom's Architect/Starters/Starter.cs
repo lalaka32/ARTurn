@@ -17,5 +17,4 @@ class Starter: MonoBehaviour{
             ToolBox.Add(item);
         }
     }
-
 }
