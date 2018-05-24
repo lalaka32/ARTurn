@@ -18,6 +18,7 @@ public class Car : MonoBehaviour
         get { return _position; }
         set
         {
+
             if ((sbyte)value < 0)
             {
                 _position = 4 + value;
@@ -30,6 +31,8 @@ public class Car : MonoBehaviour
             {
                 _position = value;
             }
+
+
         }
     }
 
@@ -46,11 +49,31 @@ public class Car : MonoBehaviour
         }
 
     }
+    public Position FinalPosition
+    {
+        get
+        {
+            Position fin = (Position)((int)Position - (int)Direction-1);
+            while (fin < 0 || fin >= (Position)4)
+            {
+                if ((sbyte)fin < 0)
+                {
+                    fin += 4;
+                }
+                else if ((sbyte)fin >= 4)
+                {
+                    fin -= 4;
+                }
+            }
+            return fin;
+        }
+    }
 
     public virtual void SetPriority(Dictionary<ComperativeLocation, Car> comperative, Car settingCar)
     {
         IDirectionitatible carDir;
-        if (ToolBox.Get<TrafficLightManager>().PosTL==null)
+        Debug.Log(Position+" FIN : "+FinalPosition);
+        if (ToolBox.Get<TrafficLightManager>().PosTL == null && ToolBox.Get<SignManager>().TS == null)
         {
             switch (Direction)
             {
@@ -68,7 +91,7 @@ public class Car : MonoBehaviour
                     break;
             }
         }
-        else if(ToolBox.Get<TrafficLightManager>().PosTL!=null )
+        else if (ToolBox.Get<TrafficLightManager>().PosTL != null)
         {
             switch (Direction)
             {
@@ -85,7 +108,7 @@ public class Car : MonoBehaviour
                     carDir.SetPriority(comperative, settingCar);
                     break;
             }
-        } 
+        }
     }
     private void Awake()
     {

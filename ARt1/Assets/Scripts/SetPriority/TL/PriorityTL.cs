@@ -10,7 +10,6 @@ class PriorityTL : IDirectionitatible
     public virtual void SetPriority(Dictionary<ComperativeLocation, Car> comperative, Car settingCar)
     {
         TrafficLight trafficSignal = ToolBox.Get<TrafficLightManager>().PosTL[settingCar.Position];
-        Debug.Log(trafficSignal + "    " + settingCar.Position);
 
         Car observeCarLeft;
         Car observeCarRight;

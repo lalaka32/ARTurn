@@ -53,10 +53,6 @@ class SignManager : ManagerBase
             TS = new Dictionary<Position, TrafficSign>(3);
             Shuffle(PRTS);
             GenerateTrafficSignGO(PRTS, parent);
-            foreach (var item in TS)
-            {
-                Debug.Log(item.Key + "      " + item.Value);
-            }
         }
         
 

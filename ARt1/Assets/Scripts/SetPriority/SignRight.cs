@@ -12,11 +12,13 @@ class SignRight : IDirectionitatible
         Car observeCar;
         TrafficSign observeSign = trafficSign[settingCar.Position];
 
-        if (observeSign == TrafficSign.main)
+        if (observeSign != TrafficSign.main)
         {
+
             //походу нужен дикшенери с конечным местоположением
             //Dictionary<Car, Position> finalTrip; не тут конечно
         }
+        
 
     }
 }
