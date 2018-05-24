@@ -18,4 +18,4 @@ MonoBehaviour:
   prefabOfLight: {fileID: 1150157535592590, guid: bce08972f29f0634da77a212d9c96a83,
     type: 2}
   controllerOfLight: {fileID: 9100000, guid: d732366db91fbf943bbb41230c273839, type: 2}
-  trafficLight: 1
+  trafficLight: 0
