@@ -18,4 +18,7 @@ MonoBehaviour:
   - {fileID: 1216082725453798, guid: 8a54e8d76d1510143ad119f1abed939f, type: 2}
   - {fileID: 1381251431692518, guid: 7c0251667782aa9489cd41381790c9a4, type: 2}
   - {fileID: 1881628352105992, guid: 00a156a9738e75742afc30c32c53f0f6, type: 2}
+  prefabOfLight: {fileID: 1150157535592590, guid: bce08972f29f0634da77a212d9c96a83,
+    type: 2}
+  controllerOfLight: {fileID: 9100000, guid: d732366db91fbf943bbb41230c273839, type: 2}
   controller: {fileID: 9100000, guid: 776f184954b6bb340a7cb2c21c274443, type: 2}

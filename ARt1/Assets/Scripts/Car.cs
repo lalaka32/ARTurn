@@ -18,6 +18,7 @@ public class Car : MonoBehaviour
         get { return _position; }
         set
         {
+
             if ((sbyte)value < 0)
             {
                 _position = 4 + value;
@@ -30,6 +31,8 @@ public class Car : MonoBehaviour
             {
                 _position = value;
             }
+
+
         }
     }
 
@@ -46,24 +49,65 @@ public class Car : MonoBehaviour
         }
 
     }
+    public Position FinalPosition
+    {
+        get
+        {
+            Position fin = (Position)((int)Position - (int)Direction-1);
+            while (fin < 0 || fin >= (Position)4)
+            {
+                if ((sbyte)fin < 0)
+                {
+                    fin += 4;
+                }
+                else if ((sbyte)fin >= 4)
+                {
+                    fin -= 4;
+                }
+            }
+            return fin;
+        }
+    }
 
     public virtual void SetPriority(Dictionary<ComperativeLocation, Car> comperative, Car settingCar)
     {
         IDirectionitatible carDir;
-        switch (Direction)
+        Debug.Log(Position+" FIN : "+FinalPosition);
+        if (ToolBox.Get<TrafficLightManager>().PosTL == null && ToolBox.Get<SignManager>().TS == null)
         {
-            case Direction.forward:
-                carDir = new ForwardDirection();
-                carDir.SetPriority(comperative, settingCar);
-                break;
-            case Direction.right:
-                carDir = new DirectionRight();
-                carDir.SetPriority(comperative, settingCar);
-                break;
-            case Direction.left:
-                carDir = new LeftDirection();
-                carDir.SetPriority(comperative, settingCar);
-                break;
+            switch (Direction)
+            {
+                case Direction.forward:
+                    carDir = new ForwardQvalent();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+                case Direction.right:
+                    carDir = new DirectionRight();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+                case Direction.left:
+                    carDir = new LeftDirectionQvalent();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+            }
+        }
+        else if (ToolBox.Get<TrafficLightManager>().PosTL != null)
+        {
+            switch (Direction)
+            {
+                case Direction.forward:
+                    carDir = new PriorityTL();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+                case Direction.right:
+                    carDir = new PriorityTL();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+                case Direction.left:
+                    carDir = new LeftTL();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+            }
         }
     }
     private void Awake()

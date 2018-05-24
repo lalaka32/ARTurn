@@ -6,24 +6,16 @@ using Enums;
 public class LOGIC_V001 : MonoBehaviour {
     List<GameObject> masactivecars = new List<GameObject>();
     //string question;
-    public GameObject[] MasCars { private get; set; }
+    public GameObject[] MasCars {  get; set; }
     Priority playerOne;
     public Dictionary<Position, Car> listOfpositions;
     public void MakeLogicOnAns(int player)
     {
+        MasCars = ToolBox.Get<CarManager>().MasCars;
         playerOne = (Priority)player;
         MakePrioritiesOff();
         listOfpositions.Clear();
         StartCoroutine(StartByPrioritets());
-        switch (ToolBox.Get<CrossManager>().trafficLight)
-        {
-            case TrafficLight.off://по умолчанию
-                break;
-            case TrafficLight.green:
-                break;
-            case TrafficLight.red:
-                break;
-        }
     }
     public void MakePrioritiesOff()
     {
@@ -120,18 +112,5 @@ public class LOGIC_V001 : MonoBehaviour {
             }
             yield return new WaitForEndOfFrame();
         }
-    }
-}
-public interface IDirectionitatible
-{
-     void SetPriority(Dictionary<ComperativeLocation, Car> comperative, Car settingCar);
-}
-public class DirectionRight : IDirectionitatible
-{
-    public void SetPriority(Dictionary<ComperativeLocation, Car> comperative, Car settingCar)
-    {
-        settingCar.priority = Priority.first;
-
-        Debug.Log(" Pos : " + settingCar.Position + " direction : " + settingCar.Direction + " Prior : " + settingCar.priority);
     }
 }
