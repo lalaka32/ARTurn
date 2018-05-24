@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 
-public class Instantiate : MonoBehaviour   
+public class Instantiate : MonoBehaviour
 {
     public bool Restart { get; set; }
     public GameObject[] MasCars { get; private set; }
@@ -15,10 +15,11 @@ public class Instantiate : MonoBehaviour
     {
         ToolBox.Get<CrossManager>().SetCrossGO();
         ToolBox.Get<UIManager>().SetUI();
-        ToolBox.Get<CameraManager>().SetCamGO(vectorCam, quaternion);
+        ToolBox.Get<CameraManager>().SetCamGO();
+
         StartCoroutine(SimpleGenerator());
     }
-    
+
     IEnumerator SimpleGenerator()
     {
         PositionRotation[] posRotAnim = GetConstPRofCars();
@@ -29,8 +30,10 @@ public class Instantiate : MonoBehaviour
 
             ToolBox.Get<TrafficLightManager>().GenerationTrafficLight(GetConstPRofTL(), ToolBox.Get<CrossManager>().Cross.transform);
             ToolBox.Get<SignManager>().GenerationTrafficSigns(ConstSignTransform(), ToolBox.Get<CrossManager>().Cross.transform);
-            ToolBox.Get<CarManager>().InstantiateCars(GetConstPRofCars(),ToolBox.Get<CrossManager>().Cross.transform);
-            ToolBox.Get<UIManager>().CreateBottons(ToolBox.Get<CarManager>().MasCars.Length); 
+            ToolBox.Get<CarManager>().InstantiateCars(GetConstPRofCars(), ToolBox.Get<CrossManager>().Cross.transform);
+
+            ToolBox.Get<CameraManager>().SetCam3Person(ToolBox.Get<CarManager>().MasCars[0], new Vector3(-20, 10, 0),true);//должно опускаться если ар
+            ToolBox.Get<UIManager>().CreateBottons(ToolBox.Get<CarManager>().MasCars.Length);
 
             yield return new WaitWhile(() => Restart == false);
 
@@ -47,10 +50,10 @@ public class Instantiate : MonoBehaviour
     {
         PositionRotation[] posRotAnim = new PositionRotation[4];
 
-        posRotAnim[0] = new PositionRotation(new Vector3(-0.4f, 0.015f, -0.4f), new Vector3(-90, 180, 0),Position.first);
-        posRotAnim[1] = new PositionRotation(new Vector3(-0.4f, 0.015f, 0.4f), new Vector3(-90, -90, 0),Position.second);
-        posRotAnim[2] = new PositionRotation(new Vector3(0.4f, 0.015f, 0.4f), new Vector3(-90, 0, 0),Position.third);
-        posRotAnim[3] = new PositionRotation(new Vector3(0.4f, 0.015f, -0.4f), new Vector3(-90, -90, -180),Position.fourth);
+        posRotAnim[0] = new PositionRotation(new Vector3(-0.4f, 0.015f, -0.4f), new Vector3(-90, 180, 0), Position.first);
+        posRotAnim[1] = new PositionRotation(new Vector3(-0.4f, 0.015f, 0.4f), new Vector3(-90, -90, 0), Position.second);
+        posRotAnim[2] = new PositionRotation(new Vector3(0.4f, 0.015f, 0.4f), new Vector3(-90, 0, 0), Position.third);
+        posRotAnim[3] = new PositionRotation(new Vector3(0.4f, 0.015f, -0.4f), new Vector3(-90, -90, -180), Position.fourth);
         return posRotAnim;
     }
 

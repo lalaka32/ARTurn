@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>2017.3.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -310,20 +308,20 @@
     <Compile Include="Assets\Scripts\Instantiate.cs" />
     <Compile Include="Assets\Scripts\Isstopactivating.cs" />
     <Compile Include="Assets\Scripts\LOGIC_V001.cs" />
-    <Compile Include="Assets\Scripts\Mom's Architect\Actors\ActorBase.cs" />
-    <Compile Include="Assets\Scripts\Mom's Architect\Actors\Car.cs" />
-    <Compile Include="Assets\Scripts\Mom's Architect\DemoScripts\Behavours\BaseBehavour.cs" />
-    <Compile Include="Assets\Scripts\Mom's Architect\Interfaces\IAwake.cs" />
-    <Compile Include="Assets\Scripts\Mom's Architect\Managers\CameraManager.cs" />
-    <Compile Include="Assets\Scripts\Mom's Architect\Managers\CarManager.cs" />
-    <Compile Include="Assets\Scripts\Mom's Architect\Managers\CrossManager.cs" />
-    <Compile Include="Assets\Scripts\Mom's Architect\Managers\ManagerBase.cs" />
-    <Compile Include="Assets\Scripts\Mom's Architect\Managers\SIgnManager.cs" />
-    <Compile Include="Assets\Scripts\Mom's Architect\Managers\TrafficLightManager.cs" />
-    <Compile Include="Assets\Scripts\Mom's Architect\Managers\UIManager.cs" />
-    <Compile Include="Assets\Scripts\Mom's Architect\Patterns\Singleton.cs" />
-    <Compile Include="Assets\Scripts\Mom's Architect\Starters\Starter.cs" />
-    <Compile Include="Assets\Scripts\Mom's Architect\ToolBox.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Actors\ActorBase.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Actors\Car.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\DemoScripts\Behavours\BaseBehavour.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Interfaces\IAwake.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\CameraManager.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\CarManager.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\CrossManager.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\ManagerBase.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\SignManager.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\TrafficLightManager.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Patterns\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Starters\Starter.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\ToolBox.cs" />
     <Compile Include="Assets\Scripts\PositionRotationAnimation.cs" />
     <Compile Include="Assets\Scripts\SetPriority\IDirectionitatible.cs" />
     <Compile Include="Assets\Scripts\SetPriority\Qvalent\DirectionRight.cs" />
