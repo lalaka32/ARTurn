@@ -28,7 +28,7 @@ public class Instantiate : MonoBehaviour
         {
             Restart = false;
 
-            ToolBox.Get<TrafficLightManager>().GenerationTrafficLight(GetConstPRofTL(), ToolBox.Get<CrossManager>().Cross.transform);
+            //ToolBox.Get<TrafficLightManager>().GenerationTrafficLight(GetConstPRofTL(), ToolBox.Get<CrossManager>().Cross.transform);
             ToolBox.Get<SignManager>().GenerationTrafficSigns(ConstSignTransform(), ToolBox.Get<CrossManager>().Cross.transform);
             ToolBox.Get<CarManager>().InstantiateCars(GetConstPRofCars(), ToolBox.Get<CrossManager>().Cross.transform);
 

@@ -51,21 +51,25 @@ class SignManager : ManagerBase
         if (sign != TrafficSign.empty)
         {
             TS = new Dictionary<Position, TrafficSign>(3);
-            Shuffle(PRTS);
+            Shaffle(PRTS);
+
             GenerateTrafficSignGO(PRTS, parent);
         }
-        
-
     }
-    void Shuffle(PositionRotation[] posRotAnim)//Хз пока тут оставлю(2 раза повтаряю)
+    void Shaffle(PositionRotation[] PRTS)
     {
-        for (int i = posRotAnim.Length - 1; i >= 1; i--)
+        float rnd = Random.Range(0, 2);
+        if (rnd == 0)
         {
-            int j = Random.Range(0, i);
-            // обменять значения data[j] и data[i]
-            var temp = posRotAnim[j];
-            posRotAnim[j] = posRotAnim[i];
-            posRotAnim[i] = temp;
+            for (int i = 0; i < PRTS.Length; i++)
+            {
+                if (i % 2 != 0)
+                {
+                    PositionRotation temp = PRTS[i].Copy();
+                    PRTS[i] = PRTS[i-1].Copy();
+                    PRTS[i - 1] = temp.Copy();
+                }
+            }
         }
     }
 }
