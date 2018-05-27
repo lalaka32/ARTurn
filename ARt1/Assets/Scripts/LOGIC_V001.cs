@@ -89,7 +89,7 @@ public class LOGIC_V001 : MonoBehaviour {
         for (int i = 0; i < 3; i++)
         {
             settingCar.Position--;
-            if (listOfPositions.TryGetValue(settingCar.Position, out observeCar))
+            if (listOfPositions.TryGetValue(settingCar.Position, out observeCar)&&observeCar.tag!="VIP")
             {
                 dicWithСomparative.Add((ComperativeLocation)i, observeCar);
             }

@@ -316,7 +316,7 @@
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\CarManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\CrossManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\ManagerBase.cs" />
-    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\SIgnManager.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\SignManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\TrafficLightManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Patterns\Singleton.cs" />
@@ -324,13 +324,13 @@
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\ToolBox.cs" />
     <Compile Include="Assets\Scripts\PositionRotationAnimation.cs" />
     <Compile Include="Assets\Scripts\SetPriority\IDirectionitatible.cs" />
-    <Compile Include="Assets\Scripts\SetPriority\LeftUnqvalent.cs" />
     <Compile Include="Assets\Scripts\SetPriority\Qvalent\DirectionRight.cs" />
     <Compile Include="Assets\Scripts\SetPriority\Qvalent\ForwardQvalent .cs" />
     <Compile Include="Assets\Scripts\SetPriority\Qvalent\LeftDirectionQvalent.cs" />
+    <Compile Include="Assets\Scripts\SetPriority\Sign\LeftUnqvalent.cs" />
+    <Compile Include="Assets\Scripts\SetPriority\Sign\Unqvalent.cs" />
     <Compile Include="Assets\Scripts\SetPriority\TL\LeftTL.cs" />
     <Compile Include="Assets\Scripts\SetPriority\TL\PriorityTL.cs" />
-    <Compile Include="Assets\Scripts\SetPriority\Unqvalent.cs" />
     <Compile Include="Assets\Scripts\TerrainCollision.cs" />
     <Compile Include="Assets\Scripts\VIP.cs" />
     <Compile Include="Assets\Vuforia\Scripts\DefaultInitializationErrorHandler.cs" />
