@@ -27,6 +27,20 @@ class TrafficLightManager : ManagerBase
             PRTL[i].SetPR(TL[i]);
         }
     }
+    public void Reverse()
+    {
+        for (int i = 0; i < TL.Length; i++)
+        {
+            //GameObject cashlight = TL[i].transform.Find("turner(Clone)");
+            if (TL[i].transform.Find("turner(Clone)") != null)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    TL[i].transform.Find("turner(Clone)").pos
+                }
+            }
+        }
+    }
     public void GenerationTrafficLight(PositionRotation[] PRTL, Transform parent)
     {
         trafficLight = (TrafficLight)Random.Range(0, 4);

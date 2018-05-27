@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Enums;
+using System.Threading;
 
 public class LOGIC_V001 : MonoBehaviour {
     List<GameObject> masactivecars = new List<GameObject>();
     List<GameObject> masGreenCars = new List<GameObject>();
     List<GameObject> masRedCars = new List<GameObject>();
+    int countGreenCars, countRedCars, nextprior;
     bool corend = false;
     //string question;
     public GameObject[] MasCars {  get; set; }
@@ -14,6 +16,7 @@ public class LOGIC_V001 : MonoBehaviour {
     public Dictionary<Position, Car> listOfpositions;
     public void MakeLogicOnAns(int player)
     {
+        nextprior = 0;
         MasCars = ToolBox.Get<CarManager>().MasCars;
         playerOne = (Priority)player;
         MakePrioritiesOff();
@@ -21,8 +24,9 @@ public class LOGIC_V001 : MonoBehaviour {
         listOfpositions.Clear();
 
         StartCars();
-        masGreenCars.Clear();
-        masRedCars.Clear();
+        //Debug.Log("Clear");
+        //masGreenCars.Clear();
+        //masRedCars.Clear();
     }
 
     public void StartCars()
@@ -34,19 +38,25 @@ public class LOGIC_V001 : MonoBehaviour {
         else
         {
             StartCoroutine(StartByPrioritets(masGreenCars.ToArray(), 0));
-            StartCoroutine(StartByPrioritets(masRedCars.ToArray(), masGreenCars.Count));
 
+            StartCoroutine(RedStart());
         }
 
     }
-
-    IEnumerator waitGreen()
+    IEnumerator RedStart()
     {
-        yield return new WaitWhile(() => masactivecars.Count != 0);
+        yield return new WaitUntil(() => masGreenCars.Count == 0);
+        Debug.Log("GOGOGOO");
+        StartCoroutine(StartByPrioritets(masRedCars.ToArray(), nextprior));
     }
+
 
     public void SetGreenAndRedCars()
     {
+        countRedCars = 0;
+        countGreenCars = 0;
+        masRedCars.Clear();
+        masGreenCars.Clear();
         if (ToolBox.Get<TrafficLightManager>().PosTL != null)
         {
             for (int i = 0; i < 4; i++)
@@ -61,6 +71,8 @@ public class LOGIC_V001 : MonoBehaviour {
                 }
             }
         }
+        countGreenCars = masGreenCars.Count;
+        countRedCars = masRedCars.Count;
         foreach (var item in masRedCars)
         {
             Debug.Log(item.name);
@@ -105,10 +117,10 @@ public class LOGIC_V001 : MonoBehaviour {
     IEnumerator StartByPrioritets(GameObject[] cars, int startprior)
     {
         int CountOfPrioritets = cars.Length;
-
+            Debug.Log("StartByPrioritets");
         for (int j = startprior; j < CountOfPrioritets + startprior; j++)//цикл приоритетов
         {
-            Debug.Log(j);
+            Debug.Log(nextprior);
             masactivecars.Clear();
             for (int i = 0; i < cars.Length; i++)
             {
@@ -119,7 +131,7 @@ public class LOGIC_V001 : MonoBehaviour {
                 }
             }
             StartCoroutine(StartNextMoment());
-
+            nextprior++;
             yield return new WaitWhile(() => masactivecars.Count != 0);
 
         }
@@ -134,27 +146,17 @@ public class LOGIC_V001 : MonoBehaviour {
             {
                 if (masactivecars[i].GetComponent<Car>().isstop == true)
                 {
+                    masGreenCars.Remove(masactivecars[i]);
+                    masRedCars.Remove(masactivecars[i]);
                     masactivecars.RemoveAt(i);
                 }
             }
+            Debug.Log("greencars"+masGreenCars.Count);
             yield return new WaitForEndOfFrame();
         }
     }
 
-    IEnumerator StartNextMomentWithTL()
-    {
-        while (masactivecars.Count != 0)
-        {
-            for (int i = 0; i < masactivecars.Count; i++)
-            {
-                if (masactivecars[i].GetComponent<Car>().isstop == true)
-                {
-                    masactivecars.RemoveAt(i);
-                }
-            }
-            yield return new WaitForEndOfFrame();
-        }
-    }
+
 
     int processingAnswer()
     {

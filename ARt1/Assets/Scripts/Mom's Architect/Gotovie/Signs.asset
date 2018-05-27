@@ -8,10 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: SignManager
-  m_EditorClassIdentifier: Assembly-CSharp::SignManager
-  prefabOfMain: {fileID: 0}
-  prefabOfSecondary: {fileID: 0}
-  prefabOfStop: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: ff4b0aa68e9187e49b832c5e20bfbc2e, type: 3}
+  m_Name: Signs
+  m_EditorClassIdentifier: 
+  prefabOfMain: {fileID: 1491261750161758, guid: b5fdd407ecb1697479ecbefe1a26c266,
+    type: 2}
+  prefabOfSecondary: {fileID: 1112096193966516, guid: dc31d20dd3867634b96bb0993ea23e93,
+    type: 2}
+  prefabOfStop: {fileID: 1163641129986592, guid: b20db528da768f44ca2a1fb7fa393f25,
+    type: 2}
   signArray: []
