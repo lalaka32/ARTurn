@@ -21,6 +21,8 @@ public class LOGIC_V001 : MonoBehaviour {
         listOfpositions.Clear();
 
         StartCars();
+        masGreenCars.Clear();
+        masRedCars.Clear();
     }
 
     public void StartCars()

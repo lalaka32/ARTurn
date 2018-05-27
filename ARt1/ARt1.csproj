@@ -316,7 +316,7 @@
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\CarManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\CrossManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\ManagerBase.cs" />
-    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\SignManager.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\SIgnManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\TrafficLightManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Patterns\Singleton.cs" />

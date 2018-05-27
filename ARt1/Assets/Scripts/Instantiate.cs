@@ -38,7 +38,7 @@ public class Instantiate : MonoBehaviour
             yield return new WaitWhile(() => Restart == false);
 
             ToolBox.Get<UIManager>().ClearBottons();
-            ToolBox.Get<SignManager>().ClearSigns();
+            //ToolBox.Get<SignManager>().ClearSigns();
             foreach (GameObject item in ToolBox.Get<CarManager>().MasCars)//измени здесь для 1-ого создания
             {
                 Destroy(item);
