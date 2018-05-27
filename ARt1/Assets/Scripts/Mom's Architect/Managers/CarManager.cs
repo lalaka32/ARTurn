@@ -107,5 +107,12 @@ class CarManager : ManagerBase
             posRotAnim[i] = temp;
         }
     }
+    public void Clear()
+    {
+        foreach (GameObject item in ToolBox.Get<CarManager>().MasCars)
+        {
+            Destroy(item);
+        }
+    }
 }
 

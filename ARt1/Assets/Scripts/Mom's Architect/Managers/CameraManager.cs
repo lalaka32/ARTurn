@@ -35,5 +35,4 @@ class CameraManager : ManagerBase, IAwake
         //Если AR то в SetCamGO кам накинуть просто скрипты
         //Это поможет не хранить 2 префаба(3 килобайта забей)
     }
-
 }
