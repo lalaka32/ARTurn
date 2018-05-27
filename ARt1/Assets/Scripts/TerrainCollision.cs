@@ -11,7 +11,6 @@ public class TerrainCollision : MonoBehaviour
             other.gameObject.GetComponent<Rigidbody>().useGravity = false;
             
             StartCoroutine(ToTheSky(other));
-            
         }
     }
     IEnumerator ToTheSky(Collider other)
