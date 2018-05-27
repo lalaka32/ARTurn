@@ -25,7 +25,6 @@ class CameraManager : ManagerBase, IAwake
 
         MainCamera.transform.position = sneakingGO.transform.position + backVector + (dictance.y * Vector3.up);
 
-
         MainCamera.transform.eulerAngles = sneakingGO.transform.localEulerAngles;
     }
 

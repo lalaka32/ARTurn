@@ -14,7 +14,7 @@ class VIP:Car
     {
         foreach (var item in comperative)
         {
-            item.Value.priority++;
+            item.Value.GetComponent<Car>().priority++;
         }
     }
 }

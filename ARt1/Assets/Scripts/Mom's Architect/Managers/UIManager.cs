@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "UIManager", menuName = "Managers/UIManager")]
@@ -34,6 +35,7 @@ class UIManager : ManagerBase, IAwake
         Canvas.gameObject.transform.Find("Restart").GetComponent<Button>().onClick.AddListener(
             delegate {
                 GameObject.Find("[SETUP]").GetComponent<Instantiate>().Restart = true;
+                //SceneManager.LoadScene(1);
                 Debug.Log("------------------------------------------------");
             });
 

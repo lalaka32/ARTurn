@@ -148,6 +148,4 @@ public class Car : MonoBehaviour
                 break;
         }
     }
-
-
 }
