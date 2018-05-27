@@ -72,7 +72,6 @@ public class Car : MonoBehaviour
     public virtual void SetPriority(Dictionary<ComperativeLocation, Car> comperative, Car settingCar)
     {
         IDirectionitatible carDir;
-        Debug.Log(Position+" FIN : "+FinalPosition);
         if (ToolBox.Get<TrafficLightManager>().PosTL == null && ToolBox.Get<SignManager>().TS == null)
         {
             switch (Direction)
@@ -93,6 +92,7 @@ public class Car : MonoBehaviour
         }
         else if (ToolBox.Get<TrafficLightManager>().PosTL != null)
         {
+            Debug.Log("JOPICHTL");
             switch (Direction)
             {
                 case Direction.forward:
@@ -105,6 +105,25 @@ public class Car : MonoBehaviour
                     break;
                 case Direction.left:
                     carDir = new LeftTL();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+            }
+        }
+        else if (ToolBox.Get<SignManager>().TS != null)
+        {
+            Debug.Log("JOPICHSign");
+            switch (Direction)
+            {
+                case Direction.forward:
+                    carDir = new Unqvalent();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+                case Direction.right:
+                    carDir = new Unqvalent();
+                    carDir.SetPriority(comperative, settingCar);
+                    break;
+                case Direction.left:
+                    carDir = new LeftUnqvalent();
                     carDir.SetPriority(comperative, settingCar);
                     break;
             }

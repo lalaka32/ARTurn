@@ -4,7 +4,7 @@ using Enums;
 class PositionRotation
 {
     public RuntimeAnimatorController Controller { get; set; }
-    Vector3 Position { get; set; }
+    public Vector3 Position { get;private set; }
     Vector3 Rotation { get; set; }
     public Position NumberOfPosition { get; private set; }
     Vector3 Scale { get; set; }//Нада что-то и со скейлом тут сделать
@@ -33,5 +33,8 @@ class PositionRotation
         GO.GetComponent<Car>().Position = NumberOfPosition;
         GO.GetComponentInChildren<Animator>().runtimeAnimatorController = Controller;
     }
-
+    public PositionRotation Copy()
+    {
+        return new PositionRotation(Position, Rotation,NumberOfPosition);
+    }
 }
