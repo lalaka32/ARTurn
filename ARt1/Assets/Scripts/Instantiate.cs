@@ -8,13 +8,13 @@ public class Instantiate : MonoBehaviour
     public bool Restart { get; set; }
     public GameObject[] MasCars { get; private set; }
 
-    Vector3 vectorCam = new Vector3(-208.1f, 82.1f, 55);
-    Quaternion quaternion = Quaternion.Euler(90, 0, 0);
+    int mistakes = 0;
+    public Timer timer;
 
     private void Start()
     {
         ToolBox.Get<CrossManager>().SetCrossGO();
-        ToolBox.Get<UIManager>().SetUI();
+        ToolBox.Get<UIManager>().SetAnsverButtons();
         ToolBox.Get<CameraManager>().SetCamGO();
 
         StartCoroutine(SimpleGenerator());
@@ -23,8 +23,9 @@ public class Instantiate : MonoBehaviour
     IEnumerator SimpleGenerator()
     {
         PositionRotation[] posRotAnim = GetConstPRofCars();
-
-        while (true)//измени здесь для 1-ого создания
+        int lengthOfTest = 0;
+        while (lengthOfTest != 9 || mistakes == 2)//думаю сделать чтото вроде proseesing ansver manager
+            //там сделать эту карутину
         {
             Restart = false;
 
@@ -32,19 +33,25 @@ public class Instantiate : MonoBehaviour
             //ToolBox.Get<SignManager>().GenerationTrafficSigns(ConstSignTransform(), ToolBox.Get<CrossManager>().Cross.transform);
             ToolBox.Get<CarManager>().InstantiateCars(GetConstPRofCars(), ToolBox.Get<CrossManager>().Cross.transform);
 
-            ToolBox.Get<CameraManager>().SetCam3Person(ToolBox.Get<CarManager>().MasCars[0], new Vector3(-20, 10, 0),true);//должно опускаться если ар
+            ToolBox.Get<CameraManager>().SetCam3Person(ToolBox.Get<CarManager>().MasCars[0], new Vector3(-20, 10, 0), true);//должно опускаться если ар
             ToolBox.Get<UIManager>().CreateBottons(ToolBox.Get<CarManager>().MasCars.Length);
+            
+            timer = ToolBox.Get<TimerManager>().SetTimer(20f, delegate { Restart = true; });
 
             yield return new WaitWhile(() => Restart == false);
 
             ToolBox.Get<UIManager>().ClearBottons();
-            //ToolBox.Get<SignManager>().ClearSigns();
-            foreach (GameObject item in ToolBox.Get<CarManager>().MasCars)//измени здесь для 1-ого создания
-            {
-                Destroy(item);
-            }
+            ToolBox.Get<SignManager>().ClearSigns();
+            ToolBox.Get<CarManager>().Clear();
             ToolBox.Get<TrafficLightManager>().Clear();
+            lengthOfTest++;
         }
+        ToolBox.Get<UIManager>().ShowResults();
+    }
+    void FixedUpdate()
+    {
+        ToolBox.Get<TimerManager>().ProsessingTimer(Time.deltaTime);
+        ToolBox.Get<UIManager>().SetTimerValue(timer.TimeCount);
     }
     PositionRotation[] ConstSignTransform()
     {

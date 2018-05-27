@@ -8,8 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98c61b07a3e4b5e4ca497df244e3b929, type: 3}
-  m_Name: test
+  m_Script: {fileID: 11500000, guid: d55bfe1f9099e2c49ac94619eed3144a, type: 3}
+  m_Name: TimerManager
   m_EditorClassIdentifier: 
-  canvasPrefab: {fileID: 1905407071794264, guid: 696648490984bb940afed36e2dd79df6,
-    type: 2}
