@@ -15,7 +15,7 @@ public class Instantiate : MonoBehaviour
     {
         ToolBox.Get<CrossManager>().SetCrossGO();
         ToolBox.Get<UIManager>().SetAnsverButtons();
-        ToolBox.Get<CameraManager>().SetCamGO();
+        ToolBox.Get<CameraManager>().SetCamGO(ToolBox.Get<SettingsPlayer>().ARCamera);
 
         StartCoroutine(SimpleGenerator());
     }
@@ -33,7 +33,10 @@ public class Instantiate : MonoBehaviour
             //ToolBox.Get<SignManager>().GenerationTrafficSigns(ConstSignTransform(), ToolBox.Get<CrossManager>().Cross.transform);
             ToolBox.Get<CarManager>().InstantiateCars(GetConstPRofCars(), ToolBox.Get<CrossManager>().Cross.transform);
 
-            ToolBox.Get<CameraManager>().SetCam3Person(ToolBox.Get<CarManager>().MasCars[0], new Vector3(-20, 10, 0), true);//должно опускаться если ар
+            if (!ToolBox.Get<SettingsPlayer>().ARCamera)
+            {
+                ToolBox.Get<CameraManager>().SetLocation(ToolBox.Get<CarManager>().MasCars[0], new Vector3(-20, 10, 0), true);//должно опускаться если ар
+            }
             ToolBox.Get<UIManager>().CreateBottons(ToolBox.Get<CarManager>().MasCars.Length);
             
             timer = ToolBox.Get<TimerManager>().SetTimer(20f, delegate { Restart = true; });

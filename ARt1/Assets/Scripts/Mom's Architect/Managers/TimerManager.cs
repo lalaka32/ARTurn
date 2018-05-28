@@ -15,7 +15,7 @@ class TimerManager : ManagerBase
         times.Add(temp);
         return temp;
     }
-    public void ProsessingTimer(float deltatime)
+    void deleteUnActiveTimers()
     {
         for (int i = 0; i < times.Count; i++)
         {
@@ -23,10 +23,15 @@ class TimerManager : ManagerBase
             {
                 times.Remove(times[i]);
             }
-            times[i].Execute(deltatime);
-            
         }
-        
+    }
+    public void ProsessingTimer(float deltatime)
+    {
+        deleteUnActiveTimers();
+        for (int i = 0; i < times.Count; i++)
+        {
+            times[i].Execute(deltatime);
+        }
     }
 }
 

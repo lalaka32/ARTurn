@@ -19,7 +19,6 @@ class CrossManager : ManagerBase, IAwake
 
     public void OnAwake()
     {
-        GameObject.Find("[SETUP]").AddComponent<Instantiate>();
     }
 }
 

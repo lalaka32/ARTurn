@@ -320,13 +320,14 @@
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\CrossManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\ManagerBase.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\ProcessingAnsvers.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\SettingsPlayer.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\SignManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\TimerManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\TrafficLightManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Patterns\Singleton.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Starters\Starter.cs" />
-    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Time.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Timer.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\ToolBox.cs" />
     <Compile Include="Assets\Scripts\PositionRotationAnimation.cs" />
     <Compile Include="Assets\Scripts\SetPriority\IDirectionitatible.cs" />

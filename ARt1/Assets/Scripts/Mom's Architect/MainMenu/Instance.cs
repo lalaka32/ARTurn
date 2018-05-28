@@ -6,7 +6,7 @@ public class Instance : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        ToolBox.Get<CameraManager>().SetCamGO();
+        ToolBox.Get<CameraManager>().SetCamGO(false);
         ToolBox.Get<UIManager>().SetMainMenu();
 
     }

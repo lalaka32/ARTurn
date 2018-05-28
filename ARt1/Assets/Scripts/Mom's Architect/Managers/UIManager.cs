@@ -36,13 +36,24 @@ class UIManager : ManagerBase, IAwake
     }
     void SetMenuButtonsEvents()
     {
-        MainMenu.transform.Find("Play").GetComponent<Button>().onClick.AddListener(delegate
+        MainMenu.transform.Find("MainPanel").transform.Find("Play").GetComponent<Button>().onClick.AddListener(delegate
         {
             SceneManager.LoadScene(2);
+            ToolBox.Get<SettingsPlayer>().ARCamera = MainMenu.transform.Find("SettingsPanel").transform.Find("ToggleOfTypeCamera").GetComponent<Toggle>().isOn;
         });
-        MainMenu.transform.Find("Exit").GetComponent<Button>().onClick.AddListener(delegate
+        MainMenu.transform.Find("MainPanel").transform.Find("Exit").GetComponent<Button>().onClick.AddListener(delegate
         {
             Application.Quit();
+        });
+        MainMenu.transform.Find("MainPanel").transform.Find("Options").GetComponent<Button>().onClick.AddListener(delegate
+        {
+            MainMenu.transform.Find("MainPanel").gameObject.SetActive(false);
+            MainMenu.transform.Find("SettingsPanel").gameObject.SetActive(true);
+        });
+        MainMenu.transform.Find("SettingsPanel").transform.Find("Home").GetComponent<Button>().onClick.AddListener(delegate
+        {
+            MainMenu.transform.Find("SettingsPanel").gameObject.SetActive(false);
+            MainMenu.transform.Find("MainPanel").gameObject.SetActive(true);
         });
     }
 
@@ -105,6 +116,5 @@ class UIManager : ManagerBase, IAwake
     {
         Canvas.transform.Find("Text").GetComponentInChildren<Text>().text = string.Format("{0:f2}",time);
     }
-
 }
 
