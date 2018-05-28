@@ -6,27 +6,23 @@ using System.Threading;
 
 public class LOGIC_V001 : MonoBehaviour {
     List<GameObject> masactivecars = new List<GameObject>();
+    List<GameObject> masVIPs = new List<GameObject>();
     List<GameObject> masGreenCars = new List<GameObject>();
     List<GameObject> masRedCars = new List<GameObject>();
-    int countGreenCars, countRedCars, nextprior;
-    bool corend = false;
+    public Dictionary<Position, Car> listOfpositions = new Dictionary<Position, Car>();
+    int nextprior = 0;
     //string question;
     public GameObject[] MasCars {  get; set; }
     Priority playerOne;
-    public Dictionary<Position, Car> listOfpositions;
-    public void MakeLogicOnAns(int player)
+
+    public void MakeLogicOnAns(int player)//Главный
     {
-        nextprior = 0;
+        Clear();
         MasCars = ToolBox.Get<CarManager>().MasCars;
         playerOne = (Priority)player;
         MakePrioritiesOff();
-        SetGreenAndRedCars();
-        listOfpositions.Clear();
-
+        SetGreenRedAndVIPsCars();
         StartCars();
-        //Debug.Log("Clear");
-        //masGreenCars.Clear();
-        //masRedCars.Clear();
     }
 
     public void StartCars()
@@ -37,52 +33,112 @@ public class LOGIC_V001 : MonoBehaviour {
         }
         else
         {
-            StartCoroutine(StartByPrioritets(masGreenCars.ToArray(), 0));
-
-            StartCoroutine(RedStart());
+            StartCoroutine(GroupCarsStart(masVIPs, false));
+            StartCoroutine(GroupCarsStart(masGreenCars, masVIPs, false));
+            StartCoroutine(GroupCarsStart(masRedCars, masGreenCars, true));
         }
 
     }
-    IEnumerator RedStart()
+    //Пригодится не только для светофоров
+    IEnumerator GroupCarsStart(List<GameObject> cars, List<GameObject> carsBefore, bool isReverseTrafficLights)
     {
-        yield return new WaitUntil(() => masGreenCars.Count == 0);
+        yield return new WaitUntil(() => carsBefore.Count == 0);
+        if (isReverseTrafficLights)
+        {
+            StartCoroutine(ReverseLights());
+            yield return new WaitForSeconds(1.5f);
+        }
         Debug.Log("GOGOGOO");
-        StartCoroutine(StartByPrioritets(masRedCars.ToArray(), nextprior));
+        foreach (var item in cars)
+        {
+            Debug.Log(item.name);
+        }
+        StartCoroutine(StartByPrioritets(cars.ToArray(), nextprior));
+
+    }
+    IEnumerator GroupCarsStart(List<GameObject> cars, bool isReverseTrafficLights)
+    {
+        if (isReverseTrafficLights)
+        {
+            StartCoroutine(ReverseLights());
+            yield return new WaitForSeconds(2);
+        }
+        Debug.Log("GOGOGOO");
+        foreach (var item in cars)
+        {
+            Debug.Log(item.name);
+        }
+        StartCoroutine(StartByPrioritets(cars.ToArray(), nextprior));
+
+    }
+    IEnumerator ReverseLights()
+    {
+        for (int i = 0; i < ToolBox.Get<TrafficLightManager>().TL.Length; i++)
+        {
+            //GameObject cashlight = TL[i].transform.Find("turner(Clone)");
+            //if (ToolBox.Get<TrafficLightManager>().TL[i].transform.Find("turner(Clone)") != null)
+            //{
+            Transform tl1 = ToolBox.Get<TrafficLightManager>().TL[i].transform.Find("turner(Clone)");
+            tl1.name = "turner(Clone)-preinversed";
+            Transform tl2 = ToolBox.Get<TrafficLightManager>().TL[i].transform.Find("turner(Clone)");
+            tl2.name = "turner(Clone)-preinversed";
+            tl1.localPosition = new Vector3(0, 20, -4);
+            tl2.localPosition = new Vector3(0, 20, 4);
+            tl1.GetComponent<Light>().color = Color.yellow;
+            tl2.GetComponent<Light>().color = Color.yellow;
+        }
+
+        yield return new WaitForSeconds(1.5f);
+
+        for (int i = 0; i < ToolBox.Get<TrafficLightManager>().TL.Length; i++)
+        {
+            Transform tl1 = ToolBox.Get<TrafficLightManager>().TL[i].transform.Find("turner(Clone)-preinversed");
+            tl1.name = "turner(Clone)-inversed";
+            Transform tl2 = ToolBox.Get<TrafficLightManager>().TL[i].transform.Find("turner(Clone)-preinversed");
+            tl2.name = "turner(Clone)-inversed";
+            if (ToolBox.Get<TrafficLightManager>().PosTL[(Position)i] == TrafficLight.green)
+            {
+                tl1.GetComponent<Light>().color = Color.red;
+                tl2.GetComponent<Light>().color = Color.red;
+                tl1.localPosition = new Vector3(0, 22, -4);
+                tl2.localPosition = new Vector3(0, 22, 4);
+            }
+            else
+            {
+                tl1.GetComponent<Light>().color = Color.green;
+                tl2.GetComponent<Light>().color = Color.green;
+                tl1.localPosition = new Vector3(0, 18, -4);
+                tl2.localPosition = new Vector3(0, 18, 4);
+            }
+        }
     }
 
 
-    public void SetGreenAndRedCars()
+    public void SetGreenRedAndVIPsCars()
     {
-        countRedCars = 0;
-        countGreenCars = 0;
-        masRedCars.Clear();
-        masGreenCars.Clear();
         if (ToolBox.Get<TrafficLightManager>().PosTL != null)
         {
             for (int i = 0; i < 4; i++)
             {
                 if (listOfpositions.ContainsKey((Position)i))
                 {
-                    if (ToolBox.Get<TrafficLightManager>().PosTL[(Position)i] == TrafficLight.green)
+                    if (listOfpositions[(Position)i].tag != "VIP")
                     {
-                        masGreenCars.Add(listOfpositions[(Position)i].gameObject);
+                        if (ToolBox.Get<TrafficLightManager>().PosTL[(Position)i] == TrafficLight.green)
+                        {
+                            masGreenCars.Add(listOfpositions[(Position)i].gameObject);
+                        }
+                        else masRedCars.Add(listOfpositions[(Position)i].gameObject);
                     }
-                    else masRedCars.Add(listOfpositions[(Position)i].gameObject);
+                    else masVIPs.Add(listOfpositions[(Position)i].gameObject);
                 }
             }
-        }
-        countGreenCars = masGreenCars.Count;
-        countRedCars = masRedCars.Count;
-        foreach (var item in masRedCars)
-        {
-            Debug.Log(item.name);
         }
 
     }
 
     public void MakePrioritiesOff()
     {
-        listOfpositions = new Dictionary<Position, Car>();
         for (int i = 0; i < MasCars.Length; i++)
         {
             listOfpositions.Add(MasCars[i].GetComponent<Car>().Position, MasCars[i].GetComponent<Car>());
@@ -116,12 +172,20 @@ public class LOGIC_V001 : MonoBehaviour {
 
     IEnumerator StartByPrioritets(GameObject[] cars, int startprior)
     {
-        int CountOfPrioritets = cars.Length;
-            Debug.Log("StartByPrioritets");
-        for (int j = startprior; j < CountOfPrioritets + startprior; j++)//цикл приоритетов
+        int maxprior = 0;
+        foreach (var item in cars)
         {
-            Debug.Log(nextprior);
-            masactivecars.Clear();
+            if ((int)item.GetComponent<Car>().priority > maxprior)
+            {
+                maxprior = (int)item.GetComponent<Car>().priority;
+            }
+        }
+
+            Debug.Log("StartByPrioritets");
+        for (int j = startprior; j <= maxprior; j++)//цикл приоритетов
+        {
+            Debug.Log(startprior);
+            //masactivecars.Clear();
             for (int i = 0; i < cars.Length; i++)
             {
                 if (cars[i].GetComponent<Car>().priority == (Priority)j)
@@ -131,11 +195,10 @@ public class LOGIC_V001 : MonoBehaviour {
                 }
             }
             StartCoroutine(StartNextMoment());
-            nextprior++;
+            startprior++;
             yield return new WaitWhile(() => masactivecars.Count != 0);
 
         }
-        corend = true;
     }
 
     IEnumerator StartNextMoment()
@@ -148,15 +211,25 @@ public class LOGIC_V001 : MonoBehaviour {
                 {
                     masGreenCars.Remove(masactivecars[i]);
                     masRedCars.Remove(masactivecars[i]);
-                    masactivecars.RemoveAt(i);
+                    masVIPs.Remove(masactivecars[i]);
+                    masactivecars.Remove(masactivecars[i]);
                 }
             }
-            Debug.Log("greencars"+masGreenCars.Count);
+            //Debug.Log("greencars"+masGreenCars.Count);
             yield return new WaitForEndOfFrame();
         }
     }
 
-
+    public void Clear()
+    {
+        StopAllCoroutines();
+        listOfpositions.Clear();
+        masRedCars.Clear();
+        masGreenCars.Clear();
+        masVIPs.Clear();
+        masactivecars.Clear();
+        nextprior = 0;
+    }
 
     int processingAnswer()
     {

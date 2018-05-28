@@ -27,20 +27,7 @@ class TrafficLightManager : ManagerBase
             PRTL[i].SetPR(TL[i]);
         }
     }
-    public void Reverse()
-    {
-        for (int i = 0; i < TL.Length; i++)
-        {
-            //GameObject cashlight = TL[i].transform.Find("turner(Clone)");
-            if (TL[i].transform.Find("turner(Clone)") != null)
-            {
-                for (int j = 0; j < 2; j++)
-                {
-                    TL[i].transform.Find("turner(Clone)").pos
-                }
-            }
-        }
-    }
+
     public void GenerationTrafficLight(PositionRotation[] PRTL, Transform parent)
     {
         trafficLight = (TrafficLight)Random.Range(0, 4);
@@ -73,48 +60,50 @@ class TrafficLightManager : ManagerBase
                     }
                     break;
                 case TrafficLight.red:
-                    PosTL = new Dictionary<Position, TrafficLight>(3);
+                    PosTL = new Dictionary<Position, TrafficLight>();
                     for (int i = 0; i < TL.Length; i++)
                     {
                         if (i % 2 == 0)
                         {
                             lights1[i].GetComponent<Light>().color = Color.red;
                             lights2[i].GetComponent<Light>().color = Color.red;
+                            lights1[i].transform.localPosition = new Vector3(0, 22, -4);
+                            lights2[i].transform.localPosition = new Vector3(0, 22, 4);
                             PosTL.Add((Position)i, TrafficLight.red);
                         }
                         else
                         {
                             lights1[i].GetComponent<Light>().color = Color.green;
                             lights2[i].GetComponent<Light>().color = Color.green;
+                            lights1[i].transform.localPosition = new Vector3(0, 18, -4);
+                            lights2[i].transform.localPosition = new Vector3(0, 18, 4);
                             PosTL.Add((Position)i, TrafficLight.green);
                         }
 
-                        lights1[i].transform.localPosition = new Vector3(0, 22, -4);
 
-                        lights2[i].transform.localPosition = new Vector3(0, 22, 4);
                         
                     }
-
-
                     break;
                 case TrafficLight.green:
-                    PosTL = new Dictionary<Position, TrafficLight>(3);
+                    PosTL = new Dictionary<Position, TrafficLight>();
                     for (int i = 0; i < TL.Length; i++)
                     {
                         if (i % 2 == 0)
                         {
                             lights1[i].GetComponent<Light>().color = Color.green;
                             lights2[i].GetComponent<Light>().color = Color.green;
+                            lights1[i].transform.localPosition = new Vector3(0, 18, -4);
+                            lights2[i].transform.localPosition = new Vector3(0, 18, 4);
                             PosTL.Add((Position)i, TrafficLight.green);
                         }
                         else
                         {
                             lights1[i].GetComponent<Light>().color = Color.red;
                             lights2[i].GetComponent<Light>().color = Color.red;
+                            lights1[i].transform.localPosition = new Vector3(0, 22, -4);
+                            lights2[i].transform.localPosition = new Vector3(0, 22, 4);
                             PosTL.Add((Position)i, TrafficLight.red);
                         }
-                        lights1[i].transform.localPosition = new Vector3(0, 18, -4);
-                        lights2[i].transform.localPosition = new Vector3(0, 18, 4);
                     }
 
                     break;
