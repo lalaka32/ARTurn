@@ -7,6 +7,6 @@ public class InctanceAnsvers : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ToolBox.Get<UIManager>().SetAnsversFromTest();
-        ToolBox.Get<CameraManager>().SetCamGO();
+        ToolBox.Get<CameraManager>().SetCamGO(false);
 	}
 }
