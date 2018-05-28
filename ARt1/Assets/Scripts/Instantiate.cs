@@ -45,7 +45,7 @@ public class Instantiate : MonoBehaviour
 
             ToolBox.Get<UIManager>().ClearBottons();
             ToolBox.Get<SignManager>().ClearSigns();
-            ToolBox.Get<CarManager>().Clear();
+            ToolBox.Get<CarManager>().Clear();  
             ToolBox.Get<TrafficLightManager>().Clear();
             lengthOfTest++;
         }

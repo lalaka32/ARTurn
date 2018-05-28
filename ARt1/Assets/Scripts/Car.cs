@@ -92,6 +92,7 @@ public class Car : MonoBehaviour
         }
         else if (ToolBox.Get<TrafficLightManager>().PosTL != null)
         {
+            Debug.Log("JOPICHTL");
             switch (Direction)
             {
                 case Direction.forward:
@@ -110,6 +111,7 @@ public class Car : MonoBehaviour
         }
         else if (ToolBox.Get<SignManager>().TS != null)
         {
+            Debug.Log("JOPICHSign");
             switch (Direction)
             {
                 case Direction.forward:

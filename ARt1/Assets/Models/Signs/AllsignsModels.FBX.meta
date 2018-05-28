@@ -45,6 +45,8 @@ ModelImporter:
     100074: Speed 001
     100076: Speed 002
     100078: StopRoad
+    100080: Box009
+    100082: Group001
     400000: Birth 001
     400002: Birth 002
     400004: Box001
@@ -85,10 +87,13 @@ ModelImporter:
     400074: Speed 001
     400076: Speed 002
     400078: StopRoad
+    400080: Box009
+    400082: Group001
     2100000: No Name
     2100002: "01 - Default\u0448"
     2100004: 01 - Default
     2100006: 03 - Default
+    2100008: "02 - Default\u0448"
     2300000: Box001
     2300002: Box002
     2300004: Box003
@@ -105,6 +110,7 @@ ModelImporter:
     2300026: Cylinder009
     2300028: Cylinder011
     2300030: Cylinder012
+    2300032: Box009
     3300000: Box001
     3300002: Box002
     3300004: Box003
@@ -121,6 +127,7 @@ ModelImporter:
     3300026: Cylinder009
     3300028: Cylinder011
     3300030: Cylinder012
+    3300032: Box009
     4300000: Box003
     4300002: Box004
     4300004: Cylinder003
@@ -137,6 +144,7 @@ ModelImporter:
     4300026: Box007
     4300028: Cylinder012
     4300030: Cylinder007
+    4300032: Box009
     9500000: //RootNode
   externalObjects: {}
   materials:
