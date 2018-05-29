@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Anton/AnsversAnton.unity
     guid: 0a5114e62dcc98147b2073f99651ad41
+  - enabled: 1
+    path: Assets/Scene/Anton/ShowResult.unity
+    guid: 0d4c96a4b5bd6114bb1cb2d6c124e7de

@@ -305,6 +305,7 @@
     <Compile Include="Assets\Scripts\Car.cs" />
     <Compile Include="Assets\Scripts\CarCollision.cs" />
     <Compile Include="Assets\Scripts\Enums.cs" />
+    <Compile Include="Assets\Scripts\InstantceParticular.cs" />
     <Compile Include="Assets\Scripts\Instantiate.cs" />
     <Compile Include="Assets\Scripts\Isstopactivating.cs" />
     <Compile Include="Assets\Scripts\LOGIC_V001.cs" />
@@ -321,7 +322,7 @@
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\ManagerBase.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\ProcessingAnsvers.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\SettingsPlayer.cs" />
-    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\SignManager.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\SIgnManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\TimerManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\TrafficLightManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\UIManager.cs" />
@@ -330,6 +331,7 @@
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Timer.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\ToolBox.cs" />
     <Compile Include="Assets\Scripts\PositionRotationAnimation.cs" />
+    <Compile Include="Assets\Scripts\RoadSituation.cs" />
     <Compile Include="Assets\Scripts\SetPriority\IDirectionitatible.cs" />
     <Compile Include="Assets\Scripts\SetPriority\Qvalent\DirectionRight.cs" />
     <Compile Include="Assets\Scripts\SetPriority\Qvalent\ForwardQvalent .cs" />

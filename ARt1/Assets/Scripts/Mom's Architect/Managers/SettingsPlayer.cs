@@ -8,5 +8,10 @@ using UnityEngine;
 class SettingsPlayer :ManagerBase
 {
     public bool ARCamera;
+    public int numberOfRevisionQuestion { get; private set; }
+    public void SetNumber(int index)
+    {
+        numberOfRevisionQuestion = index;
+    }
 }
 

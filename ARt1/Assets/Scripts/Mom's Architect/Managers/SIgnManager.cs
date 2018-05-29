@@ -14,15 +14,13 @@ class SignManager : ManagerBase
     [SerializeField]
     GameObject prefabOfStop;
 
-    TrafficSign sign;
-
     public GameObject[] signArray;
     public Dictionary<Position, TrafficSign> TS;
 
-    void GenerateTrafficSignGO(PositionRotation[] PRTL, Transform parent)
+    void InstantiateTrafficSign(PositionRotation[] PRTL, int Count, Transform parent)
     {
-        signArray = new GameObject[4];
-        for (int i = 0; i < PRTL.Length; i++)
+        signArray = new GameObject[Count];
+        for (int i = 0; i < Count; i++)
         {
             if (i % 2 == 0)
             {
@@ -37,6 +35,16 @@ class SignManager : ManagerBase
             PRTL[i].SetPR(signArray[i]);
         }
     }
+
+    public void GenerationTrafficSigns(RoadSituation road, Transform parent)
+    {
+        if (road.trafficSign != TrafficSign.empty)
+        {
+            TS = new Dictionary<Position, TrafficSign>(3);
+
+            InstantiateTrafficSign(road.posRotSign, road.CoutOfSigns, parent);
+        }
+    }
     public void ClearSigns()
     {
         TS = null;
@@ -45,31 +53,7 @@ class SignManager : ManagerBase
             Destroy(sign);
         }
     }
-    public void GenerationTrafficSigns(PositionRotation[] PRTS, Transform parent)
+    public void GenerationTrafficSigns()
     {
-        sign = (TrafficSign)Random.Range(0, 3);
-        if (sign != TrafficSign.empty)
-        {
-            TS = new Dictionary<Position, TrafficSign>(3);
-            Shaffle(PRTS);
-
-            GenerateTrafficSignGO(PRTS, parent);
-        }
-    }
-    void Shaffle(PositionRotation[] PRTS)
-    {
-        float rnd = Random.Range(0, 2);
-        if (rnd == 0)
-        {
-            for (int i = 0; i < PRTS.Length; i++)
-            {
-                if (i % 2 != 0)
-                {
-                    PositionRotation temp = PRTS[i].Copy();
-                    PRTS[i] = PRTS[i-1].Copy();
-                    PRTS[i - 1] = temp.Copy();
-                }
-            }
-        }
     }
 }
