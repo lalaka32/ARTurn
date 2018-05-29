@@ -17,7 +17,7 @@ class SignManager : ManagerBase
     public GameObject[] signArray;
     public Dictionary<Position, TrafficSign> TS;
 
-    void InstantiateTrafficSign(PositionRotation[] PRTL,int Count, Transform parent)
+    void InstantiateTrafficSign(PositionRotation[] PRTL, int Count, Transform parent)
     {
         signArray = new GameObject[Count];
         for (int i = 0; i < Count; i++)
@@ -42,7 +42,7 @@ class SignManager : ManagerBase
         {
             TS = new Dictionary<Position, TrafficSign>(3);
 
-            InstantiateTrafficSign(road.posRotSign,road.CoutOfSigns, parent);
+            InstantiateTrafficSign(road.posRotSign, road.CoutOfSigns, parent);
         }
     }
     public void ClearSigns()
@@ -52,5 +52,8 @@ class SignManager : ManagerBase
         {
             Destroy(sign);
         }
+    }
+    public void GenerationTrafficSigns()
+    {
     }
 }

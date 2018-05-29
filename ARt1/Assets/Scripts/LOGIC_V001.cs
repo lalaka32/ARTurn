@@ -12,6 +12,7 @@ public class LOGIC_V001 : MonoBehaviour
     List<GameObject> masRedCars = new List<GameObject>();
     public Dictionary<Position, Car> listOfpositions = new Dictionary<Position, Car>();
     int nextprior = 0;
+    Priority truePlayerPriority;
     //string question;
     public GameObject[] MasCars { get; set; }
     Priority playerOne;
@@ -20,8 +21,11 @@ public class LOGIC_V001 : MonoBehaviour
     {
         Clear();
         MasCars = ToolBox.Get<CarManager>().MasCars;
-        MasCars[0].GetComponent<Car>().priority = (Priority)player;
         MakePrioritiesOff();
+        truePlayerPriority = MasCars[0].GetComponent<Car>().priority;
+        MasCars[0].GetComponent<Car>().priority = (Priority)player;
+        Debug.Log("playerPrior " + MasCars[0].GetComponent<Car>().priority);
+        Debug.Log("truePlayerPrior " + truePlayerPriority);
         SetGreenRedAndVIPsCars();
         StartCars();
     }

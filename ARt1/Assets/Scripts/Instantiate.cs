@@ -37,7 +37,7 @@ public class Instantiate : MonoBehaviour
                 (TrafficSign)Random.Range(0, 3), 4, ShaffleOdd(ConstSignTransform()),
                 (TrafficLight)Random.Range(0, 4), 4, GetConstPRofTL());
 
-            //ToolBox.Get<TrafficLightManager>().GenerationTrafficLight(RS, ToolBox.Get<CrossManager>().Cross.transform);
+            ToolBox.Get<TrafficLightManager>().GenerationTrafficLight(RS, ToolBox.Get<CrossManager>().Cross.transform);
 
             ToolBox.Get<SignManager>().GenerationTrafficSigns(RS, ToolBox.Get<CrossManager>().Cross.transform);
 
