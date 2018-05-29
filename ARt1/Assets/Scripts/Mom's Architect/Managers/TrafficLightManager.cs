@@ -15,7 +15,6 @@ class TrafficLightManager : ManagerBase
     RuntimeAnimatorController controllerOfLight;
 
     public GameObject[] TL { get; private set; }
-    TrafficLight trafficLight;
     public Dictionary<Position, TrafficLight> PosTL;
 
     void GenerateTrafficGO(PositionRotation[] PRTL, Transform parent)
@@ -28,14 +27,11 @@ class TrafficLightManager : ManagerBase
         }
     }
 
-    public void GenerationTrafficLight(PositionRotation[] PRTL, Transform parent)
+    public void GenerationTrafficLight(RoadSituation road, Transform parent)
     {
-        trafficLight = (TrafficLight)Random.Range(0, 4);
-        //trafficLight = TrafficLight.red;
-        Debug.Log(trafficLight);
-        if (trafficLight != TrafficLight.empty)
+        if (road.trafficLight != TrafficLight.empty)
         {
-            GenerateTrafficGO(PRTL, parent);
+            GenerateTrafficGO(road.posRotLight, parent);
 
             GameObject[] lights1 = new GameObject[4];
             GameObject[] lights2 = new GameObject[4];
@@ -48,7 +44,7 @@ class TrafficLightManager : ManagerBase
 
             }
 
-            switch (trafficLight)//Тута сам свет наверн
+            switch (road.trafficLight)//Тута сам свет наверн
             {
                 case TrafficLight.off:
                     for (int i = 0; i < TL.Length; i++)
@@ -79,9 +75,6 @@ class TrafficLightManager : ManagerBase
                             lights2[i].transform.localPosition = new Vector3(0, 18, 4);
                             PosTL.Add((Position)i, TrafficLight.green);
                         }
-
-
-                        
                     }
                     break;
                 case TrafficLight.green:
@@ -105,7 +98,6 @@ class TrafficLightManager : ManagerBase
                             PosTL.Add((Position)i, TrafficLight.red);
                         }
                     }
-
                     break;
             }
         }

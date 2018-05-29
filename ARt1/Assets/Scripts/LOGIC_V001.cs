@@ -4,7 +4,8 @@ using UnityEngine;
 using Enums;
 using System.Threading;
 
-public class LOGIC_V001 : MonoBehaviour {
+public class LOGIC_V001 : MonoBehaviour
+{
     List<GameObject> masactivecars = new List<GameObject>();
     List<GameObject> masVIPs = new List<GameObject>();
     List<GameObject> masGreenCars = new List<GameObject>();
@@ -12,14 +13,14 @@ public class LOGIC_V001 : MonoBehaviour {
     public Dictionary<Position, Car> listOfpositions = new Dictionary<Position, Car>();
     int nextprior = 0;
     //string question;
-    public GameObject[] MasCars {  get; set; }
+    public GameObject[] MasCars { get; set; }
     Priority playerOne;
 
     public void MakeLogicOnAns(int player)//Главный
     {
         Clear();
         MasCars = ToolBox.Get<CarManager>().MasCars;
-        playerOne = (Priority)player;
+        MasCars[0].GetComponent<Car>().priority = (Priority)player;
         MakePrioritiesOff();
         SetGreenRedAndVIPsCars();
         StartCars();
@@ -48,7 +49,6 @@ public class LOGIC_V001 : MonoBehaviour {
             StartCoroutine(ReverseLights());
             yield return new WaitForSeconds(1.5f);
         }
-        Debug.Log("GOGOGOO");
         foreach (var item in cars)
         {
             Debug.Log(item.name);
@@ -63,7 +63,6 @@ public class LOGIC_V001 : MonoBehaviour {
             StartCoroutine(ReverseLights());
             yield return new WaitForSeconds(2);
         }
-        Debug.Log("GOGOGOO");
         foreach (var item in cars)
         {
             Debug.Log(item.name);
@@ -113,7 +112,6 @@ public class LOGIC_V001 : MonoBehaviour {
         }
     }
 
-
     public void SetGreenRedAndVIPsCars()
     {
         if (ToolBox.Get<TrafficLightManager>().PosTL != null)
@@ -152,14 +150,13 @@ public class LOGIC_V001 : MonoBehaviour {
     }
     Dictionary<ComperativeLocation, Car> GetComperative(Dictionary<Position, Car> listOfPositions, Car settingCar)
     {
-        
         Car observeCar;
         Dictionary<ComperativeLocation, Car> dicWithСomparative = new Dictionary<ComperativeLocation, Car>();
 
         for (int i = 0; i < 3; i++)
         {
             settingCar.Position--;
-            if (listOfPositions.TryGetValue(settingCar.Position, out observeCar)&&observeCar.tag!="VIP")
+            if (listOfPositions.TryGetValue(settingCar.Position, out observeCar) && observeCar.tag != "VIP")
             {
                 dicWithСomparative.Add((ComperativeLocation)i, observeCar);
             }
@@ -181,7 +178,7 @@ public class LOGIC_V001 : MonoBehaviour {
             }
         }
 
-            Debug.Log("StartByPrioritets");
+        Debug.Log("StartByPrioritets");
         for (int j = startprior; j <= maxprior; j++)//цикл приоритетов
         {
             Debug.Log(startprior);

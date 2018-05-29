@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "UIManager", menuName = "Managers/UIManager")]
-class UIManager : ManagerBase, IAwake
+class UIManager : ManagerBase
 {
     [SerializeField]
     GameObject canvasPrefab;
@@ -24,10 +24,6 @@ class UIManager : ManagerBase, IAwake
 
     GameObject[] buttons;
 
-    public void OnAwake()
-    {
-
-    }
     public void SetMainMenu()
     {
         MainMenu = Instantiate(mainMenuPrefab, GameObject.Find("UI").transform, false);
@@ -77,6 +73,25 @@ class UIManager : ManagerBase, IAwake
                 //SceneManager.LoadScene(1);
             });
     }
+    public void SetUIForRevision()
+    {
+        buttons = new GameObject[3];
+        Canvas = Instantiate(canvasPrefab, GameObject.Find("UI").transform, false);
+        for (int i = 1; i < 4; i++)
+        {
+            buttons[i - 1] = Canvas.transform.Find(i.ToString()).gameObject;
+            Canvas.transform.Find(i.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
+            {
+                GameObject.Find("[SETUP]").GetComponent<Instantiate>().timer.Stop();
+                ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(i);
+            });
+        }
+        Canvas.gameObject.transform.Find("Restart").GetComponent<Button>().onClick.AddListener(delegate
+        {
+            GameObject.Find("[SETUP]").GetComponent<Instantiate>().timer.Stop();
+            SceneManager.LoadScene(3);
+        });
+    }
     public void SetAnsversFromTest()
     {
         ConclusionMenu = Instantiate(conclusionMenuPrefab, GameObject.Find("UI").transform, false);
@@ -88,11 +103,20 @@ class UIManager : ManagerBase, IAwake
         {
             SceneManager.LoadScene(2);
         });
-    }
-    void SetAnsversButtons()
-    {
+        for (int i = 1; i < 11; i++)
+        {
+            Debug.Log(i);
 
+            ConclusionMenu.transform.Find(i.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
+            {
+                ToolBox.Get<SettingsPlayer>().SetNumber(i-1);
+                Debug.Log(i);
+                    //SceneManager.LoadScene(4);
+            });
+
+        }
     }
+
     public void ShowResults()
     {
         SceneManager.LoadScene(3);
@@ -114,7 +138,7 @@ class UIManager : ManagerBase, IAwake
     }
     public void SetTimerValue(float time)
     {
-        Canvas.transform.Find("Text").GetComponentInChildren<Text>().text = string.Format("{0:f2}",time);
+        Canvas.transform.Find("Text").GetComponentInChildren<Text>().text = string.Format("{0:f2}", time);
     }
 }
 

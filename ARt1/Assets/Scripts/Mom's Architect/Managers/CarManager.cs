@@ -8,6 +8,8 @@ using UnityEngine;
 class CarManager : ManagerBase
 {
     [SerializeField]
+    GameObject playerCar;
+    [SerializeField]
     GameObject[] prefabsOfCars;
     [SerializeField]
     GameObject[] prefabsOfVIPCars;
@@ -20,56 +22,67 @@ class CarManager : ManagerBase
 
     public RuntimeAnimatorController controller;
 
-    public GameObject[] MasCars { get; private set; }
-
-
-    public void InstantiateCars(PositionRotation[] posRotAnim, Transform cross)
+    public GameObject[] MasCars { get; set; }
+    bool VIP;
+    PositionRotation[] carPos;
+    Direction[] directions;
+    public GameObject[] GenerateCars(RoadSituation roadSituation, Transform cross)
     {
-        MasCars = new GameObject[Random.Range(2, 4)];
-        Shuffle(posRotAnim);
-
-        MasCars[0] = Instantiate(prefabsOfCars[0], cross, false);
-        MasCars[0].tag = "Player";
-        SettingsForGOCars<Car>(MasCars[0], posRotAnim[0]);
-
-        int IndextOffirstCar = 1;
-        if (GenerateVIP(posRotAnim[1], cross))//наверн нужно делить на VIP не вип
-                                    //потому что чёт много логики для 1-го менеджера
-        {
-            Debug.Log("VIP");
-            IndextOffirstCar = 2;
-        }
-        for (int i = IndextOffirstCar; i < MasCars.Length; i++)
-        {
-            MasCars[i] = Instantiate(prefabsOfCars[Random.Range(1, prefabsOfCars.Length)], cross, false);
-            MasCars[i].tag = "BotCar";
-            SettingsForGOCars<Car>(MasCars[i], posRotAnim[i]);
-        }
-
+        MasCars = new GameObject[roadSituation.CountOfCars];
+        carPos = roadSituation.posRotAnimCar;
+        this.VIP = roadSituation.VIP;
+        this.directions = roadSituation.directions;
+        return InstantiateCars(cross);
     }
-    bool GenerateVIP(PositionRotation posRotAnim, Transform cross)
+
+    public GameObject[] InstantiateCars( Transform cross)
     {
-        int chance = Random.Range(0, chanceOfVIP);
-        if (chance == 0)
+        MasCars[0] = Instantiate(playerCar, cross, false);
+        SettingsForGOCars<Car>(MasCars[0], carPos[0], directions[0]);
+
+        int IndextOfFirstCar = 1;
+        if (VIP)
         {
+            IndextOfFirstCar = 2;
             MasCars[1] = Instantiate(prefabsOfVIPCars[Random.Range(0, prefabsOfVIPCars.Length)], cross, false);
-            MasCars[1].tag = "VIP";
-            SettingsForGOCars<VIP>(MasCars[1], posRotAnim);
+            SettingsForGOCars<VIP>(MasCars[1], carPos[1],directions[1]);
             SetFlashers(MasCars[1].GetComponent<VIP>());
-            return true;
         }
-        return false;
+        for (int i = IndextOfFirstCar; i < MasCars.Length; i++)
+        {
+            MasCars[i] = Instantiate(prefabsOfCars[Random.Range(0, prefabsOfCars.Length)], cross, false);
+            SettingsForGOCars<Car>(MasCars[i], carPos[i],directions[i]);
+        }
+        SetTags(VIP);
+        return MasCars;
     }
-    void SettingsForGOCars<T>(GameObject GO, PositionRotation PRA) where T : Car
+
+    private void SetTags(bool VIP)
+    {
+        MasCars[0].tag = "Player";
+        if (VIP)
+        {
+            MasCars[1].tag = "VIP";
+        }
+        foreach (GameObject car in MasCars)
+        {
+            if (car.tag == "Untagged")
+            {
+                car.tag = "BotCar";
+            }
+        }
+    }
+
+    void SettingsForGOCars<T>(GameObject GO, PositionRotation PRA, Direction direction) where T : Car
     {
         GO.transform.localScale = new Vector3(1.7f, 1.7f, 1.7f);
         GO.AddComponent<T>();
+        GO.GetComponent<T>().Direction = direction;
         PRA.SetPRAatCar(GO);
         SetLight(GO.GetComponent<Car>());
     }
     void SetFlashers(VIP carVIP)
     {
-        Debug.Log("VIP");
         Vector3 lightPosition = carVIP.transform.GetChild(0).transform.GetChild(0).position + new Vector3(0, 3, 0);
         GameObject flashers = Instantiate(prefabOfLight, lightPosition, Quaternion.identity, carVIP.transform.GetChild(0).transform.GetChild(0));
         flashers.GetComponent<Light>().type = LightType.Point;
@@ -95,17 +108,6 @@ class CarManager : ManagerBase
         turner.transform.localPosition += (vector.z * car.transform.forward) + (vector.x * car.transform.right) + (vector.y * Vector3.up);
         Instantiate(turner, turner.transform.position, Quaternion.identity, car.transform.GetChild(0).transform.GetChild(0)).GetComponent<Animator>().runtimeAnimatorController = controllerOfLight;
         Instantiate(turner, turner.transform.position + (car.transform.forward * -10.5f), Quaternion.identity, car.transform.GetChild(0).transform.GetChild(0)).GetComponent<Animator>().runtimeAnimatorController = controllerOfLight;
-    }
-    void Shuffle(PositionRotation[] posRotAnim)
-    {
-        for (int i = posRotAnim.Length - 1; i >= 1; i--)
-        {
-            int j = Random.Range(0, i);
-            // обменять значения data[j] и data[i]
-            var temp = posRotAnim[j];
-            posRotAnim[j] = posRotAnim[i];
-            posRotAnim[i] = temp;
-        }
     }
     public void Clear()
     {

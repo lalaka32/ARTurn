@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Enums;
 
-class PositionRotation
+public class PositionRotation
 {
     public RuntimeAnimatorController Controller { get; set; }
     public Vector3 Position { get;private set; }

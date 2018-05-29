@@ -28,7 +28,7 @@ class CameraManager : ManagerBase
         }
     }
 
-    public void SetLocation(GameObject gameObject, Vector3 vector3, bool v)
+    public void SetLocation(GameObject gameObject, Vector3 vector3)
     {
         Vector3 backVector = gameObject.transform.forward * vector3.x;
         MainCamera.transform.position = gameObject.transform.position + backVector + (vector3.y * Vector3.up);

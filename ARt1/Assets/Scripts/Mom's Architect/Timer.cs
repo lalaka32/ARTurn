@@ -29,7 +29,7 @@ public class Timer
     public void Stop()
     {
         IsActive = false;
-        TimeCount = 0;
+       
     }
 }
 

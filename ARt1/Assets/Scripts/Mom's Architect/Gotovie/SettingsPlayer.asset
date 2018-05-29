@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c9b4fe198e74541b172bf5b5c8daf0, type: 3}
   m_Name: SettingsPlayer
   m_EditorClassIdentifier: 
-  ARCamera: 1
+  ARCamera: 0
