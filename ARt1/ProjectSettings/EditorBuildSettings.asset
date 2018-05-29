@@ -4,4 +4,19 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scene/Anton/ManagerHandler.unity
+    guid: 102d5e8c37edea7468dfd64720b4b305
+  - enabled: 1
+    path: Assets/Scene/Anton/MainMenuAnton.unity
+    guid: afcd21f6b40977442a96092aa256f3c0
+  - enabled: 1
+    path: Assets/Scene/Anton/AntonArchi.unity
+    guid: 7a9554bfc0dca9e4283dd0b1c721ec2c
+  - enabled: 1
+    path: Assets/Scene/Anton/AnsversAnton.unity
+    guid: 0a5114e62dcc98147b2073f99651ad41
+  - enabled: 1
+    path: Assets/Scene/Anton/ShowResult.unity
+    guid: 0d4c96a4b5bd6114bb1cb2d6c124e7de

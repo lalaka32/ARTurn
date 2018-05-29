@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 class Starter: MonoBehaviour{
     //Точка входа  в прогу
@@ -16,6 +17,6 @@ class Starter: MonoBehaviour{
         {
             ToolBox.Add(item);
         }
+        SceneManager.LoadScene(1);
     }
-
 }

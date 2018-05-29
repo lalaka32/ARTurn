@@ -5,25 +5,33 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="CameraManager",menuName = "Managers/CameraManager")]
-class CameraManager:ManagerBase, IAwake
+[CreateAssetMenu(fileName = "CameraManager", menuName = "Managers/CameraManager")]
+class CameraManager : ManagerBase
 {
-    public GameObject camGO;
+    [SerializeField]
+    GameObject usialCamPrefab;
+    [SerializeField]
+    GameObject ARCam;
 
-    public void SetCamGO(Vector3 pos,Quaternion quaternion,bool sneaking=false)
+    public GameObject MainCamera { get; private set; }
+
+    public void SetCamGO(bool AR)
     {
-        var cam = Instantiate(camGO, pos, quaternion);
-        cam.transform.parent = GameObject.Find("Cameras").transform;
-        
-    }
-    
-    public void OnAwake()
-    {
-        //Должно быть считывание с настроек какую камеру создац
-        //Кароч в настройках будет галочка типо ар или обчная камера
-        //Если AR то в SetCamGO кам накинуть просто скрипты
-        //Это поможет не хранить 2 префаба(3 килобайта забей)
-        GameObject.Find("[SETUP]").AddComponent<SetupCam>();
+        if (AR)
+        {
+            MainCamera = Instantiate(ARCam, GameObject.Find("Cameras").transform);
+        }
+        else
+        {
+            
+            MainCamera = Instantiate(usialCamPrefab, GameObject.Find("Cameras").transform);
+        }
     }
 
+    public void SetLocation(GameObject gameObject, Vector3 vector3)
+    {
+        Vector3 backVector = gameObject.transform.forward * vector3.x;
+        MainCamera.transform.position = gameObject.transform.position + backVector + (vector3.y * Vector3.up);
+        MainCamera.transform.eulerAngles = gameObject.transform.localEulerAngles;
+    }
 }
