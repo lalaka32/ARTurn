@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Enums;
+using System;
+using Random = UnityEngine.Random;
 
 public class Instantiate : MonoBehaviour
 {
@@ -23,38 +25,77 @@ public class Instantiate : MonoBehaviour
     IEnumerator SimpleGenerator()
     {
         PositionRotation[] posRotAnim = GetConstPRofCars();
-        int lengthOfTest = 0;
-        while (lengthOfTest != 9 || mistakes == 2)//думаю сделать чтото вроде proseesing ansver manager
-            //там сделать эту карутину
+        int numberOfSituation = 0;
+        ToolBox.Get<CarManager>().Clear();
+
+        while (numberOfSituation != 9 || mistakes == 2)//думаю сделать чтото вроде proseesing ansver manager
+                                                       //там сделать эту карутину
         {
             Restart = false;
+            RoadSituation RS = new RoadSituation(
+                Random.Range(2, 4), Shuffle(GetConstPRofCars()), Convert.ToBoolean(Random.Range(0, 2)), new Direction[] {(Direction)1, (Direction)1, (Direction)1, (Direction)1 },
+                (TrafficSign)Random.Range(0, 3), 4, ShaffleOdd(ConstSignTransform()),
+                (TrafficLight)Random.Range(0, 4), 4, GetConstPRofTL());
 
-            ToolBox.Get<TrafficLightManager>().GenerationTrafficLight(GetConstPRofTL(), ToolBox.Get<CrossManager>().Cross.transform);
-            //ToolBox.Get<SignManager>().GenerationTrafficSigns(ConstSignTransform(), ToolBox.Get<CrossManager>().Cross.transform);
-            ToolBox.Get<CarManager>().InstantiateCars(GetConstPRofCars(), ToolBox.Get<CrossManager>().Cross.transform);
+            ToolBox.Get<TrafficLightManager>().GenerationTrafficLight(RS, ToolBox.Get<CrossManager>().Cross.transform);
+
+            ToolBox.Get<SignManager>().GenerationTrafficSigns(RS, ToolBox.Get<CrossManager>().Cross.transform);
+
+            ToolBox.Get<CarManager>().GenerateCars(RS, ToolBox.Get<CrossManager>().Cross.transform);
+            ToolBox.Get<ProcessingAnsvers>().lvlSituat.Add(RS);//---------------------
 
             if (!ToolBox.Get<SettingsPlayer>().ARCamera)
             {
-                ToolBox.Get<CameraManager>().SetLocation(ToolBox.Get<CarManager>().MasCars[0], new Vector3(-20, 10, 0), true);//должно опускаться если ар
+                ToolBox.Get<CameraManager>().SetLocation(ToolBox.Get<CarManager>().MasCars[0], new Vector3(-20, 10, 0));
             }
             ToolBox.Get<UIManager>().CreateBottons(ToolBox.Get<CarManager>().MasCars.Length);
-            
+
             timer = ToolBox.Get<TimerManager>().SetTimer(20f, delegate { Restart = true; });
 
             yield return new WaitWhile(() => Restart == false);
 
             ToolBox.Get<UIManager>().ClearBottons();
             ToolBox.Get<SignManager>().ClearSigns();
-            ToolBox.Get<CarManager>().Clear();  
+            ToolBox.Get<CarManager>().Clear();
             ToolBox.Get<TrafficLightManager>().Clear();
-            lengthOfTest++;
+            numberOfSituation++;
         }
+
         ToolBox.Get<UIManager>().ShowResults();
     }
     void FixedUpdate()
     {
         ToolBox.Get<TimerManager>().ProsessingTimer(Time.deltaTime);
         ToolBox.Get<UIManager>().SetTimerValue(timer.TimeCount);
+    }
+    PositionRotation[] Shuffle(PositionRotation[] posRotAnim)
+    {
+        for (int i = posRotAnim.Length - 1; i >= 1; i--)
+        {
+            int j = Random.Range(0, i);
+            // обменять значения data[j] и data[i]
+            var temp = posRotAnim[j];
+            posRotAnim[j] = posRotAnim[i];
+            posRotAnim[i] = temp;
+        }
+        return posRotAnim;
+    }
+    PositionRotation[] ShaffleOdd(PositionRotation[] PRTS)
+    {
+        float rnd = Random.Range(0, 2);
+        if (rnd == 0)
+        {
+            for (int i = 0; i < PRTS.Length; i++)
+            {
+                if (i % 2 != 0)
+                {
+                    PositionRotation temp = PRTS[i].Copy();
+                    PRTS[i] = PRTS[i - 1].Copy();
+                    PRTS[i - 1] = temp.Copy();
+                }
+            }
+        }
+        return PRTS;
     }
     PositionRotation[] ConstSignTransform()
     {

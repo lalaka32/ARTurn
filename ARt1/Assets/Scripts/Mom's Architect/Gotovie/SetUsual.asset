@@ -11,18 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712581f7fcfd560428846ea7bee448ee, type: 3}
   m_Name: SetUsual
   m_EditorClassIdentifier: 
+  playerCar: {fileID: 1429836575768114, guid: 46aa0859fd0cbbc4e91a3c716a9c4b63, type: 2}
   prefabsOfCars:
-  - {fileID: 1429836575768114, guid: 46aa0859fd0cbbc4e91a3c716a9c4b63, type: 2}
+  - {fileID: 1420908694579548, guid: 45ebeba95ffe86c40b084ad7b31da7bc, type: 2}
   - {fileID: 1912317319423420, guid: 25db3b0055d840548b505f43aa8842ee, type: 2}
   - {fileID: 1450388645217650, guid: 68f8f8c44556cc24ca7faf9095955609, type: 2}
   - {fileID: 1216082725453798, guid: 8a54e8d76d1510143ad119f1abed939f, type: 2}
   - {fileID: 1381251431692518, guid: 7c0251667782aa9489cd41381790c9a4, type: 2}
   - {fileID: 1881628352105992, guid: 00a156a9738e75742afc30c32c53f0f6, type: 2}
-  - {fileID: 1420908694579548, guid: 45ebeba95ffe86c40b084ad7b31da7bc, type: 2}
   prefabsOfVIPCars:
   - {fileID: 1912317319423420, guid: 25db3b0055d840548b505f43aa8842ee, type: 2}
-  - {fileID: 1450388645217650, guid: 68f8f8c44556cc24ca7faf9095955609, type: 2}
-  - {fileID: 1420908694579548, guid: 45ebeba95ffe86c40b084ad7b31da7bc, type: 2}
   prefabOfLight: {fileID: 1150157535592590, guid: bce08972f29f0634da77a212d9c96a83,
     type: 2}
   controllerOfLight: {fileID: 9100000, guid: d732366db91fbf943bbb41230c273839, type: 2}

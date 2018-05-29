@@ -6,7 +6,7 @@ using System.Text;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CrossManager", menuName = "Managers/CrossManager")]
-class CrossManager : ManagerBase, IAwake
+class CrossManager : ManagerBase
 {
     public GameObject prefabOfCross;
 
@@ -15,10 +15,6 @@ class CrossManager : ManagerBase, IAwake
     public void SetCrossGO()
     {
         Cross = Instantiate(prefabOfCross, GameObject.Find("Static").transform, false);
-    }
-
-    public void OnAwake()
-    {
     }
 }
 
