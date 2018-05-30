@@ -60,10 +60,11 @@ class UIManager : ManagerBase
         for (int i = 1; i < 4; i++)
         {
             buttons[i - 1] = Canvas.transform.Find(i.ToString()).gameObject;
+
             Canvas.transform.Find(i.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
             {
                 GameObject.Find("[SETUP]").GetComponent<Instantiate>().timer.Stop();
-                ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(i);
+                ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(Convert.ToInt32(i.ToString())-1);
             });
         }
         Canvas.gameObject.transform.Find("Restart").GetComponent<Button>().onClick.AddListener(delegate

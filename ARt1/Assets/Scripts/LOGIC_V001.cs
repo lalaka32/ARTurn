@@ -26,6 +26,7 @@ public class LOGIC_V001 : MonoBehaviour
         MasCars[0].GetComponent<Car>().priority = (Priority)player;
         Debug.Log("playerPrior " + MasCars[0].GetComponent<Car>().priority);
         Debug.Log("truePlayerPrior " + truePlayerPriority);
+        Debug.Log("int " + player);
         SetGreenRedAndVIPsCars();
         StartCars();
     }

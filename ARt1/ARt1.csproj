@@ -322,7 +322,7 @@
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\ManagerBase.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\ProcessingAnsvers.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\SettingsPlayer.cs" />
-    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\SIgnManager.cs" />
+    <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\SignManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\TimerManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\TrafficLightManager.cs" />
     <Compile Include="Assets\Scripts\Mom&apos;s Architect\Managers\UIManager.cs" />
