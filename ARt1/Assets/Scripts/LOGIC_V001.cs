@@ -19,13 +19,12 @@ public class LOGIC_V001 : MonoBehaviour
 
     public void MakeLogicOnAns(int player)//Главный
     {
+        Debug.Log(player);
         Clear();
         MasCars = ToolBox.Get<CarManager>().MasCars;
         MakePrioritiesOff();
         truePlayerPriority = MasCars[0].GetComponent<Car>().priority;
         MasCars[0].GetComponent<Car>().priority = (Priority)player;
-        Debug.Log("playerPrior " + MasCars[0].GetComponent<Car>().priority);
-        Debug.Log("truePlayerPrior " + truePlayerPriority);
         SetGreenRedAndVIPsCars();
         StartCars();
     }
@@ -72,7 +71,6 @@ public class LOGIC_V001 : MonoBehaviour
             Debug.Log(item.name);
         }
         StartCoroutine(StartByPrioritets(cars.ToArray(), nextprior));
-
     }
     IEnumerator ReverseLights()
     {
