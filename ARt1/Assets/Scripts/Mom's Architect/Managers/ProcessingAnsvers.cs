@@ -16,5 +16,8 @@ public class ProcessingAnsvers:ManagerBase
     {
         return lvlSituat[index];
     }
-
+    public void DebugOut(int index)
+    {
+        Debug.Log(string.Format("{0},{1},{2} -----------{3}", lvlSituat[index].VIP, lvlSituat[index].trafficLight, lvlSituat[index].trafficSign,index));
+    }
 }

@@ -9,12 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff4b0aa68e9187e49b832c5e20bfbc2e, type: 3}
-  m_Name: Signs
-  m_EditorClassIdentifier: Assembly-CSharp::SignManager
+  m_Name: SignManager
+  m_EditorClassIdentifier: 
   prefabOfMain: {fileID: 1127138150406990, guid: b5fdd407ecb1697479ecbefe1a26c266,
     type: 2}
   prefabOfSecondary: {fileID: 1860297187783468, guid: dc31d20dd3867634b96bb0993ea23e93,
     type: 2}
   prefabOfStop: {fileID: 1954569064002794, guid: b20db528da768f44ca2a1fb7fa393f25,
     type: 2}
-  signArray: []
+  signArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

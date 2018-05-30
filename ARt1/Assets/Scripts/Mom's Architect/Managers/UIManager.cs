@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -60,12 +61,27 @@ class UIManager : ManagerBase
         for (int i = 1; i < 4; i++)
         {
             buttons[i - 1] = Canvas.transform.Find(i.ToString()).gameObject;
-            Canvas.transform.Find(i.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
-            {
-                GameObject.Find("[SETUP]").GetComponent<Instantiate>().timer.Stop();
-                ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(i);
-            });
         }
+        #region IGiveUp(Buttons)
+        Canvas.transform.Find(string.Format("{0}", 1.ToString().Trim())).GetComponent<Button>().onClick.AddListener(
+            delegate
+            {
+                ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(1);
+                GameObject.Find("[SETUP]").GetComponent<Instantiate>().timer.Stop();
+            });
+        Canvas.transform.Find(string.Format("{0}", 2.ToString().Trim())).GetComponent<Button>().onClick.AddListener(
+            delegate
+            {
+                ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(2);
+                GameObject.Find("[SETUP]").GetComponent<Instantiate>().timer.Stop();
+            });
+        Canvas.transform.Find(string.Format("{0}", 3.ToString().Trim())).GetComponent<Button>().onClick.AddListener(
+            delegate
+            {
+                ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(3);
+                GameObject.Find("[SETUP]").GetComponent<Instantiate>().timer.Stop();
+            });
+        #endregion
         Canvas.gameObject.transform.Find("Restart").GetComponent<Button>().onClick.AddListener(delegate
             {
                 GameObject.Find("[SETUP]").GetComponent<Instantiate>().timer.Stop();
@@ -80,15 +96,28 @@ class UIManager : ManagerBase
         for (int i = 1; i < 4; i++)
         {
             buttons[i - 1] = Canvas.transform.Find(i.ToString()).gameObject;
-            Canvas.transform.Find(i.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
-            {
-                GameObject.Find("[SETUP]").GetComponent<Instantiate>().timer.Stop();
-                ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(i);
-            });
         }
+        #region SetButtons
+        Canvas.transform.Find(string.Format("{0}", 1.ToString().Trim())).GetComponent<Button>().onClick.AddListener(delegate
+         {
+             GameObject.Find("[SETUP]").GetComponent<InstantceParticular>().timer.Stop();
+             ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(1);
+         });
+        Canvas.transform.Find(2.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
+        {
+            GameObject.Find("[SETUP]").GetComponent<InstantceParticular>().timer.Stop();
+            ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(2);
+        });
+        Canvas.transform.Find(3.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
+        {
+            GameObject.Find("[SETUP]").GetComponent<InstantceParticular>().timer.Stop();
+            ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(3);
+        }); 
+        #endregion
+
         Canvas.gameObject.transform.Find("Restart").GetComponent<Button>().onClick.AddListener(delegate
         {
-            GameObject.Find("[SETUP]").GetComponent<Instantiate>().timer.Stop();
+            GameObject.Find("[SETUP]").GetComponent<InstantceParticular>().timer.Stop();
             SceneManager.LoadScene(3);
         });
     }
@@ -103,18 +132,58 @@ class UIManager : ManagerBase
         {
             SceneManager.LoadScene(2);
         });
-        for (int i = 1; i < 11; i++)
+        #region ButtonsReview
+        ConclusionMenu.transform.Find(1.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
         {
-            Debug.Log(i);
-
-            ConclusionMenu.transform.Find(i.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
-            {
-                ToolBox.Get<SettingsPlayer>().SetNumber(i-1);
-                Debug.Log(i);
-                    //SceneManager.LoadScene(4);
-            });
-
-        }
+            ToolBox.Get<SettingsPlayer>().SetNumber(1 - 1);
+            SceneManager.LoadScene(4);
+        });
+        ConclusionMenu.transform.Find(2.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
+        {
+            ToolBox.Get<SettingsPlayer>().SetNumber(2 - 1);
+            SceneManager.LoadScene(4);
+        });
+        ConclusionMenu.transform.Find(3.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
+        {
+            ToolBox.Get<SettingsPlayer>().SetNumber(3 - 1);
+            SceneManager.LoadScene(4);
+        });
+        ConclusionMenu.transform.Find(4.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
+        {
+            ToolBox.Get<SettingsPlayer>().SetNumber(4 - 1);
+            SceneManager.LoadScene(4);
+        });
+        ConclusionMenu.transform.Find(5.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
+        {
+            ToolBox.Get<SettingsPlayer>().SetNumber(5 - 1);
+            SceneManager.LoadScene(4);
+        });
+        ConclusionMenu.transform.Find(6.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
+        {
+            ToolBox.Get<SettingsPlayer>().SetNumber(6 - 1);
+            SceneManager.LoadScene(4);
+        });
+        ConclusionMenu.transform.Find(7.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
+        {
+            ToolBox.Get<SettingsPlayer>().SetNumber(7 - 1);
+            SceneManager.LoadScene(4);
+        });
+        ConclusionMenu.transform.Find(8.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
+        {
+            ToolBox.Get<SettingsPlayer>().SetNumber(8 - 1);
+            SceneManager.LoadScene(4);
+        });
+        ConclusionMenu.transform.Find(9.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
+        {
+            ToolBox.Get<SettingsPlayer>().SetNumber(9 - 1);
+            SceneManager.LoadScene(4);
+        });
+        ConclusionMenu.transform.Find(10.ToString().Trim()).GetComponent<Button>().onClick.AddListener(delegate
+        {
+            ToolBox.Get<SettingsPlayer>().SetNumber(10 - 1);
+            SceneManager.LoadScene(4);
+        });
+        #endregion//Срочно поменять
     }
 
     public void ShowResults()
