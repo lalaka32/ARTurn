@@ -9519,11 +9519,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cd7651732528049a70299ff0eb0fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Car: {fileID: 100008, guid: d918d0189e6518d4196d1796110ab0d4, type: 2}
-  masCars: []
-  trafficLight: 0
+  prefabOfCar: []
   controllers:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  canvas: {fileID: 0}
+  trafficLight: 0
