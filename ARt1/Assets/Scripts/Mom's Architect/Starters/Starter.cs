@@ -10,13 +10,14 @@ class Starter: MonoBehaviour{
     //Будет просто содержать список наших систем
 
     public List<ManagerBase> managers = new List<ManagerBase>();
-
+    
+    
     private void Awake()
     {
         foreach (ManagerBase item in managers)
         {
             ToolBox.Add(item);
         }
-        SceneManager.LoadScene(1);
+        ToolBox.Get<UIManager>().ShowMainMenu();
     }
 }

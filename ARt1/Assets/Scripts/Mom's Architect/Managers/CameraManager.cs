@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using Vuforia;
 
 [CreateAssetMenu(fileName = "CameraManager", menuName = "Managers/CameraManager")]
 class CameraManager : ManagerBase
@@ -23,7 +24,6 @@ class CameraManager : ManagerBase
         }
         else
         {
-            
             MainCamera = Instantiate(usialCamPrefab, GameObject.Find("Cameras").transform);
         }
     }

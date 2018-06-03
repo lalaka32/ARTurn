@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c61b07a3e4b5e4ca497df244e3b929, type: 3}
   m_Name: defoult
   m_EditorClassIdentifier: 
-  canvasPrefab: {fileID: 1749658800070964, guid: 696648490984bb940afed36e2dd79df6,
+  canvasPrefab: {fileID: 1450039698708490, guid: 696648490984bb940afed36e2dd79df6,
     type: 2}
   mainMenuPrefab: {fileID: 1707494329472256, guid: f2a7a5195ea466b41a00e350d2c3d3f0,
     type: 2}
-  conclusionMenuPrefab: {fileID: 1138936503194042, guid: f8cae25ca5d46aa4c9037f6c89459b9b,
+  conclusionMenuPrefab: {fileID: 1015281755964654, guid: f8cae25ca5d46aa4c9037f6c89459b9b,
     type: 2}

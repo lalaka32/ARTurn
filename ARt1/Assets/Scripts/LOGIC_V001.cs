@@ -23,8 +23,17 @@ public class LOGIC_V001 : MonoBehaviour
         Clear();
         MasCars = ToolBox.Get<CarManager>().MasCars;
         MakePrioritiesOff();
+
         truePlayerPriority = MasCars[0].GetComponent<Car>().priority;
-        MasCars[0].GetComponent<Car>().priority = (Priority)player;
+        if (MasCars[0].GetComponent<Car>().priority == (Priority)player)
+        {
+            ToolBox.Get<UIManager>().ShowWinMenu();
+        }
+        else
+        {
+            ToolBox.Get<UIManager>().ShowLoseMenu();
+        }
+        
         SetGreenRedAndVIPsCars();
         StartCars();
     }
@@ -97,7 +106,7 @@ public class LOGIC_V001 : MonoBehaviour
             tl1.name = "turner(Clone)-inversed";
             Transform tl2 = ToolBox.Get<TrafficLightManager>().TL[i].transform.Find("turner(Clone)-preinversed");
             tl2.name = "turner(Clone)-inversed";
-            if (ToolBox.Get<TrafficLightManager>().PosTL[(Position)i] == TrafficLight.green)
+            if (ToolBox.Get<TrafficLightManager>().PosTL[(Position)i] == TrafficLight.Green)
             {
                 tl1.GetComponent<Light>().color = Color.red;
                 tl2.GetComponent<Light>().color = Color.red;
@@ -124,7 +133,7 @@ public class LOGIC_V001 : MonoBehaviour
                 {
                     if (listOfpositions[(Position)i].tag != "VIP")
                     {
-                        if (ToolBox.Get<TrafficLightManager>().PosTL[(Position)i] == TrafficLight.green)
+                        if (ToolBox.Get<TrafficLightManager>().PosTL[(Position)i] == TrafficLight.Green)
                         {
                             masGreenCars.Add(listOfpositions[(Position)i].gameObject);
                         }
@@ -134,7 +143,6 @@ public class LOGIC_V001 : MonoBehaviour
                 }
             }
         }
-
     }
 
     public void MakePrioritiesOff()
@@ -145,7 +153,7 @@ public class LOGIC_V001 : MonoBehaviour
         }
         for (int i = 0; i < MasCars.Length; i++)
         {
-            Car settingCar = MasCars[i].GetComponent<Car>(); ;
+            Car settingCar = MasCars[i].GetComponent<Car>(); 
             Dictionary<ComperativeLocation, Car> comperative = GetComperative(listOfpositions, settingCar);
             MasCars[i].GetComponent<Car>().SetPriority(comperative, settingCar);
         }
@@ -180,7 +188,6 @@ public class LOGIC_V001 : MonoBehaviour
             }
         }
 
-        Debug.Log("StartByPrioritets");
         for (int j = startprior; j <= maxprior; j++)//цикл приоритетов
         {
             Debug.Log(startprior);
@@ -218,7 +225,6 @@ public class LOGIC_V001 : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
-
     public void Clear()
     {
         StopAllCoroutines();

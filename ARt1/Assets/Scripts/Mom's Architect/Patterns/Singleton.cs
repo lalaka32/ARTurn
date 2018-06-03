@@ -15,12 +15,12 @@ namespace BeeFly
         {
             get
             {
-                if(_instance == null)//Поиск
+                if (_instance == null)//Поиск
                 {
                     _instance = FindObjectOfType<T>();
                     if (_instance == null)//Создание
                     {
-                        var singleton = new GameObject("[SINGLETON]"+typeof(T));
+                        var singleton = new GameObject("[SINGLETON]" + typeof(T));
                         _instance = singleton.AddComponent<T>();//Можем навешивать только из-за ограничения
 
                         DontDestroyOnLoad(singleton);// Если перейдём на новую сцену не произайдёт удаление Обьектов

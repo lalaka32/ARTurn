@@ -15,7 +15,7 @@ class PriorityTL : IDirectionitatible
         Car observeCarRight;
 
 
-        if (trafficSignal == TrafficLight.red)
+        if (trafficSignal == TrafficLight.Red)
         {
             if (comperative.ContainsKey(ComperativeLocation.Left) || comperative.ContainsKey(ComperativeLocation.Right))
             {
@@ -24,11 +24,11 @@ class PriorityTL : IDirectionitatible
 
             if (comperative.TryGetValue(ComperativeLocation.Left, out observeCarLeft) && comperative.TryGetValue(ComperativeLocation.Right, out observeCarRight))
             {
-                if (observeCarLeft.Direction == Direction.left && observeCarRight.Direction != Direction.left)
+                if (observeCarLeft.Direction == Direction.Left && observeCarRight.Direction != Direction.Left)
                 {
                     settingCar.priority++;
                 }
-                else if (observeCarRight.Direction == Direction.left && observeCarLeft.Direction != Direction.left)
+                else if (observeCarRight.Direction == Direction.Left && observeCarLeft.Direction != Direction.Left)
                 {
                     settingCar.priority++;
                 }

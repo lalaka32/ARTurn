@@ -93,10 +93,10 @@ class CarManager : ManagerBase
     {
         switch (car.Direction)
         {
-            case Direction.left:
+            case Direction.Left:
                 CarInctanceLight(car, new Vector3(-1.8f, -1.16f, 5.3f));
                 break;
-            case Direction.right:
+            case Direction.Right:
                 CarInctanceLight(car, new Vector3(1.8f, -1.16f, 5.3f));
                 break;
         }

@@ -13,7 +13,7 @@ class ForwardQvalent : IDirectionitatible
 
         if (comperative.TryGetValue(ComperativeLocation.Right, out observeCar))
         {
-            if (observeCar.Direction == Direction.forward)
+            if (observeCar.Direction == Direction.Forward)
             {
                 settingCar.priority++;
 
@@ -23,7 +23,7 @@ class ForwardQvalent : IDirectionitatible
                 }
             }
 
-            else if (observeCar.Direction == Direction.left)
+            else if (observeCar.Direction == Direction.Left)
             {
                 settingCar.priority++;
                 if (comperative.TryGetValue(ComperativeLocation.Front, out observeCar))
@@ -32,14 +32,14 @@ class ForwardQvalent : IDirectionitatible
                 }
                 else if (comperative.TryGetValue(ComperativeLocation.Left, out observeCar))
                 {
-                        if (observeCar.Direction == Direction.right)
+                        if (observeCar.Direction == Direction.Right)
                         {
                             settingCar.priority++;
                         }
                 }
             }
 
-            else if (observeCar.Direction == Direction.right)
+            else if (observeCar.Direction == Direction.Right)
             {
                 settingCar.priority++;
             }

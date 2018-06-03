@@ -25,12 +25,12 @@ class SignManager : ManagerBase
             if (i % 2 == 0)
             {
                 signArray[i] = Instantiate(prefabOfMain, parent.transform, false);
-                TS.Add(PRTL[i].NumberOfPosition, TrafficSign.main);
+                TS.Add(PRTL[i].NumberOfPosition, TrafficSign.Main);
             }
             else
             {
                 signArray[i] = Instantiate(prefabOfSecondary, parent.transform, false);
-                TS.Add(PRTL[i].NumberOfPosition, TrafficSign.secondary);
+                TS.Add(PRTL[i].NumberOfPosition, TrafficSign.Secondary);
             }
             PRTL[i].SetPR(signArray[i]);
         }
@@ -38,7 +38,7 @@ class SignManager : ManagerBase
 
     public void GenerationTrafficSigns(RoadSituation road, Transform parent)
     {
-        if (road.trafficSign != TrafficSign.empty)
+        if (road.trafficSign != TrafficSign.Empty)
         {
             TS = new Dictionary<Position, TrafficSign>(3);
 

@@ -14,7 +14,7 @@ class LeftUnqvalent : Unqvalent
 
         if (comperative.TryGetValue(ComperativeLocation.Front, out observeCar))
         {
-            if (observeCar.Direction != Direction.left)
+            if (observeCar.Direction != Direction.Left)
             {
                 settingCar.priority++;
             }

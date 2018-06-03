@@ -8,7 +8,5 @@ public class Instance : MonoBehaviour {
 	void Start () {
         ToolBox.Get<CameraManager>().SetCamGO(false);
         ToolBox.Get<UIManager>().SetMainMenu();
-
     }
-	
 }
