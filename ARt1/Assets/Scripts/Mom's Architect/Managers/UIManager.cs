@@ -256,12 +256,18 @@ class UIManager : ManagerBase
     }
     public void ClearBottons()
     {
+        
         foreach (GameObject item in buttons)
         {
             item.SetActive(false);
         }
+        
     }
-    public void SetTimerValue(float time)
+    public void ClearPrefab()
+    {
+        Destroy(Canvas);
+    }
+        public void SetTimerValue(float time)
     {
         Canvas.transform.Find("Timer").GetComponentInChildren<Text>().text = string.Format("{0:f2}", time);
     }

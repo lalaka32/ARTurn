@@ -33,5 +33,16 @@ class TimerManager : ManagerBase
             times[i].Execute(deltatime);
         }
     }
+    public bool IsNull()
+    {
+        if (times.Count==0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 
