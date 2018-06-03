@@ -7,15 +7,16 @@ public class InstantceParticular : MonoBehaviour {
     public Timer timer;
     // Use this for initialization
     void Start () {
+
         ToolBox.Get<SignManager>().ClearSigns();
         ToolBox.Get<CarManager>().Clear();
         ToolBox.Get<TrafficLightManager>().Clear();
 
-        ToolBox.Get<CrossManager>().SetCrossGO();
+        ToolBox.Get<CrossManager>().SetCrossGO(ToolBox.Get<SettingsPlayer>().ARCamera);
         ToolBox.Get<UIManager>().SetUIForRevision();
         
         ToolBox.Get<CameraManager>().SetCamGO(ToolBox.Get<SettingsPlayer>().ARCamera);
-        Debug.Log(ToolBox.Get<SettingsPlayer>().numberOfRevisionQuestion+"--------------"+ ToolBox.Get<ProcessingAnsvers>().lvlSituat.Count);
+
         RoadSituation RS = ToolBox.Get<ProcessingAnsvers>().lvlSituat[ToolBox.Get<SettingsPlayer>().numberOfRevisionQuestion];
         ToolBox.Get<TrafficLightManager>().GenerationTrafficLight(RS, ToolBox.Get<CrossManager>().Cross.transform);
 
@@ -28,7 +29,7 @@ public class InstantceParticular : MonoBehaviour {
         {
             ToolBox.Get<CameraManager>().SetLocation(ToolBox.Get<CarManager>().MasCars[0], new Vector3(-20, 10, 0));
         }
-        timer = ToolBox.Get<TimerManager>().SetTimer(20f, delegate { SceneManager.LoadScene(3); });
+        timer = ToolBox.Get<TimerManager>().SetTimer(20f, delegate { ToolBox.Get<UIManager>().ShowResults(); });
 
     }
     void FixedUpdate()

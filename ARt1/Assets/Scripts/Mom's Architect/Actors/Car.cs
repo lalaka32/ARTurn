@@ -44,13 +44,13 @@ namespace BeeFly
         {
             switch (GetComponent<Car>().direction)
             {
-                case Direction.forward:
+                case Direction.Forward:
                     GetComponent<Animator>().Play("CarForwardanim");
                     break;
-                case Direction.left:
+                case Direction.Left:
                     GetComponent<Animator>().Play("CarLeftanim");
                     break;
-                case Direction.right:
+                case Direction.Right:
                     GetComponent<Animator>().Play("CarRightanim");
                     break;
             }

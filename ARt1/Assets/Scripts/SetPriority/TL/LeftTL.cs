@@ -11,19 +11,15 @@ class LeftTL : PriorityTL
     {
         
         Car observeCar;
-
         base.SetPriority(comperative, settingCar);
-        
 
         if (comperative.TryGetValue(ComperativeLocation.Front, out observeCar))
         {
-            if (observeCar.Direction != Direction.left)
+            if (observeCar.Direction != Direction.Left)
             {
                 settingCar.priority++;
             }
         }
-
-
     }
 }
 

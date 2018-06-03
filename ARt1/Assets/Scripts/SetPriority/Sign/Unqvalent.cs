@@ -13,7 +13,7 @@ class Unqvalent : IDirectionitatible
         Car observeCarLeft;
         Car observeCarRight;
 
-        if (trafficSignal == TrafficSign.secondary)
+        if (trafficSignal == TrafficSign.Secondary)
         {
             if (comperative.ContainsKey(ComperativeLocation.Left) || comperative.ContainsKey(ComperativeLocation.Right))
             {
@@ -22,11 +22,11 @@ class Unqvalent : IDirectionitatible
 
             if (comperative.TryGetValue(ComperativeLocation.Left, out observeCarLeft) && comperative.TryGetValue(ComperativeLocation.Right, out observeCarRight))
             {
-                if (observeCarLeft.Direction == Direction.left && observeCarRight.Direction != Direction.left)
+                if (observeCarLeft.Direction == Direction.Left && observeCarRight.Direction != Direction.Left)
                 {
                     settingCar.priority++;
                 }
-                else if (observeCarRight.Direction == Direction.left && observeCarLeft.Direction != Direction.left)
+                else if (observeCarRight.Direction == Direction.Left && observeCarLeft.Direction != Direction.Left)
                 {
                     settingCar.priority++;
                 }

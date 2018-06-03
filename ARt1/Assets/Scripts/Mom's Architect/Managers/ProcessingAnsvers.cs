@@ -6,6 +6,7 @@ using UnityEngine;
 public class ProcessingAnsvers:ManagerBase
 {
     public List<RoadSituation> lvlSituat = new List<RoadSituation>();
+    public List<int> mistakesese = new List<int>(); 
 
 	public RoadSituation AddLvlSituat(RoadSituation situa)
     {
@@ -15,6 +16,10 @@ public class ProcessingAnsvers:ManagerBase
     public RoadSituation GetSituation(int index)
     {
         return lvlSituat[index];
+    }
+    public void SetMistake(int number)
+    {
+        mistakesese.Add(number);
     }
     public void DebugOut(int index)
     {

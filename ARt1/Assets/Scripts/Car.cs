@@ -18,7 +18,6 @@ public class Car : MonoBehaviour
         get { return _position; }
         set
         {
-
             if ((sbyte)value < 0)
             {
                 _position = 4 + value;
@@ -74,15 +73,15 @@ public class Car : MonoBehaviour
         {
             switch (Direction)
             {
-                case Direction.forward:
+                case Direction.Forward:
                     carDir = new ForwardQvalent();
                     carDir.SetPriority(comperative, settingCar);
                     break;
-                case Direction.right:
+                case Direction.Right:
                     carDir = new DirectionRight();
                     carDir.SetPriority(comperative, settingCar);
                     break;
-                case Direction.left:
+                case Direction.Left:
                     carDir = new LeftDirectionQvalent();
                     carDir.SetPriority(comperative, settingCar);
                     break;
@@ -92,15 +91,15 @@ public class Car : MonoBehaviour
         {
             switch (Direction)
             {
-                case Direction.forward:
+                case Direction.Forward:
                     carDir = new PriorityTL();
                     carDir.SetPriority(comperative, settingCar);
                     break;
-                case Direction.right:
+                case Direction.Right:
                     carDir = new PriorityTL();
                     carDir.SetPriority(comperative, settingCar);
                     break;
-                case Direction.left:
+                case Direction.Left:
                     carDir = new LeftTL();
                     carDir.SetPriority(comperative, settingCar);
                     break;
@@ -110,15 +109,15 @@ public class Car : MonoBehaviour
         {
             switch (Direction)
             {
-                case Direction.forward:
+                case Direction.Forward:
                     carDir = new Unqvalent();
                     carDir.SetPriority(comperative, settingCar);
                     break;
-                case Direction.right:
+                case Direction.Right:
                     carDir = new Unqvalent();
                     carDir.SetPriority(comperative, settingCar);
                     break;
-                case Direction.left:
+                case Direction.Left:
                     carDir = new LeftUnqvalent();
                     carDir.SetPriority(comperative, settingCar);
                     break;
@@ -131,13 +130,13 @@ public class Car : MonoBehaviour
         var animator = GetComponent<Animator>();
         switch (Direction)
         {
-            case Direction.forward:
+            case Direction.Forward:
                 GetComponentInChildren<Animator>().Play("CarForwardanim");
                 break;
-            case Direction.left:
+            case Direction.Left:
                 GetComponentInChildren<Animator>().Play("CarLeftanim");
                 break;
-            case Direction.right:
+            case Direction.Right:
                 GetComponentInChildren<Animator>().Play("CarRightanim");
                 break;
         }

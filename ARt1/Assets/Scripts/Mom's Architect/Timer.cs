@@ -21,7 +21,6 @@ public class Timer
         TimeCount -= deltaTime;
         if (TimeCount<0)
         {
-            Debug.Log(TimeCount);
             Stop();
             CallBack();
         }
@@ -29,7 +28,6 @@ public class Timer
     public void Stop()
     {
         IsActive = false;
-       
     }
 }
 

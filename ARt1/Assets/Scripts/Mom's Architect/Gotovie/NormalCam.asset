@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usialCamPrefab: {fileID: 1225746232939948, guid: aaf91fce28ce10d468bd233c5297fa70,
     type: 2}
-  ARCam: {fileID: 1412269079804972, guid: 10d06f6500f172c4380a1de825267458, type: 2}
+  ARCam: {fileID: 1280619093294380, guid: 5c27899c3cfa32f4fbf6aa1f1e7152c9, type: 2}

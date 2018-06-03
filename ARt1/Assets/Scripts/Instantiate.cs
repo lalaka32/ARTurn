@@ -15,9 +15,10 @@ public class Instantiate : MonoBehaviour
 
     private void Start()
     {
-        ToolBox.Get<CrossManager>().SetCrossGO();
-        ToolBox.Get<UIManager>().SetAnsverButtons();
         ToolBox.Get<CameraManager>().SetCamGO(ToolBox.Get<SettingsPlayer>().ARCamera);
+        ToolBox.Get<CrossManager>().SetCrossGO(ToolBox.Get<SettingsPlayer>().ARCamera);
+        ToolBox.Get<UIManager>().SetAnsverButtons();
+        
 
         StartCoroutine(SimpleGenerator());
     }
@@ -27,13 +28,15 @@ public class Instantiate : MonoBehaviour
         PositionRotation[] posRotAnim = GetConstPRofCars();
         int numberOfSituation = 0;
         ToolBox.Get<CarManager>().Clear();
-
-        while (numberOfSituation != 10 || mistakes == 2)//думаю сделать чтото вроде proseesing ansver manager
+        ToolBox.Get<ProcessingAnsvers>().mistakesese.Clear();
+        ToolBox.Get<ProcessingAnsvers>().lvlSituat.Clear();
+        while (numberOfSituation != 10 || ToolBox.Get<ProcessingAnsvers>().mistakesese.Count<2)//думаю сделать чтото вроде proseesing ansver manager
                                                        //там сделать эту карутину
         {
             Restart = false;
             RoadSituation RS = new RoadSituation(
-                Random.Range(2, 4), Shuffle(GetConstPRofCars()), Convert.ToBoolean(Random.Range(0, 2)), new Direction[] {(Direction)1, (Direction)1, (Direction)1, (Direction)1/*(Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3)*/ },
+                Random.Range(2, 4), Shuffle(GetConstPRofCars()), Convert.ToBoolean(Random.Range(0, 2)),
+                new Direction[] {(Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3) },
                 (TrafficSign)Random.Range(0, 3), 4, ShaffleOdd(ConstSignTransform()),
                 (TrafficLight)Random.Range(0, 4), 4, GetConstPRofTL());
 
@@ -50,7 +53,19 @@ public class Instantiate : MonoBehaviour
             }
             ToolBox.Get<UIManager>().CreateBottons(ToolBox.Get<CarManager>().MasCars.Length);
 
-            timer = ToolBox.Get<TimerManager>().SetTimer(20f, delegate { Restart = true; });
+            timer = ToolBox.Get<TimerManager>().SetTimer(20f, delegate {
+                if (ToolBox.Get<ProcessingAnsvers>().mistakesese.Count < 1)
+                {
+                    Debug.Log(ToolBox.Get<ProcessingAnsvers>().mistakesese.Count + "ToolBox.Get<ProcessingAnsvers>().mistakesese.Count");
+                    ToolBox.Get<ProcessingAnsvers>().mistakesese.Add(ToolBox.Get<ProcessingAnsvers>().lvlSituat.Count);
+                    Restart = true;
+                }
+                else
+                {
+                    ToolBox.Get<ProcessingAnsvers>().mistakesese.Add(ToolBox.Get<ProcessingAnsvers>().lvlSituat.Count);
+                    ToolBox.Get<UIManager>().ShowResults();
+                }
+            });
 
             yield return new WaitWhile(() => Restart == false);
 
@@ -59,6 +74,7 @@ public class Instantiate : MonoBehaviour
             ToolBox.Get<CarManager>().Clear();
             ToolBox.Get<TrafficLightManager>().Clear();
             numberOfSituation++;
+
         }
 
         ToolBox.Get<UIManager>().ShowResults();
@@ -101,20 +117,20 @@ public class Instantiate : MonoBehaviour
     {
         PositionRotation[] posRotAnim = new PositionRotation[4];
 
-        posRotAnim[0] = new PositionRotation(new Vector3(-0.4f, 0.015f, -0.4f), new Vector3(-90, 180, 0), Position.first);
-        posRotAnim[1] = new PositionRotation(new Vector3(-0.4f, 0.015f, 0.4f), new Vector3(-90, -90, 0), Position.second);
-        posRotAnim[2] = new PositionRotation(new Vector3(0.4f, 0.015f, 0.4f), new Vector3(-90, 0, 0), Position.third);
-        posRotAnim[3] = new PositionRotation(new Vector3(0.4f, 0.015f, -0.4f), new Vector3(-90, -90, -180), Position.fourth);
+        posRotAnim[0] = new PositionRotation(new Vector3(-0.4f, 0.015f, -0.4f), new Vector3(-90, 180, 0), Position.First);
+        posRotAnim[1] = new PositionRotation(new Vector3(-0.4f, 0.015f, 0.4f), new Vector3(-90, -90, 0), Position.Second);
+        posRotAnim[2] = new PositionRotation(new Vector3(0.4f, 0.015f, 0.4f), new Vector3(-90, 0, 0), Position.Third);
+        posRotAnim[3] = new PositionRotation(new Vector3(0.4f, 0.015f, -0.4f), new Vector3(-90, -90, -180), Position.Fourth);
         return posRotAnim;
     }
 
     PositionRotation[] GetConstPRofCars()
     {
         PositionRotation[] posRotAnim = new PositionRotation[4];
-        posRotAnim[0] = new PositionRotation(new Vector3(-0.6f, 0, -0.163f), new Vector3(0, 90, 0), Position.first, ToolBox.Get<CarManager>().controller);
-        posRotAnim[1] = new PositionRotation(new Vector3(-0.167f, 0, 0.625f), new Vector3(0, 180, 0), Position.second, ToolBox.Get<CarManager>().controller);
-        posRotAnim[2] = new PositionRotation(new Vector3(0.6f, 0, 0.163f), new Vector3(0, -90, 0), Position.third, ToolBox.Get<CarManager>().controller);
-        posRotAnim[3] = new PositionRotation(new Vector3(0.167f, 0, -0.625f), new Vector3(0, 0, 0), Position.fourth, ToolBox.Get<CarManager>().controller);
+        posRotAnim[0] = new PositionRotation(new Vector3(-0.6f, 0, -0.163f), new Vector3(0, 90, 0), Position.First, ToolBox.Get<CarManager>().controller);
+        posRotAnim[1] = new PositionRotation(new Vector3(-0.167f, 0, 0.625f), new Vector3(0, 180, 0), Position.Second, ToolBox.Get<CarManager>().controller);
+        posRotAnim[2] = new PositionRotation(new Vector3(0.6f, 0, 0.163f), new Vector3(0, -90, 0), Position.Third, ToolBox.Get<CarManager>().controller);
+        posRotAnim[3] = new PositionRotation(new Vector3(0.167f, 0, -0.625f), new Vector3(0, 0, 0), Position.Fourth, ToolBox.Get<CarManager>().controller);
         return posRotAnim;
     }
     PositionRotation[] GetConstPRofTL()

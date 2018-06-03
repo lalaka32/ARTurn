@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using Vuforia;
 
 [CreateAssetMenu(fileName = "CrossManager", menuName = "Managers/CrossManager")]
 class CrossManager : ManagerBase
@@ -12,9 +13,13 @@ class CrossManager : ManagerBase
 
     public GameObject Cross { get; private set; }
 
-    public void SetCrossGO()
+    public void SetCrossGO(bool AR)
     {
         Cross = Instantiate(prefabOfCross, GameObject.Find("Static").transform, false);
+        if (AR)
+        {
+            Cross.GetComponent<ImageTargetBehaviour>().enabled = true;
+        }
     }
 }
 

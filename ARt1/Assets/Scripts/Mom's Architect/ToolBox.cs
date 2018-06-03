@@ -4,8 +4,8 @@ using UnityEngine;
 using BeeFly;
 using System;
 
-public class ToolBox :Singleton<ToolBox> {
-
+public class ToolBox : Singleton<ToolBox>
+{
     //Инкапсулированная структура данных для хранения систем
     private Dictionary<Type, object> data = new Dictionary<Type, object>();
 
@@ -25,25 +25,20 @@ public class ToolBox :Singleton<ToolBox> {
         //Объект не менеджер то 
 
         Instance.data.Add(obj.GetType(), managerTemp);
-        //Типо this только метод то статический
 
         if (add is IAwake)//Возможность подрубать какую-то
                           //логику на стадии добавления в наш список
             (add as IAwake).OnAwake();
-
     }
-    
+
     //Считывание
     public static T Get<T>()
     {
         object resolve;
-        Instance.data.TryGetValue(typeof(T),out resolve);
+        Instance.data.TryGetValue(typeof(T), out resolve);
         return (T)resolve;
     }
-    public void ClearScene()//Проблема в том что т.к. Тулбокс это
-        //не уничтожаемый объект то он сохранит всю дату с
-        //менеджеров и будет куча ошибок нужно удалитб весь список
-        //менеджеров
+    public void ClearScene()
     {
 
     }
