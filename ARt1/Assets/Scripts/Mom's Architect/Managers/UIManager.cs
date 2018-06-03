@@ -66,19 +66,19 @@ class UIManager : ManagerBase
         Canvas.transform.Find(string.Format("{0}", 1.ToString().Trim())).GetComponent<Button>().onClick.AddListener(
             delegate
             {
-                ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(1);
+                ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(0);
                 GameObject.Find("[SETUP]").GetComponent<Instantiate>().timer.Stop();
             });
         Canvas.transform.Find(string.Format("{0}", 2.ToString().Trim())).GetComponent<Button>().onClick.AddListener(
             delegate
             {
-                ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(2);
+                ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(1);
                 GameObject.Find("[SETUP]").GetComponent<Instantiate>().timer.Stop();
             });
         Canvas.transform.Find(string.Format("{0}", 3.ToString().Trim())).GetComponent<Button>().onClick.AddListener(
             delegate
             {
-                ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(3);
+                ToolBox.Get<CrossManager>().Cross.GetComponent<LOGIC_V001>().MakeLogicOnAns(2);
                 GameObject.Find("[SETUP]").GetComponent<Instantiate>().timer.Stop();
             });
         #endregion
