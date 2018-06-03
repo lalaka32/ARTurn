@@ -31,8 +31,6 @@ public class Car : MonoBehaviour
             {
                 _position = value;
             }
-
-
         }
     }
 
@@ -126,10 +124,6 @@ public class Car : MonoBehaviour
                     break;
             }
         }
-    }
-    private void Awake()
-    {
-        //direction = (Direction)Random.Range(0, 3);
     }
 
     public void StartAnime()

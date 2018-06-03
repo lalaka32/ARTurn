@@ -28,12 +28,12 @@ public class Instantiate : MonoBehaviour
         int numberOfSituation = 0;
         ToolBox.Get<CarManager>().Clear();
 
-        while (numberOfSituation != 9 || mistakes == 2)//думаю сделать чтото вроде proseesing ansver manager
+        while (numberOfSituation != 10 || mistakes == 2)//думаю сделать чтото вроде proseesing ansver manager
                                                        //там сделать эту карутину
         {
             Restart = false;
             RoadSituation RS = new RoadSituation(
-                Random.Range(2, 4), Shuffle(GetConstPRofCars()), Convert.ToBoolean(Random.Range(0, 2)), new Direction[] {(Direction)1, (Direction)1, (Direction)1, (Direction)1 },
+                Random.Range(2, 4), Shuffle(GetConstPRofCars()), Convert.ToBoolean(Random.Range(0, 2)), new Direction[] {(Direction)1, (Direction)1, (Direction)1, (Direction)1/*(Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3)*/ },
                 (TrafficSign)Random.Range(0, 3), 4, ShaffleOdd(ConstSignTransform()),
                 (TrafficLight)Random.Range(0, 4), 4, GetConstPRofTL());
 
@@ -43,7 +43,7 @@ public class Instantiate : MonoBehaviour
 
             ToolBox.Get<CarManager>().GenerateCars(RS, ToolBox.Get<CrossManager>().Cross.transform);
             ToolBox.Get<ProcessingAnsvers>().lvlSituat.Add(RS);//---------------------
-
+            ToolBox.Get<ProcessingAnsvers>().DebugOut(numberOfSituation);
             if (!ToolBox.Get<SettingsPlayer>().ARCamera)
             {
                 ToolBox.Get<CameraManager>().SetLocation(ToolBox.Get<CarManager>().MasCars[0], new Vector3(-20, 10, 0));
