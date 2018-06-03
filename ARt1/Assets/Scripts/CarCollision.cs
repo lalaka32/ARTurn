@@ -8,9 +8,8 @@ public class CarCollision : MonoBehaviour {
     void OnCollisionEnter(UnityEngine.Collision collision)
     {
         
-        if ( collision.gameObject.transform.parent.transform.parent.tag == "BotCar")
+        if ( collision.gameObject.transform.parent.transform.parent.tag == "BotCar"| collision.gameObject.transform.parent.transform.parent.tag =="VIP")
         {
-            Debug.Log("Collision!!!");
             othercar = collision.gameObject;
             Invoke("DestroyAnimators", 0.3f);
         }

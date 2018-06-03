@@ -25,7 +25,8 @@ public class LOGIC_V001 : MonoBehaviour
         MakePrioritiesOff();
 
         truePlayerPriority = MasCars[0].GetComponent<Car>().priority;
-        if (MasCars[0].GetComponent<Car>().priority == (Priority)player)
+        MasCars[0].GetComponent<Car>().priority = (Priority)player;
+        if (truePlayerPriority == (Priority)player)
         {
             ToolBox.Get<UIManager>().ShowWinMenu();
         }
@@ -136,7 +137,7 @@ public class LOGIC_V001 : MonoBehaviour
                     {
                         if (listOfpositions[(Position)i].tag != "VIP" && listOfpositions[(Position)i].tag != "Player")
                         {
-                            if (ToolBox.Get<TrafficLightManager>().PosTL[(Position)i] == TrafficLight.green)
+                            if (ToolBox.Get<TrafficLightManager>().PosTL[(Position)i] == TrafficLight.Green)
                             {
                                 masGreenCars.Add(listOfpositions[(Position)i].gameObject);
                             }
@@ -155,7 +156,7 @@ public class LOGIC_V001 : MonoBehaviour
                     {
                         if (listOfpositions[(Position)i].tag != "VIP")
                         {
-                            if (ToolBox.Get<TrafficLightManager>().PosTL[(Position)i] == TrafficLight.green)
+                            if (ToolBox.Get<TrafficLightManager>().PosTL[(Position)i] == TrafficLight.Green)
                             {
                                 masGreenCars.Add(listOfpositions[(Position)i].gameObject);
                             }
@@ -216,6 +217,7 @@ public class LOGIC_V001 : MonoBehaviour
             Debug.Log(startprior);
             if (truePlayerPriority != MasCars[0].GetComponent<Car>().priority && MasCars[0].GetComponent<Car>().priority == (Priority)j)
             {
+                
                 MasCars[0].GetComponent<Car>().StartAnime();
             }
             for (int i = 0; i < cars.Length; i++)
@@ -224,6 +226,7 @@ public class LOGIC_V001 : MonoBehaviour
                 if (cars[i].GetComponent<Car>().priority == (Priority)j)
                 {
                     masactivecars.Add(cars[i]);
+                    
                     cars[i].GetComponent<Car>().StartAnime();
                 }
             }
@@ -234,6 +237,7 @@ public class LOGIC_V001 : MonoBehaviour
             if (ToolBox.Get<TrafficLightManager>().PosTL != null && startprior == 2 && truePlayerPriority != MasCars[0].GetComponent<Car>().priority && MasCars[0].GetComponent<Car>().priority == (Priority)startprior)
             {
                 Debug.Log("eze");
+                
                 MasCars[0].GetComponent<Car>().StartAnime();
             }
         }

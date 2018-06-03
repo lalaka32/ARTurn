@@ -35,7 +35,8 @@ public class Instantiate : MonoBehaviour
         {
             Restart = false;
             RoadSituation RS = new RoadSituation(
-                Random.Range(2, 4), Shuffle(GetConstPRofCars()), Convert.ToBoolean(Random.Range(0, 2)), new Direction[] {(Direction)1, (Direction)1, (Direction)1, (Direction)1/*(Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3)*/ },
+                Random.Range(2, 4), Shuffle(GetConstPRofCars()), Convert.ToBoolean(Random.Range(0, 2)),
+                new Direction[] {(Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3) },
                 (TrafficSign)Random.Range(0, 3), 4, ShaffleOdd(ConstSignTransform()),
                 (TrafficLight)Random.Range(0, 4), 4, GetConstPRofTL());
 
@@ -52,7 +53,19 @@ public class Instantiate : MonoBehaviour
             }
             ToolBox.Get<UIManager>().CreateBottons(ToolBox.Get<CarManager>().MasCars.Length);
 
-            timer = ToolBox.Get<TimerManager>().SetTimer(20f, delegate { Restart = true; });
+            timer = ToolBox.Get<TimerManager>().SetTimer(20f, delegate {
+                if (ToolBox.Get<ProcessingAnsvers>().mistakesese.Count < 1)
+                {
+                    Debug.Log(ToolBox.Get<ProcessingAnsvers>().mistakesese.Count + "ToolBox.Get<ProcessingAnsvers>().mistakesese.Count");
+                    ToolBox.Get<ProcessingAnsvers>().mistakesese.Add(ToolBox.Get<ProcessingAnsvers>().lvlSituat.Count);
+                    Restart = true;
+                }
+                else
+                {
+                    ToolBox.Get<ProcessingAnsvers>().mistakesese.Add(ToolBox.Get<ProcessingAnsvers>().lvlSituat.Count);
+                    ToolBox.Get<UIManager>().ShowResults();
+                }
+            });
 
             yield return new WaitWhile(() => Restart == false);
 
