@@ -35,7 +35,7 @@ public class Instantiate : MonoBehaviour
         {
             Restart = false;
             RoadSituation RS = new RoadSituation(
-                Random.Range(2, 4), Shuffle(GetConstPRofCars()), Convert.ToBoolean(Random.Range(0, 2)), new Direction[] {(Direction)1, (Direction)1, (Direction)1, (Direction)1 },
+                Random.Range(2, 4), Shuffle(GetConstPRofCars()), Convert.ToBoolean(Random.Range(0, 2)), new Direction[] {(Direction)1, (Direction)1, (Direction)1, (Direction)1/*(Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3), (Direction)Random.Range(0, 3)*/ },
                 (TrafficSign)Random.Range(0, 3), 4, ShaffleOdd(ConstSignTransform()),
                 (TrafficLight)Random.Range(0, 4), 4, GetConstPRofTL());
 

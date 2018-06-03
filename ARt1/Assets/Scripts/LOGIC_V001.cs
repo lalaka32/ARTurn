@@ -67,6 +67,7 @@ public class LOGIC_V001 : MonoBehaviour
         }
         StartCoroutine(StartByPrioritets(cars.ToArray(), nextprior));
 
+
     }
     IEnumerator GroupCarsStart(List<GameObject> cars, bool isReverseTrafficLights)
     {
@@ -127,19 +128,41 @@ public class LOGIC_V001 : MonoBehaviour
     {
         if (ToolBox.Get<TrafficLightManager>().PosTL != null)
         {
-            for (int i = 0; i < 4; i++)
+            if (truePlayerPriority != MasCars[0].GetComponent<Car>().priority)
             {
-                if (listOfpositions.ContainsKey((Position)i))
+                for (int i = 0; i < 4; i++)
                 {
-                    if (listOfpositions[(Position)i].tag != "VIP")
+                    if (listOfpositions.ContainsKey((Position)i))
                     {
-                        if (ToolBox.Get<TrafficLightManager>().PosTL[(Position)i] == TrafficLight.Green)
+                        if (listOfpositions[(Position)i].tag != "VIP" && listOfpositions[(Position)i].tag != "Player")
                         {
-                            masGreenCars.Add(listOfpositions[(Position)i].gameObject);
+                            if (ToolBox.Get<TrafficLightManager>().PosTL[(Position)i] == TrafficLight.green)
+                            {
+                                masGreenCars.Add(listOfpositions[(Position)i].gameObject);
+                            }
+                            else masRedCars.Add(listOfpositions[(Position)i].gameObject);
                         }
-                        else masRedCars.Add(listOfpositions[(Position)i].gameObject);
+                        else if (listOfpositions[(Position)i].tag == "VIP")
+                            masVIPs.Add(listOfpositions[(Position)i].gameObject);
                     }
-                    else masVIPs.Add(listOfpositions[(Position)i].gameObject);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    if (listOfpositions.ContainsKey((Position)i))
+                    {
+                        if (listOfpositions[(Position)i].tag != "VIP")
+                        {
+                            if (ToolBox.Get<TrafficLightManager>().PosTL[(Position)i] == TrafficLight.green)
+                            {
+                                masGreenCars.Add(listOfpositions[(Position)i].gameObject);
+                            }
+                            else masRedCars.Add(listOfpositions[(Position)i].gameObject);
+                        }
+                        else masVIPs.Add(listOfpositions[(Position)i].gameObject);
+                    }
                 }
             }
         }
@@ -191,9 +214,13 @@ public class LOGIC_V001 : MonoBehaviour
         for (int j = startprior; j <= maxprior; j++)//цикл приоритетов
         {
             Debug.Log(startprior);
-            //masactivecars.Clear();
+            if (truePlayerPriority != MasCars[0].GetComponent<Car>().priority && MasCars[0].GetComponent<Car>().priority == (Priority)j)
+            {
+                MasCars[0].GetComponent<Car>().StartAnime();
+            }
             for (int i = 0; i < cars.Length; i++)
             {
+
                 if (cars[i].GetComponent<Car>().priority == (Priority)j)
                 {
                     masactivecars.Add(cars[i]);
@@ -203,8 +230,14 @@ public class LOGIC_V001 : MonoBehaviour
             StartCoroutine(StartNextMoment());
             startprior++;
             yield return new WaitWhile(() => masactivecars.Count != 0);
-
+            //Debug.Log("eze1");
+            if (ToolBox.Get<TrafficLightManager>().PosTL != null && startprior == 2 && truePlayerPriority != MasCars[0].GetComponent<Car>().priority && MasCars[0].GetComponent<Car>().priority == (Priority)startprior)
+            {
+                Debug.Log("eze");
+                MasCars[0].GetComponent<Car>().StartAnime();
+            }
         }
+
     }
 
     IEnumerator StartNextMoment()
