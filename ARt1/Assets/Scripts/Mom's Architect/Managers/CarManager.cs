@@ -111,10 +111,14 @@ class CarManager : ManagerBase
     }
     public void Clear()
     {
-        foreach (GameObject item in ToolBox.Get<CarManager>().MasCars)
+        if (MasCars !=null)
         {
-            Destroy(item);
+            foreach (GameObject item in ToolBox.Get<CarManager>().MasCars)
+            {
+                Destroy(item);
+            }
         }
+
     }
 }
 

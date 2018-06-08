@@ -14,7 +14,11 @@ public class colisions : MonoBehaviour {
     {
         if (GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>()==collision.collider)
         {
-            Destroy(gameObject.GetComponent<Animator>());
+            if (gameObject.GetComponent<Animator>()!=null)
+            {
+                Destroy(gameObject.GetComponent<Animator>());
+            }
+            
             
         }
     }

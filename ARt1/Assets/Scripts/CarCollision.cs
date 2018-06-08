@@ -11,12 +11,19 @@ public class CarCollision : MonoBehaviour {
         if ( collision.gameObject.transform.parent.transform.parent.tag == "BotCar"| collision.gameObject.transform.parent.transform.parent.tag =="VIP")
         {
             othercar = collision.gameObject;
-            Invoke("DestroyAnimators", 0.3f);
+            DestroyAnimators();
         }
     }
     void DestroyAnimators()
     {
-        Destroy(gameObject.transform.parent.GetComponent<Animator>());
-        Destroy(othercar.transform.parent.GetComponent<Animator>());
+        if (gameObject.transform.parent.GetComponent<Animator>()!=null)
+        {
+            Destroy(gameObject.transform.parent.GetComponent<Animator>());
+        }
+        if (othercar.transform.parent.GetComponent<Animator>()!=null)
+        {
+            Destroy(othercar.transform.parent.GetComponent<Animator>());
+        }
+
     }
 }

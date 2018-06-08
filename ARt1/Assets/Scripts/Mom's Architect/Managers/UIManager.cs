@@ -265,7 +265,11 @@ class UIManager : ManagerBase
     }
     public void ClearPrefab()
     {
-        Destroy(Canvas);
+        if (Canvas!=null)
+        {
+            Destroy(Canvas);
+        }
+        
     }
         public void SetTimerValue(float time)
     {
