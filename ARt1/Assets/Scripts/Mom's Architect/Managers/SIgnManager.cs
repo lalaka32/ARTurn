@@ -47,11 +47,18 @@ class SignManager : ManagerBase
     }
     public void ClearSigns()
     {
-        TS = null;
-        foreach (GameObject sign in signArray)
+        if (TS!=null)
         {
-            Destroy(sign);
+            TS = null;
         }
+        if (signArray!=null)
+        {
+            foreach (GameObject sign in signArray)
+            {
+                Destroy(sign);
+            }
+        }
+        
     }
     public void GenerationTrafficSigns()
     {

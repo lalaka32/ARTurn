@@ -21,7 +21,7 @@ public class Isstopactivating : MonoBehaviour {
         while (true)
         {
             gameObject.transform.Find("Body").GetComponent<Rigidbody>().AddForce(Vector * 1f);
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

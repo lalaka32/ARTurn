@@ -20,6 +20,7 @@ public class Instantiate : MonoBehaviour, ITrackableEventHandler
     {
         ToolBox.Get<CameraManager>().SetCamGO(ToolBox.Get<SettingsPlayer>().ARCamera);
         ToolBox.Get<CrossManager>().SetCrossGO(ToolBox.Get<SettingsPlayer>().ARCamera);
+
         if (ToolBox.Get<SettingsPlayer>().ARCamera)
         {
             mTrackableBehaviour = ToolBox.Get<CrossManager>().Cross.GetComponent<TrackableBehaviour>();
@@ -39,11 +40,13 @@ public class Instantiate : MonoBehaviour, ITrackableEventHandler
     {
         PositionRotation[] posRotAnim = GetConstPRofCars();
         int numberOfSituation = 0;
+
         ToolBox.Get<CarManager>().Clear();
         ToolBox.Get<ProcessingAnsvers>().mistakesese.Clear();
         ToolBox.Get<ProcessingAnsvers>().lvlSituat.Clear();
-        while (numberOfSituation != 10 || ToolBox.Get<ProcessingAnsvers>().mistakesese.Count < 2)
+        while (numberOfSituation <= 10 && ToolBox.Get<ProcessingAnsvers>().mistakesese.Count < 2)
         {
+
             Restart = false;
             RoadSituation RS = new RoadSituation(
                 Random.Range(2, 4), Shuffle(GetConstPRofCars()), Convert.ToBoolean(Random.Range(0, 2)),
@@ -62,7 +65,6 @@ public class Instantiate : MonoBehaviour, ITrackableEventHandler
                 ToolBox.Get<CameraManager>().SetLocation(ToolBox.Get<CarManager>().MasCars[0], new Vector3(-20, 10, 0));
             }
             ToolBox.Get<UIManager>().CreateBottons(ToolBox.Get<CarManager>().MasCars.Length);
-
             timer = ToolBox.Get<TimerManager>().SetTimer(20f, delegate
             {
                 if (ToolBox.Get<ProcessingAnsvers>().mistakesese.Count < 1)
@@ -84,9 +86,8 @@ public class Instantiate : MonoBehaviour, ITrackableEventHandler
             ToolBox.Get<CarManager>().Clear();
             ToolBox.Get<TrafficLightManager>().Clear();
             numberOfSituation++;
-
+            Debug.Log(string.Format("{0}------------numberOfSituation", numberOfSituation));
         }
-
         ToolBox.Get<UIManager>().ShowResults();
     }
     void FixedUpdate()
@@ -165,7 +166,7 @@ public class Instantiate : MonoBehaviour, ITrackableEventHandler
         newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
         {
             ToolBox.Get<UIManager>().SetAnsverButtons();
-            
+
             StartCoroutine(SimpleGenerator());
 
         }
