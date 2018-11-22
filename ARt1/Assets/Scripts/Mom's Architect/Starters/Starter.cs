@@ -14,7 +14,6 @@ class Starter: MonoBehaviour{
     
     private void Awake()
     {
-		Screen.orientation = ScreenOrientation.Landscape;
         foreach (ManagerBase item in managers)
         {
             ToolBox.Add(item);
