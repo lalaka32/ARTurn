@@ -55,9 +55,13 @@ class UIManager : ManagerBase
 
     public void SetAnsverButtons()
     {
-        buttons = new GameObject[3];
+		buttons = new GameObject[3];
         Canvas = Instantiate(canvasPrefab, GameObject.Find("UI").transform, false);
-        for (int i = 1; i < 4; i++)
+		Canvas.transform.Find("Home").GetComponent<Button>().onClick.AddListener(delegate
+		{
+			ShowMainMenu();
+		});
+		for (int i = 1; i < 4; i++)
         {
             buttons[i - 1] = Canvas.transform.Find(i.ToString()).gameObject;
         }
@@ -165,7 +169,7 @@ class UIManager : ManagerBase
         }
         for (int i = 0; i < ToolBox.Get<ProcessingAnsvers>().mistakesese.Count; i++)
         {
-            Debug.Log(ToolBox.Get<ProcessingAnsvers>().mistakesese[i].ToString());
+            //Debug.Log(ToolBox.Get<ProcessingAnsvers>().mistakesese[i].ToString());
             ConclusionMenu.transform.Find(ToolBox.Get<ProcessingAnsvers>().mistakesese[i].ToString()).GetComponent<Image>().color = Color.red;
         }
         ConclusionMenu.transform.Find("Text").GetComponent<Text>().text = (ToolBox.Get<ProcessingAnsvers>().lvlSituat.Count-ToolBox.Get<ProcessingAnsvers>().mistakesese.Count)+" out of " + ToolBox.Get<ProcessingAnsvers>().lvlSituat.Count + ""+ ConclusionMenu.transform.Find("Text").GetComponent<Text>().text;
