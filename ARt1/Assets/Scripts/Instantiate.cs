@@ -44,7 +44,7 @@ public class Instantiate : MonoBehaviour, ITrackableEventHandler
         ToolBox.Get<CarManager>().Clear();
         ToolBox.Get<ProcessingAnsvers>().mistakesese.Clear();
         ToolBox.Get<ProcessingAnsvers>().lvlSituat.Clear();
-        while (numberOfSituation <= 10 && ToolBox.Get<ProcessingAnsvers>().mistakesese.Count < 2)
+        while (numberOfSituation < 10 && ToolBox.Get<ProcessingAnsvers>().mistakesese.Count < 2)
         {
 
             Restart = false;
