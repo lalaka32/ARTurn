@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 20751877588677918}
   - component: {fileID: 81097067345650110}
   - component: {fileID: 114055326694245518}
-  - component: {fileID: 114957733198794086}
+  - component: {fileID: 114501642439046194}
   m_Layer: 0
   m_Name: ARCamera 3
   m_TagString: Untagged
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mWorldCenterMode: 1
   mWorldCenter: {fileID: 0}
---- !u!114 &114957733198794086
+--- !u!114 &114501642439046194
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -107,6 +107,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1376841648972160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 115969862, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
