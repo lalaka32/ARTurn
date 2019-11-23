@@ -1,10 +1,34 @@
 fileFormatVersion: 2
 guid: e930df45be3225c45bd5e533acf293f6
-timeCreated: 1526754233
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: Box001
+    100002: Box002
+    100004: Cylinder001
+    100006: Cylinder002
+    100008: //RootNode
+    400000: Box001
+    400002: Box002
+    400004: Cylinder001
+    400006: Cylinder002
+    400008: //RootNode
+    2100000: No Name
+    2100002: 01 - Default
+    2300000: Box001
+    2300002: Box002
+    2300004: Cylinder001
+    2300006: Cylinder002
+    3300000: Box001
+    3300002: Box002
+    3300004: Cylinder001
+    3300006: Cylinder002
+    4300000: Cylinder001
+    4300002: Cylinder002
+    4300004: Box001
+    4300006: Box002
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1

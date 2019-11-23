@@ -44,7 +44,7 @@ public class Instantiate : MonoBehaviour, ITrackableEventHandler
         ToolBox.Get<CarManager>().Clear();
         ToolBox.Get<ProcessingAnsvers>().mistakesese.Clear();
         ToolBox.Get<ProcessingAnsvers>().lvlSituat.Clear();
-        while (numberOfSituation <= 10 && ToolBox.Get<ProcessingAnsvers>().mistakesese.Count < 2)
+        while (numberOfSituation < 10 && ToolBox.Get<ProcessingAnsvers>().mistakesese.Count < 2)
         {
 
             Restart = false;
@@ -131,10 +131,10 @@ public class Instantiate : MonoBehaviour, ITrackableEventHandler
     {
         PositionRotation[] posRotAnim = new PositionRotation[4];
 
-        posRotAnim[0] = new PositionRotation(new Vector3(-0.4f, 0.015f, -0.4f), new Vector3(-90, 180, 0), Position.First);
-        posRotAnim[1] = new PositionRotation(new Vector3(-0.4f, 0.015f, 0.4f), new Vector3(-90, -90, 0), Position.Second);
-        posRotAnim[2] = new PositionRotation(new Vector3(0.4f, 0.015f, 0.4f), new Vector3(-90, 0, 0), Position.Third);
-        posRotAnim[3] = new PositionRotation(new Vector3(0.4f, 0.015f, -0.4f), new Vector3(-90, -90, -180), Position.Fourth);
+        posRotAnim[0] = new PositionRotation(new Vector3(-0.5f, 0.1f, -0.4f), new Vector3(-90, 180, 0), Position.First);
+        posRotAnim[1] = new PositionRotation(new Vector3(-0.5f, 0.1f, 0.4f), new Vector3(-90, -90, 0), Position.Second);
+        posRotAnim[2] = new PositionRotation(new Vector3(0.5f, 0.1f, 0.4f), new Vector3(-90, 0, 0), Position.Third);
+        posRotAnim[3] = new PositionRotation(new Vector3(0.5f, 0.1f, -0.4f), new Vector3(-90, -90, -180), Position.Fourth);
         return posRotAnim;
     }
 

@@ -17,8 +17,4 @@ MonoBehaviour:
     type: 2}
   prefabOfStop: {fileID: 1954569064002794, guid: b20db528da768f44ca2a1fb7fa393f25,
     type: 2}
-  signArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  signArray: []
