@@ -9,21 +9,25 @@ using Vuforia;
 [CreateAssetMenu(fileName = "CrossManager", menuName = "Managers/CrossManager")]
 class CrossManager : ManagerBase
 {
-    public GameObject prefabOfCross;
+	[SerializeField]
+	public GameObject prefabOfCross;
+	[SerializeField]
+	public GameObject prefabOfArCross;
 
-    public GameObject Cross { get; private set; }
+	public GameObject Cross { get; private set; }
 
     public void SetCrossGO(bool AR)
     {
-        Cross = Instantiate(prefabOfCross, GameObject.Find("Static").transform, false);
+        
         if (AR)
         {
-            Cross.GetComponent<ImageTargetBehaviour>().enabled = true;
-            Cross.GetComponent<DefaultInitializationErrorHandler>().enabled = true;
-            Cross.GetComponent<TurnOffBehaviour>().enabled = true;
-            Cross.GetComponent<DefaultTrackableEventHandler>().enabled = true;
+			Cross = Instantiate(prefabOfArCross, GameObject.Find("Static").transform, false);
 
         }
+		else
+		{
+			Cross = Instantiate(prefabOfCross, GameObject.Find("Static").transform, false);
+		}
         Cross.transform.eulerAngles= new Vector3 (0, 0, 0);
     }
     public void setAngles()
