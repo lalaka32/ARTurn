@@ -13,10 +13,10 @@ public class ToolBox : Singleton<ToolBox>
     public static void Add(object obj)
     {
         var add = obj;
-        ManagerBase managerTemp = obj as ManagerBase;
+        ScriptableObject Temp = obj as ScriptableObject;
 
-        if (managerTemp != null)
-            add = Instantiate(managerTemp);//копируем скриптабл обжект со всеми настройками
+        if (Temp != null)
+            add = Instantiate(Temp);//копируем скриптабл обжект со всеми настройками
         //У этих скриптабл ести такая харк-ка они сохраняют данные после того как
         // сцена закончилась.
 
@@ -24,7 +24,7 @@ public class ToolBox : Singleton<ToolBox>
             return;
         //Объект не менеджер то 
 
-        Instance.data.Add(obj.GetType(), managerTemp);
+        Instance.data.Add(obj.GetType(), Temp);
 
         if (add is IAwake)//Возможность подрубать какую-то
                           //логику на стадии добавления в наш список

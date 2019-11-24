@@ -11,4 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4606329d13ca513488dac7652fe9c367, type: 3}
   m_Name: ArCam
   m_EditorClassIdentifier: 
-  camGO: {fileID: 1412269079804972, guid: 10d06f6500f172c4380a1de825267458, type: 2}
+  usialCamPrefab: {fileID: 0}
+  ARCam: {fileID: 0}

@@ -18,42 +18,101 @@ class UIManager : ManagerBase
 	[SerializeField]
 	GameObject conclusionMenuPrefab;
 
-	public GameObject Canvas { get; private set; }
+    public GameObject Canvas { get; private set; }
 	public GameObject MainMenu { get; private set; }
 	public GameObject ConclusionMenu { get; set; }
 
 	GameObject[] buttons;
 
-	public void SetMainMenu()
+    Transform mainPanel;
+    Transform registerPanel;
+    Transform authPanel;
+    Transform settingsPanel;
+
+    public void SetMainMenu()
 	{
 		MainMenu = Instantiate(mainMenuPrefab, GameObject.Find("UI").transform, false);
 		MainMenu.GetComponent<Canvas>().worldCamera = ToolBox.Get<CameraManager>().MainCamera.GetComponent<Camera>();
-		SetMenuButtonsEvents();
+
+        SetMainMenuButtonsEvents();
 	}
-	void SetMenuButtonsEvents()
+
+    void SetMainMenuButtonsEvents()
 	{
-		MainMenu.transform.Find("MainPanel").transform.Find("Play").GetComponent<Button>().onClick.AddListener(delegate
+        mainPanel = MainMenu.transform.Find("MainPanel");
+        registerPanel = MainMenu.transform.Find("RegisterPanel");
+        authPanel = MainMenu.transform.Find("AuthPanel");
+        settingsPanel = MainMenu.transform.Find("SettingsPanel");
+        mainPanel.Find("Play").GetComponent<Button>().onClick.AddListener(delegate
 		{
 			SceneManager.LoadScene(2);
 			ToolBox.Get<SettingsPlayer>().ARCamera = MainMenu.transform.Find("SettingsPanel").transform.Find("ToggleOfTypeCamera").GetComponent<Toggle>().isOn;
 		});
-		MainMenu.transform.Find("MainPanel").transform.Find("Exit").GetComponent<Button>().onClick.AddListener(delegate
+
+		mainPanel.transform.Find("Exit").GetComponent<Button>().onClick.AddListener(delegate
 		{
 			Application.Quit();
 		});
-		MainMenu.transform.Find("MainPanel").transform.Find("Options").GetComponent<Button>().onClick.AddListener(delegate
+		mainPanel.Find("Options").GetComponent<Button>().onClick.AddListener(delegate
 		{
-			MainMenu.transform.Find("MainPanel").gameObject.SetActive(false);
-			MainMenu.transform.Find("SettingsPanel").gameObject.SetActive(true);
+            mainPanel.gameObject.SetActive(false);
+			settingsPanel.gameObject.SetActive(true);
 		});
-		MainMenu.transform.Find("SettingsPanel").transform.Find("Home").GetComponent<Button>().onClick.AddListener(delegate
-		{
-			MainMenu.transform.Find("SettingsPanel").gameObject.SetActive(false);
-			MainMenu.transform.Find("MainPanel").gameObject.SetActive(true);
-		});
-	}
 
-	public void SetAnsverButtons()
+        mainPanel.Find("Authorisation").GetComponent<Button>().onClick.AddListener(delegate
+        {
+            mainPanel.gameObject.SetActive(false);
+            authPanel.gameObject.SetActive(true);
+        });
+
+        settingsPanel.transform.Find("Home").GetComponent<Button>().onClick.AddListener(delegate
+		{
+			settingsPanel.gameObject.SetActive(false);
+            mainPanel.gameObject.SetActive(true);
+		});
+
+        authPanel.transform.Find("Home").GetComponent<Button>().onClick.AddListener(delegate
+        {
+            authPanel.gameObject.SetActive(false);
+            mainPanel.gameObject.SetActive(true);
+        });
+        authPanel.transform.Find("Register").GetComponent<Button>().onClick.AddListener(delegate
+        {
+            authPanel.gameObject.SetActive(false);
+            registerPanel.gameObject.SetActive(true);
+        });
+
+        registerPanel.transform.Find("Home").GetComponent<Button>().onClick.AddListener(delegate
+        {
+            registerPanel.gameObject.SetActive(false);
+            mainPanel.gameObject.SetActive(true);
+        });
+
+        registerPanel.transform.Find("Register").GetComponent<Button>().onClick.AddListener(delegate
+        {
+            InputField login = registerPanel.Find("InputLogin").GetComponent<InputField>();
+            InputField password = registerPanel.Find("InputPassword").GetComponent<InputField>();
+            InputField confirmedPassword = registerPanel.Find("ConfirmPassword").GetComponent<InputField>();
+            ToolBox.Get<AuthorisationManager>().Register(login, password, confirmedPassword);
+        });
+
+        authPanel.transform.Find("Login").GetComponent<Button>().onClick.AddListener(delegate
+        {
+            InputField login = authPanel.Find("InputLogin").GetComponent<InputField>();
+            InputField password = authPanel.Find("InputPassword").GetComponent<InputField>();
+            ToolBox.Get<AuthorisationManager>().Login(login, password);
+        });
+    }
+
+    public void HideAuthorisation()
+    {
+        mainPanel.Find("Authorisation").gameObject.SetActive(false);
+        authPanel.gameObject.SetActive(false);
+        registerPanel.gameObject.SetActive(false);
+        mainPanel.gameObject.SetActive(true);
+    }
+
+    public void SetAnsverButtons()
 	{
 		buttons = new GameObject[3];
 		Canvas = Instantiate(canvasPrefab, GameObject.Find("UI").transform, false);
@@ -100,7 +159,8 @@ class UIManager : ManagerBase
 			else
 			{
 				ToolBox.Get<ProcessingAnsvers>().mistakesese.Add(ToolBox.Get<ProcessingAnsvers>().lvlSituat.Count);
-				ToolBox.Get<UIManager>().ShowResults();
+                ToolBox.Get<SendingInfoManager>().SendTest();
+                ToolBox.Get<UIManager>().ShowResults();
 			}
 		});
 	}
