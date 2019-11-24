@@ -32,7 +32,17 @@ class UIManager : ManagerBase
     public void SetMainMenu()
 	{
 		MainMenu = Instantiate(mainMenuPrefab, GameObject.Find("UI").transform, false);
-		MainMenu.GetComponent<Canvas>().worldCamera = ToolBox.Get<CameraManager>().MainCamera.GetComponent<Camera>();
+        if (ToolBox.Get<DataGameSession>().Token != null || ToolBox.Get<DataGameSession>().Token != "")
+        {
+            mainPanel = MainMenu.transform.Find("MainPanel");
+            mainPanel.Find("Authorisation").gameObject.SetActive(false);
+            mainPanel.Find("Logout").gameObject.SetActive(true);
+        }
+        else
+        {
+            mainPanel.Find("Authorisation").gameObject.SetActive(true);
+        }
+        MainMenu.GetComponent<Canvas>().worldCamera = ToolBox.Get<CameraManager>().MainCamera.GetComponent<Camera>();
 
         SetMainMenuButtonsEvents();
 	}
@@ -63,6 +73,14 @@ class UIManager : ManagerBase
         {
             mainPanel.gameObject.SetActive(false);
             authPanel.gameObject.SetActive(true);
+        });
+
+        mainPanel.transform.Find("Logout").GetComponent<Button>().onClick.AddListener(delegate
+        {
+            ToolBox.Get<DataGameSession>().Token = null;
+            Debug.Log("now token is null");
+            mainPanel.Find("Logout").gameObject.SetActive(false);
+            mainPanel.Find("Authorisation").gameObject.SetActive(true);
         });
 
         settingsPanel.transform.Find("Home").GetComponent<Button>().onClick.AddListener(delegate
@@ -107,9 +125,11 @@ class UIManager : ManagerBase
     public void HideAuthorisation()
     {
         mainPanel.Find("Authorisation").gameObject.SetActive(false);
+        mainPanel.Find("Logout").gameObject.SetActive(true);
         authPanel.gameObject.SetActive(false);
         registerPanel.gameObject.SetActive(false);
         mainPanel.gameObject.SetActive(true);
+
     }
 
     public void SetAnsverButtons()

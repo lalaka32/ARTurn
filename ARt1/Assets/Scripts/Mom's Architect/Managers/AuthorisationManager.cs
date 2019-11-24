@@ -45,10 +45,7 @@ class AuthorisationManager : ManagerBase
     internal void PutToken(string token)
     {
         token = JsonUtility.FromJson<TokenModel>(token).token;
-        if (token != "")
-        {
 
-        }
         ToolBox.Get<DataGameSession>().Token = token;
         Debug.Log("token now is: " + ToolBox.Get<DataGameSession>().Token);
         ToolBox.Get<UIManager>().HideAuthorisation();
