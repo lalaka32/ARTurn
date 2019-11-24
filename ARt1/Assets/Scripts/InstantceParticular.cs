@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Vuforia;
 
-public class InstantceParticular : MonoBehaviour, ITrackableEventHandler{
+public class InstantceParticular : MonoBehaviour, ITrackableEventHandler
+{
     private TrackableBehaviour mTrackableBehaviour;
     public Timer timer;
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         ToolBox.Get<CameraManager>().SetCamGO(ToolBox.Get<SettingsPlayer>().ARCamera);
         ToolBox.Get<CrossManager>().SetCrossGO(ToolBox.Get<SettingsPlayer>().ARCamera);
@@ -25,7 +26,7 @@ public class InstantceParticular : MonoBehaviour, ITrackableEventHandler{
             ToolBox.Get<UIManager>().SetAnsverButtons();
             InctanceRoadSituation();
         }
-        
+
 
     }
 
@@ -35,10 +36,10 @@ public class InstantceParticular : MonoBehaviour, ITrackableEventHandler{
         ToolBox.Get<CarManager>().Clear();
         ToolBox.Get<TrafficLightManager>().Clear();
 
-        
+
         ToolBox.Get<UIManager>().SetUIForRevision();
 
-        
+
 
         RoadSituation RS = ToolBox.Get<ProcessingAnsvers>().lvlSituat[ToolBox.Get<SettingsPlayer>().numberOfRevisionQuestion];
         ToolBox.Get<TrafficLightManager>().GenerationTrafficLight(RS, ToolBox.Get<CrossManager>().Cross.transform);

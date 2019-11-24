@@ -75,6 +75,8 @@ public class Instantiate : MonoBehaviour, ITrackableEventHandler
                 else
                 {
                     ToolBox.Get<ProcessingAnsvers>().mistakesese.Add(ToolBox.Get<ProcessingAnsvers>().lvlSituat.Count);
+
+                    ToolBox.Get<SendingInfoManager>().SendTest();
                     ToolBox.Get<UIManager>().ShowResults();
                 }
             });
@@ -88,6 +90,8 @@ public class Instantiate : MonoBehaviour, ITrackableEventHandler
             numberOfSituation++;
             Debug.Log(string.Format("{0}------------numberOfSituation", numberOfSituation));
         }
+
+        ToolBox.Get<SendingInfoManager>().SendTest();
         ToolBox.Get<UIManager>().ShowResults();
     }
     void FixedUpdate()

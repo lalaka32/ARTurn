@@ -10,11 +10,16 @@ class Starter: MonoBehaviour{
     //Будет просто содержать список наших систем
 
     public List<ManagerBase> managers = new List<ManagerBase>();
+    public List<ScriptableObject> data = new List<ScriptableObject>();
     
     
     private void Awake()
     {
         foreach (ManagerBase item in managers)
+        {
+            ToolBox.Add(item);
+        }
+        foreach (ScriptableObject item in data)
         {
             ToolBox.Add(item);
         }
