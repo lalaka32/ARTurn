@@ -8,5 +8,5 @@ class DrivingTestModel
 {
     public bool success;
 
-    public List<RoadSituationModel> roadSituation;
+    public List<RoadSituationModel> roadSituations;
 }

@@ -36,7 +36,7 @@ class SendingInfoManager : ManagerBase
             situationModels.Add(model);
         }
         DrivingTestModel drivingTestModel = new DrivingTestModel();
-        drivingTestModel.roadSituation = situationModels;
+        drivingTestModel.roadSituations = situationModels;
 
         drivingTestModel.success = (mistakesese.Count >= 2) ? false : true;
 
