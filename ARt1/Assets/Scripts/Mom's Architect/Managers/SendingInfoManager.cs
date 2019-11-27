@@ -31,7 +31,7 @@ class SendingInfoManager : ManagerBase
 
             model.HasSigns = (situations[i].trafficSign == TrafficSign.Empty) ? false : true;
 
-            model.Success = (mistakesese.Contains(i)) ? false : true;
+            model.Success = (mistakesese.Contains(i+1)) ? false : true;
             
             situationModels.Add(model);
         }
